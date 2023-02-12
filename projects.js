@@ -222,7 +222,7 @@
                 if (filterCounter % 2 === 0) {
                     let autoHeight = Array.from(filterWrap.children).map(el => el.clientHeight).reduce((a, b) => a + b, 0);
                     filterWrap.style.height = autoHeight + 'px';
-                    header.style.paddingBottom = '13rem';
+                    header.style.paddingBottom = '8rem';
                     setTimeout(function () { filterList.style.opacity = '1'; }.bind(this), parseFloat(outerTrans) * 1000);
                 } else {
                     filterList.style.opacity = '0';
