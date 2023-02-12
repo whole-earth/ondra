@@ -62,7 +62,6 @@
             }
         });
 
-
         project.addEventListener('mouseleave', function () {
             if (window.innerWidth >= 768) {
                 this.querySelector('.project-highlight').removeAttribute('style');
@@ -110,9 +109,6 @@
         });
     });
 
-
-
-
 // Recent Projects expand
 
     let recentBtn = document.querySelector('.recent-btn');
@@ -144,11 +140,6 @@
         }
 
     });
-
-
-
-
-
 
 // Mobile project meta expand
 
@@ -191,11 +182,13 @@
         });
     });
 
+    /* This breaks things - 02/11/23
     window.addEventListener("resize", function () {
         meta.forEach(function (element) {
             mobileCollapse(element);
         });
     });
+    */
 
 // Mobile filter menu toggle -->
 
