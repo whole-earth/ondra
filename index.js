@@ -47,9 +47,9 @@
         });
     }
 
-    const researchIsAnimating = false;
-    const designIsAnimating = false;
-    const devIsAnimating = false;
+    let researchIsAnimating = false;
+    let designIsAnimating = false;
+    let devIsAnimating = false;
 
     function researchAnimate() {
 
