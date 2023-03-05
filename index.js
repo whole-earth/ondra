@@ -1,4 +1,4 @@
-  window.addEventListener('load', async () => {
+window.addEventListener('load', async () => {
 
         // place grid
         let gridContainer = document.querySelector(".head-dev-grid");
@@ -60,13 +60,6 @@
 
         if (researchIsAnimating) return;
         researchIsAnimating = true;
-        designIsAnimating = true;
-        devIsAnimating = true;
-
-        setTimeout(function () {
-            designIsAnimating = false;
-            devIsAnimating = false;
-        }, 400);
 
         // move glass to right-edge of parent elem
         glass.style.transform = `translateX(${moveWidth}px)`;
@@ -86,14 +79,7 @@
     function designAnimate() {
 
         if (designIsAnimating) return;
-        researchIsAnimating = true;
         designIsAnimating = true;
-        devIsAnimating = true;
-
-        setTimeout(function () {
-            researchIsAnimating = false;
-            devIsAnimating = false;
-        }, 400);
 
         const headDesign = document.querySelector('.head-design');
         const transitionDuration = parseFloat(window.getComputedStyle(headDesign).getPropertyValue('transition-duration').replace('s', '')) * 1000;
@@ -147,14 +133,7 @@
         const devDesign = document.querySelector('.head-dev');
 
         if (devIsAnimating) return;
-        researchIsAnimating = true;
-        designIsAnimating = true;
         devIsAnimating = true;
-
-        setTimeout(function () {
-            researchIsAnimating = false;
-            designIsAnimating = false;
-        }, 400);
 
         const grid = document.querySelector('.head-dev-grid');
         grid.style.opacity = '0.8';
