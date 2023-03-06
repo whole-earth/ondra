@@ -232,10 +232,16 @@ window.addEventListener('load', async () => {
     const cover = document.querySelector('.intro-wrap');
     const content = document.querySelector('.content');
     const endPoint = 180;
-    const startScale = 1.3;
     const endScale = 6;
     const opacityTransLength = 120;
     const opacityTransMark = endPoint - opacityTransLength;
+
+    const startScale;
+    if (window.innerWidth < 768) {
+        startScale = 0.8;
+    } else if (window.innerWidth >= 768) {
+        startScale = 1.3;
+    }
 
     content.style.opacity = 0;
 
