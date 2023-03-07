@@ -233,7 +233,7 @@ window.addEventListener('load', async () => {
     const content = document.querySelector('.content');
     const startScale = window.innerWidth < 480 ? 0.6 : window.innerWidth < 768 ? 0.8 : 1.3; // ternary
     const endPoint = 180;
-    const endScale = 6;
+    const endScale = window.innerWidth < 768 ? 4 : 6;
     const opacityTransLength = 120;
     const opacityTransMark = endPoint - opacityTransLength;
 
