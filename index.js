@@ -268,7 +268,7 @@ window.addEventListener('load', async () => {
         }
 
         // cover pointerEvents
-        cover.style.pointerEvents = scrollPos > 5 ? 'none' : '';
+        cover.style.pointerEvents = scrollPos > 2 ? 'none' : '';
 
         // content position pinning
         content.classList.toggle('flow', window.scrollY >= endPoint);
