@@ -238,7 +238,6 @@ const opacityTransLength = 140;
 const opacityTransMark = endPoint - opacityTransLength;
 
 function updateCover() {
-
     const scrollPos = window.scrollY;
 
     // cover scale
@@ -271,27 +270,10 @@ function updateCover() {
 
     // content position pinning
     content.classList.toggle('flow', window.scrollY >= endPoint);
-
 }
 
-function scrollAnimate() {
-    requestAnimationFrame(updateCover);
+if (window.innerWidth > 768) {
+    content.style.opacity = 0;
+    content.classList.add("pinned");
+    window.addEventListener('scroll', () => requestAnimationFrame(updateCover));
 }
-
-function handleWindowResize() {
-    if (window.innerWidth > 768) {
-        content.style.opacity = '';
-        content.classList.remove("pinned");
-        window.removeEventListener('scroll', scrollAnimate);
-    } else {
-        content.style.opacity = 0;
-        content.classList.add("pinned");
-        window.addEventListener('scroll', scrollAnimate);
-    }
-}
-
-// on load...
-handleWindowResize();
-
-// ... and on resize.
-window.addEventListener('resize', handleWindowResize);
