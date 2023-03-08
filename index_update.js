@@ -274,21 +274,24 @@ function updateCover() {
 
 }
 
-if (window.innerWidth > 768) {
-    content.style.opacity = 0;
-    content.classList.add("pinned");
-    window.addEventListener('scroll', () => requestAnimationFrame(updateCover));
+function scrollAnimate() {
+    requestAnimationFrame(updateCover);
 }
 
-// on screenwidth change
-window.addEventListener('resize', function () {
+function handleWindowResize() {
     if (window.innerWidth > 768) {
         content.style.opacity = '';
         content.classList.remove("pinned");
-        // remove all scroll event listeners
+        window.removeEventListener('scroll', scrollAnimate);
     } else {
         content.style.opacity = 0;
         content.classList.add("pinned");
-        window.addEventListener('scroll', () => requestAnimationFrame(updateCover));
+        window.addEventListener('scroll', scrollAnimate);
     }
-})
+}
+
+// on load...
+handleWindowResize();
+
+// ... and on resize.
+window.addEventListener('resize', handleWindowResize);
