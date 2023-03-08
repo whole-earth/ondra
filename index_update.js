@@ -231,16 +231,17 @@ document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
-const startScale = window.innerWidth < 480 ? 0.6 : window.innerWidth < 768 ? 0.8 : 1.3; // ternary
-const endPoint = window.innerWidth < 768 ? 80 : 180; // ternary
-const endScale = window.innerWidth < 768 ? 3 : 6; // ternary
-const opacityTransLength = 140;
+const startScale = 1.3;
+const endPoint = 160;
+const endScale = 5;
+const opacityTransLength = 100;
 const opacityTransMark = endPoint - opacityTransLength;
 
 function updateCover() {
+
     const scrollPos = window.scrollY;
 
-    // cover scale
+    // cover transform: scale()
     if (scrollPos <= endPoint) {
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
@@ -266,12 +267,13 @@ function updateCover() {
     }
 
     // cover pointerEvents
-    cover.style.pointerEvents = scrollPos > 2 ? 'none' : '';
+    cover.style.pointerEvents = scrollPos > 2 ? 'none' : ''; // ternary: for pos>2, disable
 
     // content position pinning
     content.classList.toggle('flow', window.scrollY >= endPoint);
 }
 
+// on pageload
 if (window.innerWidth > 768) {
     content.style.opacity = 0;
     content.classList.add("pinned");
