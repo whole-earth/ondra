@@ -238,40 +238,40 @@ const opacityTransLength = 140;
 const opacityTransMark = endPoint - opacityTransLength;
 
 function updateCover() {
-    if (window.innerWidth > 768) {
-        const scrollPos = window.scrollY;
 
-        // cover scale
-        if (scrollPos <= endPoint) {
-            const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
-            cover.style.transform = `scale(${scale})`;
-        }
+    const scrollPos = window.scrollY;
 
-        // cover opacity
-        coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-        cover.style.opacity = coverOpacity;
-
-        // content opacity and scale
-        if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
-            contentOpacity = 1 - coverOpacity;
-            content.style.opacity = contentOpacity;
-
-            const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
-            content.children[0].style.transform = `scale(${childScale})`;
-        } else if (scrollPos > endPoint) {
-            content.style.opacity = 1;
-            content.children[0].style.transform = 'scale(1)';
-        } else {
-            content.style.opacity = 0;
-            content.children[0].style.transform = 'scale(0.6)';
-        }
-
-        // cover pointerEvents
-        cover.style.pointerEvents = scrollPos > 2 ? 'none' : '';
-
-        // content position pinning
-        content.classList.toggle('flow', window.scrollY >= endPoint);
+    // cover scale
+    if (scrollPos <= endPoint) {
+        const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
+        cover.style.transform = `scale(${scale})`;
     }
+
+    // cover opacity
+    coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+    cover.style.opacity = coverOpacity;
+
+    // content opacity and scale
+    if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
+        contentOpacity = 1 - coverOpacity;
+        content.style.opacity = contentOpacity;
+
+        const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
+        content.children[0].style.transform = `scale(${childScale})`;
+    } else if (scrollPos > endPoint) {
+        content.style.opacity = 1;
+        content.children[0].style.transform = 'scale(1)';
+    } else {
+        content.style.opacity = 0;
+        content.children[0].style.transform = 'scale(0.6)';
+    }
+
+    // cover pointerEvents
+    cover.style.pointerEvents = scrollPos > 2 ? 'none' : '';
+
+    // content position pinning
+    content.classList.toggle('flow', window.scrollY >= endPoint);
+
 }
 
 if (window.innerWidth > 768) {
@@ -283,12 +283,12 @@ if (window.innerWidth > 768) {
 // on screenwidth change
 window.addEventListener('resize', function () {
     if (window.innerWidth > 768) {
+        content.style.opacity = '';
+        content.classList.remove("pinned");
+        // remove all scroll event listeners
+    } else {
         content.style.opacity = 0;
         content.classList.add("pinned");
         window.addEventListener('scroll', () => requestAnimationFrame(updateCover));
-    } else {
-        content.style.opacity = '';
-        content.classList.remove("pinned");
-        // window scroll listener is currently voided by window.width checker inside function
     }
 })
