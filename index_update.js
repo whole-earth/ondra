@@ -237,8 +237,6 @@ const endScale = window.innerWidth < 768 ? 3 : 6; // ternary
 const opacityTransLength = 140;
 const opacityTransMark = endPoint - opacityTransLength;
 
-content.style.opacity = 0;
-
 function updateCover() {
     const scrollPos = window.scrollY;
 
@@ -275,6 +273,7 @@ function updateCover() {
 }
 
 if (window.innerWidth > 768) {
+    content.style.opacity = 0;
     content.classList.add("pinned");
     window.addEventListener('scroll', () => requestAnimationFrame(updateCover));
 }
