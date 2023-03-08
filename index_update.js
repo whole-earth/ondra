@@ -1,5 +1,5 @@
-window.addEventListener('load', () => {
-
+window.addEventListener('load', async () => {
+    
     // place grid
     let gridContainer = document.querySelector(".head-dev-grid");
 
