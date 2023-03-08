@@ -29,6 +29,7 @@ window.addEventListener('load', async () => {
 
     await delay(400);
     devAnimate();
+
 });
 
 function delay(ms) {
@@ -238,10 +239,9 @@ const opacityTransLength = 100;
 const opacityTransMark = endPoint - opacityTransLength;
 
 function updateCover() {
-
     const scrollPos = window.scrollY;
 
-    // cover transform: scale()
+    // cover scale
     if (scrollPos <= endPoint) {
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
@@ -267,15 +267,37 @@ function updateCover() {
     }
 
     // cover pointerEvents
-    cover.style.pointerEvents = scrollPos > 2 ? 'none' : ''; // ternary: for pos>2, disable
+    cover.style.pointerEvents = scrollPos > 2 ? 'none' : '';
 
     // content position pinning
     content.classList.toggle('flow', window.scrollY >= endPoint);
 }
 
-// on pageload
-if (window.innerWidth > 768) {
-    content.style.opacity = 0;
-    content.classList.add("pinned");
-    window.addEventListener('scroll', () => requestAnimationFrame(updateCover));
+function handleWindowResize() {
+    if (window.innerWidth > 768) {
+        content.style.opacity = 0;
+        content.classList.add("pinned");
+        window.addEventListener('scroll', animateOnScroll);
+    } else {
+        content.style.opacity = '';
+        content.classList.remove("pinned");
+        window.removeEventListener('scroll', animateOnScroll);
+        // clear updateCover styling
+        cover.style.transform = '';
+        cover.style.opacity = '';
+        cover.style.pointerEvents = '';
+        content.style.opacity = '';
+        content.classList.remove('pinned', 'flow');
+        content.children[0].style.transform = '';
+    }
 }
+
+function animateOnScroll() {
+    requestAnimationFrame(updateCover);
+}
+
+// on init
+handleWindowResize();
+
+// add an event listener to handle window resize
+window.addEventListener('resize', handleWindowResize);
