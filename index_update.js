@@ -29,6 +29,8 @@ window.addEventListener('load', async () => {
 
     await delay(400);
     devAnimate();
+    
+    fixedCoverScroll();
 
 });
 
@@ -51,6 +53,19 @@ function waitUntil(condition) {
 let researchIsAnimating = false;
 let designIsAnimating = false;
 let devIsAnimating = false;
+
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 5) {
+    researchIsAnimating = true;
+    designIsAnimating = true;
+    devIsAnimating = true;
+  } else {
+    researchIsAnimating = false;
+    designIsAnimating = false;
+    devIsAnimating = false;
+  }
+});
+
 
 function researchAnimate() {
 
@@ -301,3 +316,85 @@ handleWindowResize();
 
 // add an event listener to handle window resize
 window.addEventListener('resize', handleWindowResize);
+
+// 
+// new 03/10
+
+// weather
+fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.491188&units=imperial&appid=e94859be42276a7dd1791b66b543e1b5')
+    .then(response => response.json())
+    .then(data => {
+
+        icons = {
+            "01d": "☀️",
+            "02d": "⛅️",
+            "03d": "☁️",
+            "04d": "☁️",
+            "09d": "\uD83C\uDF27",
+            "10d": "\uD83C\uDF26",
+            "11d": "⛈",
+            "13d": "❄️",
+            "50d": "\uD83C\uDF2B",
+            "01n": "\uD83C\uDF11",
+            "02n": "\uD83C\uDF11 ☁",
+            "03n": "☁️",
+            "04n": "️️☁☁",
+            "09n": "\uD83C\uDF27",
+            "10n": "☔️",
+            "11n": "⛈",
+            "13n": "❄️",
+            "50n": "\uD83C\uDF2B"
+        }
+
+        const apiResponse = JSON.stringify(data);
+        const response = JSON.parse(apiResponse);
+
+        // Extract from JSON obj
+        const inputIcon = response.weather[0].icon;
+        const temp = Math.round(response.main.temp);
+
+        let weatherEmoji = '';
+        if (inputIcon in icons) {
+            weatherEmoji = icons[inputIcon];
+        }
+
+        document.getElementById('clIcon').innerHTML = weatherEmoji;
+        document.getElementById('clDegrees').innerHTML = temp + "°F";
+
+    })
+    .catch(error => console.error(error));
+
+// fixed corner divs transition
+function fixedCoverScroll() {
+  const container = document.querySelector('.fixed');
+  const containerTop = 1.6;
+  const containerBottom = 2;
+  const maxScroll = 60;
+  const topChange = -6;
+  const bottomChange = -6;
+
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth > 768) {
+      const scrollY = window.scrollY;
+
+      if (scrollY > maxScroll) {
+        container.style.display = 'none';
+      } else {
+        container.style.display = 'block';
+        let topValue = containerTop + (scrollY / maxScroll * (containerTop + topChange));
+        let bottomValue = containerBottom + (scrollY / maxScroll * (containerBottom + bottomChange));
+
+        if (topValue < topChange) {
+          topValue = topChange;
+        }
+
+        if (bottomValue < bottomChange) {
+          bottomValue = bottomChange;
+        }
+
+        container.style.top = `${topValue}em`;
+        container.style.bottom = `${bottomValue}em`;
+      }
+    }
+  });
+}
