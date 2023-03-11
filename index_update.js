@@ -29,8 +29,6 @@ window.addEventListener('load', async () => {
 
     await delay(400);
     devAnimate();
-    
-    fixedCoverScroll();
 
 });
 
@@ -398,3 +396,5 @@ function fixedCoverScroll() {
     }
   });
 }
+
+fixedCoverScroll();
