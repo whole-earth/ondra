@@ -262,7 +262,7 @@ document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
-const startScale = screen.width < 1100 ? 1 : 1.3; // ternary for landscape-iPhone edgecase
+const startScale = window.innerWidth < 1000 ? 1 : 1.3; // ternary for landscape-iPhone edgecase
 const endPoint = 160;
 const endScale = 5;
 const opacityTransLength = 100;
