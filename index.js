@@ -262,12 +262,13 @@ document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
-// const startScale = 1.3; // ternary for landscape-iPhone edgecase
 const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
 const endPoint = 160;
 const endScale = 5;
 const opacityTransLength = 100;
 const opacityTransMark = endPoint - opacityTransLength;
+
+cover.style.transform = `scale(${scale})`;
 
 function updateCover() {
     const scrollPos = window.scrollY;
