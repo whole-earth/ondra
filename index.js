@@ -268,7 +268,7 @@ const endScale = 5;
 const opacityTransLength = 100;
 const opacityTransMark = endPoint - opacityTransLength;
 
-cover.style.transform = `scale(${scale})`;
+cover.style.transform = `scale(${startScale})`;
 
 function updateCover() {
     const scrollPos = window.scrollY;
