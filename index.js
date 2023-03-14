@@ -389,10 +389,11 @@ function fixedCoverScroll() {
     const maxScroll = 60;
     const topChange = -6;
     const bottomChange = -6;
+    const maxScrollMobile = 40;
 
     window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
         if (window.innerWidth > 768) {
-            const scrollY = window.scrollY;
 
             if (scrollY > maxScroll) {
                 container.style.display = 'none';
@@ -411,6 +412,15 @@ function fixedCoverScroll() {
 
                 container.style.top = `${topValue}em`;
                 container.style.bottom = `${bottomValue}em`;
+            }
+        
+        } else { // start mobile
+
+            if (scrollY > maxScrollMobile) {
+                element.style.opacity = 0;
+            } else {
+                const opacity = 1 - (scrollY / maxScrollMobile);
+                element.style.opacity = opacity;
             }
         }
     });
