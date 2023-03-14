@@ -5,8 +5,8 @@ window.addEventListener('load', async () => {
     // place grid
     let gridContainer = document.querySelector(".head-dev-grid");
 
-    let gridContainerWidth = gridContainer.offsetWidth + 24;
-    let gridContainerHeight = gridContainer.offsetHeight + 16;
+    let gridContainerWidth = gridContainer.offsetWidth + 6;
+    let gridContainerHeight = gridContainer.offsetHeight + 12;
     let gridNumCols = Math.floor(gridContainerWidth / 16);
     let gridNumRows = Math.floor(gridContainerHeight / 16);
 
