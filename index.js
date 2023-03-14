@@ -183,7 +183,7 @@ function devAnimate() {
         let arrow = document.createElement('div');
         arrow.setAttribute("id", "arrow");
         arrow.style.position = 'absolute';
-        arrow.style.top = '0';
+        arrow.style.top = '4';
         arrow.style.left = '0';
         arrow.style.width = '0';
         arrow.style.height = '0';
