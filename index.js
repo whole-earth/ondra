@@ -80,6 +80,8 @@ window.addEventListener('scroll', function () {
   }
 });
 
+
+
 function researchAnimate() {
 
     const researchWord = document.querySelector('.head-research');
@@ -260,8 +262,7 @@ document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
-// const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
-const startScale = window.innerWidth < 768 ? 1 : 1.3;
+const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
 const endPoint = 160;
 const endScale = 5;
 const opacityTransLength = 100;
@@ -270,7 +271,6 @@ const opacityTransMark = endPoint - opacityTransLength;
 cover.style.transform = `scale(${startScale})`;
 
 function updateCover() {
-    
     const scrollPos = window.scrollY;
 
     // cover scale
@@ -309,7 +309,6 @@ function handleWindowResize() {
     if (window.innerWidth > 768) {
         content.style.opacity = 0;
         content.classList.add("pinned");
-    } else if (scrollPos > endPoint) {
         window.addEventListener('scroll', animateOnScroll);
     } else {
         content.style.opacity = '';
@@ -335,6 +334,7 @@ handleWindowResize();
 // add an event listener to handle window resize
 window.addEventListener('resize', handleWindowResize);
 
+// 
 // new 03/10
 
 // weather
@@ -430,6 +430,8 @@ window.addEventListener('DOMContentLoaded', function () {
     navCollapse();
 
     let coverOffset = getComputedStyle(document.querySelector('.nav-bubble')).paddingLeft;
+    // document.querySelector('.nav-whitespace').style.width = coverOffset;
+    // document.querySelector('.nav-whitespace').style.left = '0';
     document.querySelector('.nav').style.opacity = "1";
 
 });
