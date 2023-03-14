@@ -417,10 +417,10 @@ function fixedCoverScroll() {
         } else { // start mobile
 
             if (scrollY > maxScrollMobile) {
-                element.style.opacity = 0;
+                container.style.opacity = 0;
             } else {
                 const opacity = 1 - (scrollY / maxScrollMobile);
-                element.style.opacity = opacity;
+                container.style.opacity = opacity;
             }
         }
     });
