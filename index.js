@@ -197,7 +197,7 @@ function devAnimate() {
         let line = document.createElement('div');
         line.setAttribute("id", "line");
         line.style.position = 'absolute';
-        line.style.top = '6px';
+        line.style.top = '8px';
         line.style.left = '0';
         line.style.width = '0';
         line.style.height = '2.4px';
