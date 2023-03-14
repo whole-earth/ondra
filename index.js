@@ -5,7 +5,7 @@ window.addEventListener('load', async () => {
     // place grid
     let gridContainer = document.querySelector(".head-dev-grid");
 
-    let gridContainerWidth = gridContainer.offsetWidth + 6;
+    let gridContainerWidth = gridContainer.offsetWidth;
     let gridContainerHeight = gridContainer.offsetHeight + 12;
     let gridNumCols = Math.floor(gridContainerWidth / 16);
     let gridNumRows = Math.floor(gridContainerHeight / 16);
@@ -197,7 +197,7 @@ function devAnimate() {
         let line = document.createElement('div');
         line.setAttribute("id", "line");
         line.style.position = 'absolute';
-        line.style.top = '4px';
+        line.style.top = '2px';
         line.style.left = '0';
         line.style.width = '0';
         line.style.height = '2.4px';
