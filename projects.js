@@ -1,1 +1,263 @@
-const _0x3062e8=_0x4a91;(function(_0x29c7c7,_0x2c7393){const _0x392685=_0x4a91,_0x1f99a5=_0x29c7c7();while(!![]){try{const _0x2f064e=parseInt(_0x392685(0x12c))/0x1*(parseInt(_0x392685(0x116))/0x2)+parseInt(_0x392685(0x129))/0x3*(-parseInt(_0x392685(0x153))/0x4)+-parseInt(_0x392685(0x139))/0x5*(parseInt(_0x392685(0x155))/0x6)+parseInt(_0x392685(0x14c))/0x7*(-parseInt(_0x392685(0x114))/0x8)+parseInt(_0x392685(0x15e))/0x9*(-parseInt(_0x392685(0x11e))/0xa)+-parseInt(_0x392685(0x143))/0xb+parseInt(_0x392685(0x11c))/0xc;if(_0x2f064e===_0x2c7393)break;else _0x1f99a5['push'](_0x1f99a5['shift']());}catch(_0x4a924e){_0x1f99a5['push'](_0x1f99a5['shift']());}}}(_0x475c,0x2735d));const recentImgWidths=[];window[_0x3062e8(0x13c)]('load',function(){const _0x42b2a7=_0x3062e8,_0x1e8ec4=document[_0x42b2a7(0x156)]('.recent-project');for(let _0x136d64=0x0;_0x136d64<_0x1e8ec4['length'];_0x136d64++){let _0x282858=_0x1e8ec4[_0x136d64],_0x323817=_0x282858[_0x42b2a7(0x14d)](_0x42b2a7(0x15b))[_0x42b2a7(0x122)]()[_0x42b2a7(0x148)];recentImgWidths['push'](_0x323817),_0x282858[_0x42b2a7(0x14d)]('.recent-p-img-wrap')['style'][_0x42b2a7(0x148)]='0';}console[_0x42b2a7(0x140)](recentImgWidths),document[_0x42b2a7(0x144)](_0x42b2a7(0x133))['innerHTML']=document[_0x42b2a7(0x14d)](_0x42b2a7(0x161))['innerHTML'];const _0x4cf9f7={'Web':-0x1,'Video':-0x1,'Product':-0x1,'Photo':-0x1,'Space':-0x1,'Paper':-0x1,'Essay':-0x1},_0x3b4e5b=document['querySelector']('.projects')[_0x42b2a7(0x156)](_0x42b2a7(0x136));_0x3b4e5b[_0x42b2a7(0x120)](_0x92b9d8=>{const _0x542df8=_0x42b2a7,_0x6f0a2e=_0x4cf9f7[_0x92b9d8[_0x542df8(0x152)]];_0x6f0a2e!==undefined&&_0x4cf9f7[_0x92b9d8['innerHTML']]++;});for(const [_0x323e90,_0x1983a1]of Object[_0x42b2a7(0x14f)](_0x4cf9f7)){const _0x45b433=document['getElementById'](_0x323e90[_0x42b2a7(0x150)]()+_0x42b2a7(0x13b));_0x45b433[_0x42b2a7(0x152)]=_0x1983a1[_0x42b2a7(0x159)]()[_0x42b2a7(0x15f)](0x2,'0');}recentHoverAnim(),projectHoverAnim();}),window[_0x3062e8(0x13c)](_0x3062e8(0x13a),function(){recentHoverAnim(),projectHoverAnim();});const areaFields=document[_0x3062e8(0x14d)](_0x3062e8(0x11b))['querySelectorAll'](_0x3062e8(0x136));areaFields[_0x3062e8(0x120)](function(_0x18c5ed){const _0x5525de=_0x3062e8;_0x18c5ed['addEventListener'](_0x5525de(0x12a),function(_0x375bcb){const _0x4c8071=_0x5525de;document[_0x4c8071(0x14d)](_0x4c8071(0x141))[_0x4c8071(0x126)][_0x4c8071(0x158)]=_0x4c8071(0x154),document['querySelector'](_0x4c8071(0x11a))[_0x4c8071(0x126)][_0x4c8071(0x158)]=_0x4c8071(0x123);});}),document[_0x3062e8(0x144)]('isOpen')[_0x3062e8(0x13c)]('click',function(){const _0x55088b=_0x3062e8;document[_0x55088b(0x14d)](_0x55088b(0x160))[_0x55088b(0x12a)](),document[_0x55088b(0x14d)]('.is-closed')[_0x55088b(0x126)][_0x55088b(0x158)]=_0x55088b(0x154),document[_0x55088b(0x14d)](_0x55088b(0x141))['style'][_0x55088b(0x158)]=_0x55088b(0x123);}),document[_0x3062e8(0x14d)]('.noresultsreset')[_0x3062e8(0x13c)](_0x3062e8(0x12a),function(){const _0x462232=_0x3062e8;document[_0x462232(0x14d)](_0x462232(0x160))['click']();});let carats=document['querySelectorAll']('.filter-carat'),labels=document[_0x3062e8(0x156)](_0x3062e8(0x10f));function _0x4a91(_0x1f33af,_0x2f7dfb){const _0x475c99=_0x475c();return _0x4a91=function(_0x4a91bf,_0x1484e0){_0x4a91bf=_0x4a91bf-0x10e;let _0x1ce27c=_0x475c99[_0x4a91bf];return _0x1ce27c;},_0x4a91(_0x1f33af,_0x2f7dfb);}carats[_0x3062e8(0x120)](function(_0x567892){const _0x210f93=_0x3062e8;_0x567892['style'][_0x210f93(0x117)]=_0x210f93(0x121);}),labels[_0x3062e8(0x120)]((_0x3a3fe0,_0x51fb74)=>{_0x3a3fe0['addEventListener']('click',()=>{const _0x3fef66=_0x4a91;carats[_0x3fef66(0x120)](function(_0x46e7ff){const _0x5f5c2c=_0x3fef66;_0x46e7ff[_0x5f5c2c(0x126)][_0x5f5c2c(0x117)]='hidden';}),_0x3a3fe0['getAttribute'](_0x3fef66(0x147))==='ascending'?carats[_0x51fb74][_0x3fef66(0x126)][_0x3fef66(0x15a)]=_0x3fef66(0x12b):carats[_0x51fb74][_0x3fef66(0x126)][_0x3fef66(0x113)](_0x3fef66(0x15a)),carats[_0x51fb74][_0x3fef66(0x126)]['visibility']='visible';});});function recentHoverAnim(){const _0x5d7b43=_0x3062e8,_0x34b745=document[_0x5d7b43(0x156)](_0x5d7b43(0x135));for(let _0x42dc85=0x0;_0x42dc85<_0x34b745[_0x5d7b43(0x112)];_0x42dc85++){let _0xeb21e4=_0x34b745[_0x42dc85];_0xeb21e4[_0x5d7b43(0x13c)](_0x5d7b43(0x131),()=>{const _0x351d9a=_0x5d7b43;window['innerWidth']>0x300&&(wordShuffle(_0xeb21e4,0x41),_0xeb21e4[_0x351d9a(0x14d)]('.recent-p-img-wrap')[_0x351d9a(0x126)][_0x351d9a(0x148)]=recentImgWidths[_0x42dc85]+'px');}),_0xeb21e4[_0x5d7b43(0x13c)](_0x5d7b43(0x125),()=>{const _0x28e76c=_0x5d7b43;window['innerWidth']>0x300&&(_0xeb21e4[_0x28e76c(0x14d)](_0x28e76c(0x12f))['style'][_0x28e76c(0x148)]='0');});};}function projectHoverAnim(){const _0x184743=_0x3062e8,_0x5bebb1=document[_0x184743(0x156)](_0x184743(0x111));_0x5bebb1[_0x184743(0x120)](_0x2b0661=>{const _0x47b8ce=_0x184743;let _0x55e029=_0x2b0661['querySelector']('.project-img-wrap'),_0x42938a=window[_0x47b8ce(0x130)](_0x55e029)[_0x47b8ce(0x12d)],_0x31011c=_0x2b0661[_0x47b8ce(0x14d)](_0x47b8ce(0x149));_0x2b0661[_0x47b8ce(0x13c)](_0x47b8ce(0x131),()=>{const _0x1109cf=_0x47b8ce;window[_0x1109cf(0x134)]>0x300&&(_0x55e029[_0x1109cf(0x126)][_0x1109cf(0x158)]=_0x1109cf(0x15d),_0x55e029['style'][_0x1109cf(0x118)]='1',_0x31011c['style'][_0x1109cf(0x124)]=_0x1109cf(0x138),wordShuffle(_0x2b0661,0x3c),dePixelate(_0x2b0661));}),_0x2b0661[_0x47b8ce(0x13c)](_0x47b8ce(0x125),()=>{const _0xa02198=_0x47b8ce;window[_0xa02198(0x134)]>0x300&&(_0x55e029[_0xa02198(0x126)]['opacity']='0',setTimeout(function(){const _0x5979c2=_0xa02198;_0x55e029[_0x5979c2(0x126)]='';}[_0xa02198(0x142)](this),parseFloat(_0x42938a)*0x3e8),_0x31011c[_0xa02198(0x126)]='');});});}function _0x475c(){const _0x21cde2=['toString','transform','.recent-p-img','map','block','36Umelpz','padStart','[fs-cmsfilter-element=\x22reset\x22]','[fs-cmsfilter-element=\x22items-count\x22]','absolute','[fs-cmssort-element=\x27trigger\x27]','reverse','.project','length','removeProperty','104EeBaFB','canvas','58350dKlWXL','visibility','opacity','textContent','.is-closed','.project-filter-list','12165744eAyzvA','drawImage','619820UuFHEI','removeChild','forEach','hidden','getBoundingClientRect','none','borderBottomColor','mouseleave','style','join','translate(0px,\x20-50%)','21cPlJmx','click','rotate(135deg)','1TJyCJk','transitionDuration','src','.recent-p-img-wrap','getComputedStyle','mouseenter','random','allCount','innerWidth','.recent-project','[fs-cmsfilter-field=\x22area\x22]','parentNode','black','40Zozwcw','resize','Count','addEventListener','999','height','push','log','.is-open','bind','1058860kKFnsX','getElementById','webkitImageSmoothingEnabled','div:not(:empty):not(:has(*))','aria-sort','width','.project-line','left','split','132727jtlDnR','querySelector','getAttribute','entries','toLowerCase','onload','innerHTML','42412NzmzYz','inline-block','163110Ykzauj','querySelectorAll','sort','display'];_0x475c=function(){return _0x21cde2;};return _0x475c();}function wordShuffle(_0x331e41,_0x313193){const _0x1fe09c=_0x3062e8,_0x57e902=_0x313193;let _0x56d9fc=_0x331e41[_0x1fe09c(0x156)](_0x1fe09c(0x146)),_0x560806=[],_0x4d8026=[];_0x56d9fc[_0x1fe09c(0x120)](_0x57e669=>{const _0x29c201=_0x1fe09c,_0x3c7050=_0x57e669['textContent'];_0x4d8026['push'](_0x3c7050);const _0x2f1c2e=_0x3c7050[_0x29c201(0x14b)]('\x20'),_0x2ba567=_0x2f1c2e[_0x29c201(0x15c)](_0x495535=>_0x495535[_0x29c201(0x14b)]('')[_0x29c201(0x110)]()['join'](''));_0x57e669[_0x29c201(0x119)]=_0x2ba567[_0x29c201(0x127)]('\x20');const _0x1ce9e3=setTimeout(()=>{const _0x2aede4=_0x29c201,_0x1b3278=_0x2ba567[_0x2aede4(0x15c)](_0x57f956=>_0x57f956[_0x2aede4(0x14b)]('')['sort'](()=>Math[_0x2aede4(0x132)]()-0.5)['join'](''));_0x57e669[_0x2aede4(0x119)]=_0x1b3278[_0x2aede4(0x127)]('\x20');const _0x3a963b=setTimeout(()=>{const _0x25dd77=_0x2aede4,_0x556fca=_0x1b3278[_0x25dd77(0x15c)](_0x16407b=>_0x16407b[_0x25dd77(0x14b)]('')[_0x25dd77(0x157)](()=>Math[_0x25dd77(0x132)]()-0.5)['join'](''));_0x57e669[_0x25dd77(0x119)]=_0x556fca[_0x25dd77(0x127)]('');const _0x6f1896=setTimeout(()=>{const _0xe990d9=_0x25dd77;_0x57e669[_0xe990d9(0x119)]=_0x2f1c2e[_0xe990d9(0x127)]('\x20');},_0x57e902);_0x560806['push'](_0x6f1896);},_0x57e902);_0x560806[_0x2aede4(0x13f)](_0x3a963b);},_0x57e902);_0x560806[_0x29c201(0x13f)](_0x1ce9e3);}),_0x331e41[_0x1fe09c(0x13c)](_0x1fe09c(0x125),()=>{const _0x224c1d=_0x1fe09c;_0x560806['forEach'](_0x2930f2=>clearTimeout(_0x2930f2)),_0x56d9fc[_0x224c1d(0x120)]((_0x2a2cb4,_0x1e27ab)=>{const _0xf020f=_0x224c1d;_0x2a2cb4[_0xf020f(0x119)]=_0x4d8026[_0x1e27ab];});});}function dePixelate(_0x55997d){const _0x564f5c=_0x3062e8,_0x56ffa0=_0x55997d['querySelector']('img'),_0x338af7=document['createElement'](_0x564f5c(0x115));_0x56ffa0['parentNode']['insertBefore'](_0x338af7,_0x56ffa0),_0x338af7[_0x564f5c(0x126)]['position']=_0x564f5c(0x10e),_0x338af7[_0x564f5c(0x126)]['top']='0',_0x338af7[_0x564f5c(0x126)][_0x564f5c(0x14a)]='0',_0x338af7[_0x564f5c(0x126)]['transform']=_0x564f5c(0x128),_0x338af7[_0x564f5c(0x126)]['zIndex']=_0x564f5c(0x13d),_0x338af7[_0x564f5c(0x148)]=_0x56ffa0[_0x564f5c(0x148)],_0x338af7[_0x564f5c(0x13e)]=_0x56ffa0[_0x564f5c(0x13e)];const _0x2d6f57=_0x338af7['getContext']('2d');_0x2d6f57['mozImageSmoothingEnabled']=![],_0x2d6f57[_0x564f5c(0x145)]=![],_0x2d6f57['imageSmoothingEnabled']=![];let _0xa0b9ca=new Image();_0xa0b9ca[_0x564f5c(0x12e)]=_0x56ffa0[_0x564f5c(0x14e)](_0x564f5c(0x12e)),_0xa0b9ca[_0x564f5c(0x151)]=function(){function _0x52cef9(_0x5d912f){const _0x53ac0b=_0x4a91;let _0x238195=_0x5d912f*0.01,_0x3b0260=_0x338af7[_0x53ac0b(0x148)]*_0x238195,_0x26f81c=_0x338af7[_0x53ac0b(0x13e)]*_0x238195;_0x2d6f57[_0x53ac0b(0x11d)](_0xa0b9ca,0x0,0x0,_0x3b0260,_0x26f81c),_0x2d6f57[_0x53ac0b(0x11d)](_0x338af7,0x0,0x0,_0x3b0260,_0x26f81c,0x0,0x0,_0x338af7[_0x53ac0b(0x148)],_0x338af7[_0x53ac0b(0x13e)]);}_0x52cef9(0x4),setTimeout(function(){_0x52cef9(0x8);},0x64),setTimeout(function(){_0x52cef9(0xe);},0xb4),setTimeout(function(){_0x52cef9(0x18);},0x104),setTimeout(function(){const _0xd812a1=_0x4a91;_0x338af7[_0xd812a1(0x137)][_0xd812a1(0x11f)](_0x338af7);},0x12c);};}
+    const recentImgWidths = [];
+
+    window.addEventListener('load', function () {
+
+        // get initial widths and set to 0
+        const recentProjects = document.querySelectorAll('.recent-project');
+        for (let i = 0; i < recentProjects.length; i++) {
+            let project = recentProjects[i];
+            let recentImgWidth = project.querySelector('.recent-p-img').getBoundingClientRect().width;
+            recentImgWidths.push(recentImgWidth);
+            project.querySelector('.recent-p-img-wrap').style.width = '0';
+        }
+
+        // test
+        console.log(recentImgWidths);
+
+        // Filter counts
+        document.getElementById('allCount').innerHTML = document.querySelector('[fs-cmsfilter-element="items-count"]').innerHTML;
+
+        const filterCounts = {
+            'Web': -1,
+            'Video': -1,
+            'Product': -1,
+            'Photo': -1,
+            'Space': -1,
+            'Paper': -1,
+            'Essay': -1
+        };
+
+        const filterFields = document.querySelector('.projects').querySelectorAll('[fs-cmsfilter-field="area"]');
+        filterFields.forEach((field) => {
+            const count = filterCounts[field.innerHTML];
+            if (count !== undefined) {
+                filterCounts[field.innerHTML]++;
+            }
+        });
+
+        for (const [fieldName, count] of Object.entries(filterCounts)) {
+            const countElement = document.getElementById(`${fieldName.toLowerCase()}Count`);
+            countElement.innerHTML = count.toString().padStart(2, '0');
+        }
+
+        recentHoverAnim();
+        projectHoverAnim();
+
+    });
+
+    window.addEventListener('resize', function () {
+        recentHoverAnim();
+        projectHoverAnim();
+    });
+
+    // Filter-label click events
+    const areaFields = document.querySelector('.project-filter-list').querySelectorAll('[fs-cmsfilter-field="area"]');
+    areaFields.forEach(function (areaField) {
+        areaField.addEventListener('click', function (event) {
+            document.querySelector('.is-open').style.display = 'inline-block';
+            document.querySelector('.is-closed').style.display = 'none';
+        });
+    });
+
+    // filter-reset click mirrors
+    document.getElementById('isOpen').addEventListener('click', function () {
+        document.querySelector('[fs-cmsfilter-element="reset"]').click();
+        document.querySelector('.is-closed').style.display = 'inline-block';
+        document.querySelector('.is-open').style.display = 'none';
+    });
+    // anotha click-mirra
+    document.querySelector('.noresultsreset').addEventListener('click', function () {
+        document.querySelector('[fs-cmsfilter-element="reset"]').click();
+    });
+
+    // visual carats: sorting states
+    let carats = document.querySelectorAll('.filter-carat');
+    let labels = document.querySelectorAll("[fs-cmssort-element='trigger']");
+    carats.forEach(function (carat) { carat.style.visibility = 'hidden'; })
+
+    labels.forEach((label, i) => {
+        label.addEventListener('click', () => {
+
+            carats.forEach(function (carat) { carat.style.visibility = "hidden"; });
+
+            // flip
+            if (label.getAttribute('aria-sort') === 'ascending') {
+                carats[i].style.transform = 'rotate(135deg)';
+            } else {
+                carats[i].style.removeProperty('transform');
+            }
+
+            carats[i].style.visibility = 'visible';
+        });
+    });
+
+    function recentHoverAnim() {
+
+        const recentProjects = document.querySelectorAll('.recent-project');
+        for (let i = 0; i < recentProjects.length; i++) {
+
+            let project = recentProjects[i];
+
+            project.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 768) {
+                    wordShuffle(project, 65);
+                    project.querySelector('.recent-p-img-wrap').style.width = recentImgWidths[i] + 'px';
+                }
+            });
+
+            project.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 768) {
+                    project.querySelector('.recent-p-img-wrap').style.width = '0';
+                }
+            });
+        };
+    }
+
+    function projectHoverAnim() {
+        const projects = document.querySelectorAll('.project');
+        projects.forEach(project => {
+
+            let img = project.querySelector('.project-img-wrap');
+            let imgTrans = window.getComputedStyle(img).transitionDuration;
+            let link = project.querySelector('.project-line');
+
+            project.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 768) {
+                    img.style.display = 'block';
+                    img.style.opacity = '1';
+                    link.style.borderBottomColor = 'black';
+                    wordShuffle(project, 60);
+                    dePixelate(project);
+                }
+            });
+
+            project.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 768) {
+                    img.style.opacity = '0';
+                    setTimeout(function () { img.style = ''; }.bind(this), parseFloat(imgTrans) * 1000);
+                    link.style = '';
+                }
+            });
+        });
+    }
+
+    function wordShuffle(parent, defineTimeout) {
+        const timeoutLength = defineTimeout;
+
+        let linesToShuffle = parent.querySelectorAll(
+            'div:not(:empty):not(:has(*))'
+        );
+
+        let timeouts = [];
+
+        let originalTexts = [];
+
+        linesToShuffle.forEach((line) => {
+            const originalText = line.textContent;
+
+            originalTexts.push(originalText);
+
+            const words = originalText.split(" ");
+
+            const flippedWords = words.map((word) =>
+                word.split("").reverse().join("")
+            );
+
+            line.textContent = flippedWords.join(" ");
+
+            const timeout1 = setTimeout(() => {
+                const shuffledWords = flippedWords.map((word) =>
+                    word.split("").sort(() => Math.random() - 0.5).join("")
+                );
+
+                line.textContent = shuffledWords.join(" ");
+
+                const timeout2 = setTimeout(() => {
+                    const shuffledWordsAgain = shuffledWords.map((word) =>
+                        word.split("").sort(() => Math.random() - 0.5).join("")
+                    );
+
+                    line.textContent = shuffledWordsAgain.join("");
+
+                    const timeout3 = setTimeout(() => {
+                        line.textContent = words.join(" ");
+                    }, timeoutLength);
+
+                    timeouts.push(timeout3);
+                }, timeoutLength);
+
+                timeouts.push(timeout2);
+            }, timeoutLength);
+
+            timeouts.push(timeout1);
+        });
+
+        parent.addEventListener("mouseleave", () => {
+            timeouts.forEach((timeout) => clearTimeout(timeout));
+            linesToShuffle.forEach((line, index) => {
+                line.textContent = originalTexts[index];
+            });
+        });
+    }
+
+    function dePixelate(element) {
+
+        const origImage = element.querySelector('img');
+
+        // canvas: create and place
+        const canvas = document.createElement('canvas');
+        origImage.parentNode.insertBefore(canvas, origImage);
+        canvas.style.position = 'absolute';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.transform = 'translate(0px, -50%)';
+        canvas.style.zIndex = '999';
+        canvas.width = origImage.width;
+        canvas.height = origImage.height;
+        const ctx = canvas.getContext('2d');
+
+        // turn off image smoothing
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
+
+        // load image onto canvas
+        let img = new Image();
+        img.src = origImage.getAttribute('src');
+
+        img.onload = function () {
+
+            function pixelate(pixelSize) {
+                let size = pixelSize * 0.01,
+                    w = canvas.width * size,
+                    h = canvas.height * size;
+
+                // Scale down: compress
+                ctx.drawImage(img, 0, 0, w, h);
+
+                // Scale up: pixelate
+                ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+
+            }
+
+            pixelate(4);
+
+            setTimeout(function () {
+                pixelate(8);
+            }, 100);
+
+            setTimeout(function () {
+                pixelate(14);
+            }, 180);
+
+            setTimeout(function () {
+                pixelate(24);
+            }, 260);
+
+            setTimeout(function () {
+                canvas.parentNode.removeChild(canvas);
+            }, 300);
+
+        }
+
+    }
