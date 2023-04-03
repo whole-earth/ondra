@@ -1,4 +1,4 @@
-import * as THREE from "./libs/threejs/three.module.js";
+import * as THREE from "./libs/three.module.js";
 import { TWEEN } from "./libs/tween.module.min.js";
 import { TrackballControls } from "./libs/TrackballControls.js";
 import { CSS3DRenderer, CSS3DObject } from "./libs/CSS3dRenderer.js";
