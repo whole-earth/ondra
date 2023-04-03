@@ -53,7 +53,7 @@ function initControls(renderer) {
 
 function initRenderer() {
     let renderer = new CSS3DRenderer();
-    let main = document.querySelector('.campusThree');
+    let main = document.querySelector('.campus-three');
     renderer.setSize(main.clientWidth, main.clientHeight);
     main.appendChild(renderer.domElement);
     return renderer
@@ -220,7 +220,7 @@ function animate() {
 
 function render() {
     renderer.render(scene, camera);
-    document.querySelector('.campusThree').querySelector('div:first-of-type').style.overflow = ''; // legendary hack right here
+    document.querySelector('.campus-three').querySelector('div:first-of-type').style.overflow = ''; // legendary hack right here
 }
 
 function toggleIcon(icon, removeClass, addClass) {
