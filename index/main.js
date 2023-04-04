@@ -286,7 +286,7 @@ function updateCover() {
         contentOpacity = 1 - coverOpacity;
         content.style.opacity = contentOpacity;
 
-        const childScale = 0.5 + (1 - 0.5) * (scrollPos - opacityTransMark) / opacityTransLength;
+        const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
         content.children[0].style.transform = `scale(${childScale})`;
     } else if (scrollPos > endPoint) {
         content.style.opacity = 1;
@@ -325,7 +325,7 @@ function handleWindowResize() {
 }
 
 function animateOnScroll() {
-        requestAnimationFrame(updateCover);
+    requestAnimationFrame(updateCover);
 }
 
 // on init
