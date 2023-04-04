@@ -307,7 +307,7 @@ function updateCover() {
 
 function handleWindowResize() {
     if (window.innerWidth > 768) {
-        content.style.opacity = 0;
+        // content.style.opacity = 0;
         content.classList.add("pinned");
         window.addEventListener('scroll', animateOnScroll);
     } else {
@@ -554,7 +554,7 @@ window.addEventListener("scroll", function () {
       window.addEventListener("scroll", campusScrollAnim);
     } else {
       window.removeEventListener("scroll", campusScrollAnim);
-      three.style = "opacity: 1"; // here
+      three.style = "";
       meta.style = "";
       minMetaBtn.style.display = 'none';
       three.style.transform = 'scale(0.7)';
