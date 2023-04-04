@@ -589,5 +589,6 @@ function campusScrollAnim() {
     }
 }
 
+//
 window.addEventListener("load", campusAnimCheck);
 window.addEventListener("resize", campusAnimCheck);
