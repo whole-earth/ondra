@@ -56,6 +56,7 @@ function initRenderer() {
     let main = document.querySelector('.campus-three');
     renderer.setSize(main.clientWidth, main.clientHeight);
     main.appendChild(renderer.domElement);
+    main.style.overflow = "visible"; // hack 04/04/23
     return renderer
 }
 
