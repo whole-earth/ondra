@@ -325,7 +325,9 @@ function handleWindowResize() {
 }
 
 function animateOnScroll() {
-    requestAnimationFrame(updateCover);
+    if (window.scrollY < endPoint) {
+        requestAnimationFrame(updateCover);
+    }
 }
 
 // on init
