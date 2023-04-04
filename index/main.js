@@ -562,6 +562,7 @@ window.addEventListener("scroll", function () {
       	three.style.transform = 'scale(0.4)';
       }
 		}
+		three.style.opacity = '1';
 	}
 
 	function campusScrollAnim() {
