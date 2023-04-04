@@ -325,11 +325,7 @@ function handleWindowResize() {
 }
 
 function animateOnScroll() {
-    if (window.scrollY < endPoint) {
-        console.log('active scroll');
         requestAnimationFrame(updateCover);
-    }
-    else { console.log('inactive'); }
 }
 
 // on init
