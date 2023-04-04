@@ -535,6 +535,7 @@ const minMetaBtn = document.getElementById('minMetaBtn');
 
 minMetaBtn.style.display = 'none';
 let buttonCount = 0;
+three.querySelector('div:nth-of-type(2)').style.overflow = "visible"; // hack 04/04/23
 
 const buttons = document.querySelectorAll('.campus-interact-form-view');
 buttons.forEach(function (button) {
@@ -562,7 +563,6 @@ function campusAnimCheck() {
             three.style.transform = 'scale(0.4)';
         }
     }
-    three.querySelector('div:nth-of-type(2)').style.overflow = "visible"; // hack 04/04/23
 }
 
 function campusScrollAnim() {
