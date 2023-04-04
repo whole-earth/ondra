@@ -554,7 +554,7 @@ window.addEventListener("scroll", function () {
       window.addEventListener("scroll", campusScrollAnim);
     } else {
       window.removeEventListener("scroll", campusScrollAnim);
-      three.style = "";
+      three.style = "opacity: 1"; // here
       meta.style = "";
       minMetaBtn.style.display = 'none';
       three.style.transform = 'scale(0.7)';
@@ -562,7 +562,6 @@ window.addEventListener("scroll", function () {
       	three.style.transform = 'scale(0.4)';
       }
 		}
-		three.style.opacity = '1';
 	}
 
 	function campusScrollAnim() {
