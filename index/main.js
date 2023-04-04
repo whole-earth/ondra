@@ -1,4 +1,4 @@
-// 03.10 20:27pt
+// 04.04 10am, LA
 
 window.addEventListener('load', async () => {
 
@@ -55,29 +55,29 @@ let designIsAnimating = false;
 let devIsAnimating = false;
 
 window.addEventListener('scroll', function () {
-  // if screen is greater than 768px
-  if (window.innerWidth > 768) {
-    if (window.scrollY > 5) {
-        researchIsAnimating = true;
-        designIsAnimating = true;
-        devIsAnimating = true;
+    // if screen is greater than 768px
+    if (window.innerWidth > 768) {
+        if (window.scrollY > 5) {
+            researchIsAnimating = true;
+            designIsAnimating = true;
+            devIsAnimating = true;
+        } else {
+            researchIsAnimating = false;
+            designIsAnimating = false;
+            devIsAnimating = false;
+        }
     } else {
-        researchIsAnimating = false;
-        designIsAnimating = false;
-        devIsAnimating = false;
+        // screen is less than or equal to 768px
+        if (window.scrollY > 20) {
+            researchIsAnimating = true;
+            designIsAnimating = true;
+            devIsAnimating = true;
+        } else {
+            researchIsAnimating = false;
+            designIsAnimating = false;
+            devIsAnimating = false;
+        }
     }
-  } else {
-    // screen is less than or equal to 768px
-    if (window.scrollY > 20) {
-        researchIsAnimating = true;
-        designIsAnimating = true;
-        devIsAnimating = true;
-    } else {
-        researchIsAnimating = false;
-        designIsAnimating = false;
-        devIsAnimating = false;
-    }
-  }
 });
 
 
@@ -413,7 +413,7 @@ function fixedCoverScroll() {
                 container.style.top = `${topValue}em`;
                 container.style.bottom = `${bottomValue}em`;
             }
-        
+
         } else { // start mobile
 
             if (scrollY > maxScrollMobile) {
@@ -526,67 +526,68 @@ window.addEventListener("scroll", function () {
 });
 
 // Campus Interactive
-    const wrap = document.querySelector('.campus-interact');
-	const three = document.querySelector('.campus-three');
-	const wrapTop = wrap.offsetTop;
-	const wrapHeight = wrap.offsetHeight;
-	const meta = document.querySelector('.campus-interact-meta');
-	const minMetaBtn = document.getElementById('minMetaBtn');
+const wrap = document.querySelector('.campus-interact');
+const three = document.querySelector('.campus-three');
+const wrapTop = wrap.offsetTop;
+const wrapHeight = wrap.offsetHeight;
+const meta = document.querySelector('.campus-interact-meta');
+const minMetaBtn = document.getElementById('minMetaBtn');
 
-	minMetaBtn.style.display = 'none';
-	let buttonCount = 0;
+minMetaBtn.style.display = 'none';
+let buttonCount = 0;
 
-	const buttons = document.querySelectorAll('.campus-interact-form-view');
-	buttons.forEach(function (button) {
-  	button.addEventListener('click', function () {
-    	buttonCount++;
-      if (window.innerWidth > 992) {
-      	three.style.marginLeft = '0';
-        minMetaBtn.style.display = 'block';
-      }
+const buttons = document.querySelectorAll('.campus-interact-form-view');
+buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
+        buttonCount++;
+        if (window.innerWidth > 992) {
+            three.style.marginLeft = '0';
+            minMetaBtn.style.display = 'block';
+        }
     });
-	});
+});
 
-	function campusAnimCheck() {
+function campusAnimCheck() {
 
-		if (window.innerWidth > 992) {
-    	three.style.transform = '';
-      window.addEventListener("scroll", campusScrollAnim);
+    if (window.innerWidth > 992) {
+        three.style.transform = '';
+        window.addEventListener("scroll", campusScrollAnim);
     } else {
-      window.removeEventListener("scroll", campusScrollAnim);
-      three.style = "";
-      meta.style = "";
-      minMetaBtn.style.display = 'none';
-      three.style.transform = 'scale(0.7)';
-      if (window.innerWidth < 600) {
-      	three.style.transform = 'scale(0.4)';
-      }
-		}
-	}
+        window.removeEventListener("scroll", campusScrollAnim);
+        three.style = "";
+        meta.style = "";
+        minMetaBtn.style.display = 'none';
+        three.style.transform = 'scale(0.7)';
+        if (window.innerWidth < 600) {
+            three.style.transform = 'scale(0.4)';
+        }
+    }
+    three.querySelector('div:nth-of-type(2)').style.overflow = "visible"; // hack 04/04/23
+}
 
-	function campusScrollAnim() {
+function campusScrollAnim() {
 
-		const scrollPosition = window.pageYOffset;
+    const scrollPosition = window.pageYOffset;
     const marginPointOne = wrapTop + (wrapHeight * (1 / 20));
     const marginPointTwo = wrapTop + (wrapHeight * (3 / 8));
-		const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
+    const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
 
-		if (buttonCount === 0) {
-			if (window.pageYOffset > wrapTop) {
-				if (scrollPosition > wrapTop && scrollPosition < marginPointTwo) {
-        	const progress = (scrollPosition - marginPointOne) / (marginPointTwo - marginPointOne);
-          const marginLeft = progress * 250;
-          three.style.marginLeft = `${marginLeft}px`;
+    if (buttonCount === 0) {
+        if (window.pageYOffset > wrapTop) {
+            if (scrollPosition > wrapTop && scrollPosition < marginPointTwo) {
+                const progress = (scrollPosition - marginPointOne) / (marginPointTwo - marginPointOne);
+                const marginLeft = progress * 250;
+                three.style.marginLeft = `${marginLeft}px`;
+            }
         }
-			}
-		}
-
-		if (scrollPosition > opacityPoint) {
-			meta.style.opacity = '1';
-    } else {
-    	meta.style.opacity = 0;
     }
-	}
 
-	window.addEventListener("load", campusAnimCheck);
-	window.addEventListener("resize", campusAnimCheck);
+    if (scrollPosition > opacityPoint) {
+        meta.style.opacity = '1';
+    } else {
+        meta.style.opacity = 0;
+    }
+}
+
+window.addEventListener("load", campusAnimCheck);
+window.addEventListener("resize", campusAnimCheck);
