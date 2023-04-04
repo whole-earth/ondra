@@ -80,8 +80,6 @@ window.addEventListener('scroll', function () {
     }
 });
 
-
-
 function researchAnimate() {
 
     const researchWord = document.querySelector('.head-research');
@@ -307,8 +305,10 @@ function updateCover() {
 
 function handleWindowResize() {
     if (window.innerWidth > 768) {
-        // content.style.opacity = 0;
         content.classList.add("pinned");
+        if (window.pageYOffset === 0) {
+            content.style.opacity = "0";
+        }
         window.addEventListener('scroll', animateOnScroll);
     } else {
         content.style.opacity = '';
@@ -562,8 +562,6 @@ function campusAnimCheck() {
             three.style.transform = 'scale(0.4)';
         }
     }
-    three.querySelector('div:nth-of-type(2)').style.overflow = "visible !important"; // hack 04/04/23
-    console.log('fired check');
 }
 
 function campusScrollAnim() {
