@@ -524,3 +524,69 @@ window.addEventListener("scroll", function () {
         setTimeout(() => { functionDisabled = false; }, transitionSpeed);
     }
 });
+
+// Campus Interactive
+    const wrap = document.querySelector('.campus-interact');
+	const three = document.querySelector('.campus-three');
+	const wrapTop = wrap.offsetTop;
+	const wrapHeight = wrap.offsetHeight;
+	const meta = document.querySelector('.campus-interact-meta');
+	const minMetaBtn = document.getElementById('minMetaBtn');
+
+	minMetaBtn.style.display = 'none';
+	let buttonCount = 0;
+
+	const buttons = document.querySelectorAll('.campus-interact-form-view');
+	buttons.forEach(function (button) {
+  	button.addEventListener('click', function () {
+    	buttonCount++;
+      if (window.innerWidth > 992) {
+      	three.style.marginLeft = '0';
+        minMetaBtn.style.display = 'block';
+      }
+    });
+	});
+
+	function campusAnimCheck() {
+
+		if (window.innerWidth > 992) {
+    	three.style.transform = '';
+      window.addEventListener("scroll", campusScrollAnim);
+    } else {
+      window.removeEventListener("scroll", campusScrollAnim);
+      three.style = "";
+      meta.style = "";
+      minMetaBtn.style.display = 'none';
+      three.style.transform = 'scale(0.7)';
+      if (window.innerWidth < 600) {
+      	three.style.transform = 'scale(0.4)';
+      }
+		}
+	}
+
+	function campusScrollAnim() {
+
+		const scrollPosition = window.pageYOffset;
+    const marginPointOne = wrapTop + (wrapHeight * (1 / 20));
+    const marginPointTwo = wrapTop + (wrapHeight * (3 / 8));
+		const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
+
+		if (buttonCount === 0) {
+			if (window.pageYOffset > wrapTop) {
+				if (scrollPosition > wrapTop && scrollPosition < marginPointTwo) {
+        	const progress = (scrollPosition - marginPointOne) / (marginPointTwo - marginPointOne);
+          const marginLeft = progress * 250;
+          three.style.marginLeft = `${marginLeft}px`;
+        }
+			}
+		}
+
+		if (scrollPosition > opacityPoint) {
+			meta.style.opacity = '1';
+    } else {
+    	meta.style.opacity = 0;
+    }
+	}
+
+	window.addEventListener("load", campusAnimCheck);
+	window.addEventListener("resize", campusAnimCheck);
