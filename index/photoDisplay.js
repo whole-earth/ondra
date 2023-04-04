@@ -221,7 +221,7 @@ function animate() {
 
 function render() {
     renderer.render(scene, camera);
-    document.querySelector('.campus-three').querySelector('div:first-of-type').style.overflow = ''; // legendary hack right here
+    document.querySelector('.campus-three').querySelector('div:nth-of-type(2)').style.overflow = '';
 }
 
 function toggleIcon(icon, removeClass, addClass) {
