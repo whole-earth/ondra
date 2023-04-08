@@ -2,7 +2,8 @@ html {
 	scrollbar-width: none;
 	overscroll-behavior: none;
   	overscroll-behavior-y: none;
-    -webkit-overscroll-behavior-y: none;
+    	-webkit-overscroll-behavior-y: none;
+	overflow-x: hidden;
 }
 
 html::-webkit-scrollbar { display: none; }
