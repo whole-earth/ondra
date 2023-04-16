@@ -20,10 +20,8 @@ window.addEventListener('load', async () => {
         }
     }
 
-    // ADD: disable touch events for document.querySelector.('intro-wrap');
-    let introWrap = document.querySelector('.intro-wrap');
-    introWrap.style.pointerEvents = 'none';
-    // cover pageload animations
+    document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+
     await delay(1000);
     researchAnimate();
     await waitUntil(() => !researchIsAnimating);
@@ -34,9 +32,9 @@ window.addEventListener('load', async () => {
 
     await delay(400);
     devAnimate();
+    await waitUntil(() => !devIsAnimating);
     
-    // ADD: restore touch events for document.querySelector.('intro-wrap');
-    introWrap.style.pointerEvents = 'auto';
+    document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
 
 });
 
@@ -269,7 +267,7 @@ const content = document.querySelector('.content');
 const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
 const endPoint = 200;
 const endScale = 2.8;
-const opacityTransLength = 140;
+const opacityTransLength = 200; // what if these are the same>? oitherwise 140
 const opacityTransMark = endPoint - opacityTransLength;
 
 cover.style.transform = `scale(${startScale})`;
