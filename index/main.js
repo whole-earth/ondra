@@ -1,4 +1,4 @@
-// 04.04 10am, LA
+// 04.16 11am, LA
 
 window.addEventListener('load', async () => {
 
@@ -261,8 +261,8 @@ document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
 const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
-const endPoint = 160;
-const endScale = 5;
+const endPoint = 180;
+const endScale = 3.6;
 const opacityTransLength = 100;
 const opacityTransMark = endPoint - opacityTransLength;
 
