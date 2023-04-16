@@ -21,6 +21,8 @@ window.addEventListener('load', async () => {
     }
 
     // ADD: disable touch events for document.querySelector.('intro-wrap');
+    let introWrap = document.querySelector('.intro-wrap');
+    introWrap.style.pointerEvents = 'none';
     // cover pageload animations
     await delay(1000);
     researchAnimate();
@@ -32,7 +34,9 @@ window.addEventListener('load', async () => {
 
     await delay(400);
     devAnimate();
+    
     // ADD: restore touch events for document.querySelector.('intro-wrap');
+    introWrap.style.pointerEvents = 'auto';
 
 });
 
