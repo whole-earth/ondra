@@ -259,7 +259,7 @@ const content = document.querySelector('.content');
 const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
 const endPoint = 200;
 const endScale = 2.8;
-const opacityTransLength = 200; // what if these are the same>? oitherwise 140
+const opacityTransLength = 160;
 const opacityTransMark = endPoint - opacityTransLength;
 
 cover.style.transform = `scale(${startScale})`;
@@ -307,16 +307,16 @@ function handleWindowResize() {
         }
         window.addEventListener('scroll', animateOnScroll);
     } else {
-        content.style.opacity = '';
+        content.style.opacity = "";
         content.classList.remove("pinned");
         window.removeEventListener('scroll', animateOnScroll);
         // clear updateCover styling
-        cover.style.transform = '';
-        cover.style.opacity = '';
-        cover.style.pointerEvents = '';
-        content.style.opacity = '';
-        content.classList.remove('pinned', 'flow');
-        content.children[0].style.transform = '';
+        cover.style.transform = "";
+        cover.style.opacity = "";
+        cover.style.pointerEvents = "";
+        content.style.opacity = "";
+        content.classList.remove("pinned", "flow");
+        content.children[0].style.transform = "";
     }
 }
 
@@ -436,8 +436,6 @@ window.addEventListener('DOMContentLoaded', function () {
     navCollapse();
 
     let coverOffset = getComputedStyle(document.querySelector('.nav-bubble')).paddingLeft;
-    // document.querySelector('.nav-whitespace').style.width = coverOffset;
-    // document.querySelector('.nav-whitespace').style.left = '0';
     document.querySelector('.nav').style.opacity = "1";
 
 });
