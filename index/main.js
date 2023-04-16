@@ -544,7 +544,7 @@ const buttons = document.querySelectorAll('.campus-interact-form-view');
 buttons.forEach(function (button) {
     button.addEventListener('click', function () {
         buttonCount++;
-        if (window.innerWidth > 992) {
+        if (window.innerWidth > 768) {
             three.style.marginLeft = '0';
             minMetaBtn.style.display = 'block';
         }
@@ -553,7 +553,7 @@ buttons.forEach(function (button) {
 
 function campusAnimCheck() {
 
-    if (window.innerWidth > 992) {
+    if (window.innerWidth > 768) {
         three.style.transform = '';
         window.addEventListener("scroll", campusScrollAnim);
     } else {
