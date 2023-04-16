@@ -259,7 +259,7 @@ const content = document.querySelector('.content');
 const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
 const endPoint = 200;
 const endScale = 2.8;
-const opacityTransLength = 160;
+const opacityTransLength = 140;
 const opacityTransMark = endPoint - opacityTransLength;
 
 cover.style.transform = `scale(${startScale})`;
