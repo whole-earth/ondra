@@ -62,24 +62,16 @@ window.addEventListener('scroll', function () {
     // if screen is greater than 768px
     if (window.innerWidth > 768) {
         if (window.scrollY > 5) {
-            researchIsAnimating = true;
-            designIsAnimating = true;
-            devIsAnimating = true;
+            document.querySelector('.intro-wrap').style.pointerEvents = 'none';
         } else {
-            researchIsAnimating = false;
-            designIsAnimating = false;
-            devIsAnimating = false;
+            document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
         }
     } else {
         // screen is less than or equal to 768px
         if (window.scrollY > 20) {
-            researchIsAnimating = true;
-            designIsAnimating = true;
-            devIsAnimating = true;
+            document.querySelector('.intro-wrap').style.pointerEvents = 'none';
         } else {
-            researchIsAnimating = false;
-            designIsAnimating = false;
-            devIsAnimating = false;
+            document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
         }
     }
 });
