@@ -554,7 +554,7 @@ buttons.forEach(function (button) {
 function campusAnimCheck() {
 
     if (window.innerWidth > 768) {
-        three.style.transform = '';
+        three.style.transform = "";
         window.addEventListener("scroll", campusScrollAnim);
     } else {
         window.removeEventListener("scroll", campusScrollAnim);
