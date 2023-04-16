@@ -16,7 +16,7 @@ html::-webkit-scrollbar { display: none; }
 
 .pinned.flow {
   position: absolute;
-  top: 160px; /* must match 'endPoint' const */
+  top: 200px; /* must match 'endPoint' const */
   pointer-events: auto;
   z-index: 1;
 }
