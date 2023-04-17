@@ -565,28 +565,12 @@ function campusScrollAnim() {
     const marginPointTwo = wrapTop + (wrapHeight * (3 / 8));
     const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
 
-    /*
     if (buttonCount === 0) {
         if (window.pageYOffset > wrapTop) {
             if (scrollPosition > wrapTop && scrollPosition < marginPointTwo) {
-                const progress = (scrollPosition - marginPointOne) / (marginPointTwo - marginPointOne);
-                const marginLeft = progress * 250;
-                three.style.marginLeft = `${marginLeft}px`;
-            }
-        }
-    }
-    */
-    if (buttonCount === 0) {
-        if (window.pageYOffset > wrapTop) {
-            if (scrollPosition > wrapTop && scrollPosition < marginPointTwo) {
-                if (scrollPosition !== lastScrollPosition) {
-                    requestAnimationFrame(() => {
-                        const progress = (scrollPosition - marginPointOne) / (marginPointTwo - marginPointOne);
-                        const marginLeft = progress * 250;
-                        three.style.marginLeft = `${marginLeft}px`;
-                    });
-                    lastScrollPosition = scrollPosition;
-                }
+                let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
+                let transformLeft = progress * 250;
+                three.style.transform = "translateX(" + transformLeft + "px)";
             }
         }
     }
