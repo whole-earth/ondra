@@ -351,7 +351,7 @@ fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.49
             "01n": "\uD83C\uDF11",
             "02n": "\uD83C\uDF11 ☁",
             "03n": "☁️",
-            "04n": "️️☁☁",
+            "04n": "️️☁",
             "09n": "\uD83C\uDF27",
             "10n": "☔️",
             "11n": "⛈",
