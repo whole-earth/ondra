@@ -1,4 +1,4 @@
-// 04.16 19pm, LA
+// 04.16 11am, LA
 
 window.addEventListener('load', async () => {
 
@@ -568,7 +568,7 @@ function campusScrollAnim() {
 
     if (buttonCount === 0) {
         if (window.pageYOffset > wrapTop) {
-            if (scrollPosition > wrapTop && scrollPosition < marginPointTwo) {
+            if (scrollPosition > wrapTop && scrollPosition < transformPointTwo) {
                 let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
                 let transformLeft = progress * 250;
                 three.style.transform = "translateX(" + transformLeft + "px)";
