@@ -535,7 +535,7 @@ buttons.forEach(function (button) {
     button.addEventListener('click', function () {
         buttonCount++;
         if (window.innerWidth > 768) {
-            three.style.marginLeft = '0';
+            three.style.transform = "";
             minMetaBtn.style.display = 'block';
         }
     });
@@ -560,10 +560,10 @@ function campusAnimCheck() {
 
 function campusScrollAnim() {
 
-    const scrollPosition = window.pageYOffset;
-    const marginPointOne = wrapTop + (wrapHeight * (1 / 20));
-    const marginPointTwo = wrapTop + (wrapHeight * (3 / 8));
-    const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
+    let scrollPosition = window.pageYOffset;
+    let transformPointOne = wrapTop + (wrapHeight * (1 / 20));
+    let transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
+    let opacityPoint = wrapTop + (wrapHeight * (1 / 5));
 
     if (buttonCount === 0) {
         if (window.pageYOffset > wrapTop) {
