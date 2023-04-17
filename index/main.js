@@ -1,4 +1,4 @@
-// 04.16 11am, LA
+// 04.16 19pm, LA
 
 window.addEventListener('load', async () => {
 
@@ -33,7 +33,7 @@ window.addEventListener('load', async () => {
     await delay(400);
     devAnimate();
     await waitUntil(() => !devIsAnimating);
-    
+
     document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
 
 });
@@ -535,7 +535,7 @@ buttons.forEach(function (button) {
     button.addEventListener('click', function () {
         buttonCount++;
         if (window.innerWidth > 768) {
-            three.style.transform = "";
+            three.style.marginLeft = '0';
             minMetaBtn.style.display = 'block';
         }
     });
@@ -551,23 +551,24 @@ function campusAnimCheck() {
         three.style = "";
         meta.style = "";
         minMetaBtn.style.display = 'none';
-        three.style.transform = 'scale(0.7)';
         if (window.innerWidth < 600) {
             three.style.transform = 'scale(0.4)';
+        } else {
+            three.style.transform = 'scale(0.7)';
         }
     }
 }
 
 function campusScrollAnim() {
 
-    let scrollPosition = window.pageYOffset;
-    let transformPointOne = wrapTop + (wrapHeight * (1 / 20));
-    let transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
-    let opacityPoint = wrapTop + (wrapHeight * (1 / 5));
+    const scrollPosition = window.pageYOffset;
+    const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
+    const transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
+    const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
 
     if (buttonCount === 0) {
         if (window.pageYOffset > wrapTop) {
-            if (scrollPosition > wrapTop && scrollPosition < transformPointTwo) {
+            if (scrollPosition > wrapTop && scrollPosition < marginPointTwo) {
                 let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
                 let transformLeft = progress * 250;
                 three.style.transform = "translateX(" + transformLeft + "px)";
@@ -578,9 +579,27 @@ function campusScrollAnim() {
     if (scrollPosition > opacityPoint) {
         meta.style.opacity = '1';
     } else {
-        meta.style.opacity = 0;
+        meta.style.opacity = '0';
     }
+    window.requestAnimationFrame(campusScrollAnim);
 }
 
-window.addEventListener("load", campusAnimCheck);
-window.addEventListener("resize", campusAnimCheck);
+function debounce(func, wait = 100, immediate = true) {
+    let timeout;
+    return function () {
+        const context = this, args = arguments;
+        const later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+const debouncedCampusAnimCheck = debounce(campusAnimCheck, 100);
+
+window.addEventListener("load", debouncedCampusAnimCheck);
+window.addEventListener("resize", debouncedCampusAnimCheck);
