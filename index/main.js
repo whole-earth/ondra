@@ -1,4 +1,4 @@
-// 04.16 11am, LA
+// 04.16 7pm, LA
 
 window.addEventListener('load', async () => {
 
@@ -545,9 +545,9 @@ function campusAnimCheck() {
 
     if (window.innerWidth > 768) {
         three.style.transform = "";
-        window.addEventListener("scroll", campusScrollAnim);
+        window.addEventListener("scroll", debouncedCampusScrollAnim);
     } else {
-        window.removeEventListener("scroll", campusScrollAnim);
+        window.removeEventListener("scroll", debouncedCampusScrollAnim);
         three.style = "";
         meta.style = "";
         minMetaBtn.style.display = 'none';
@@ -558,6 +558,23 @@ function campusAnimCheck() {
         }
     }
 }
+
+function debounce(func, wait = 100, immediate = true) {
+    let timeout;
+    return function () {
+        const context = this, args = arguments;
+        const later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+const debouncedCampusScrollAnim = debounce(campusScrollAnim, 100);
 
 function campusScrollAnim() {
 
@@ -584,22 +601,5 @@ function campusScrollAnim() {
     window.requestAnimationFrame(campusScrollAnim);
 }
 
-function debounce(func, wait = 100, immediate = true) {
-    let timeout;
-    return function () {
-        const context = this, args = arguments;
-        const later = function () {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-}
-
-const debouncedCampusAnimCheck = debounce(campusAnimCheck, 100);
-
-window.addEventListener("load", debouncedCampusAnimCheck);
-window.addEventListener("resize", debouncedCampusAnimCheck);
+window.addEventListener("load", campusAnimCheck);
+window.addEventListener("resize", campusAnimCheck);
