@@ -410,8 +410,7 @@ function fixedCoverScroll() {
                 container.style.bottom = `${bottomValue}em`;
             }
 
-        } else { // start mobile
-
+        } else {
             if (scrollY > maxScrollMobile) {
                 container.style.opacity = 0;
             } else {
@@ -518,80 +517,3 @@ window.addEventListener("scroll", function () {
         setTimeout(() => { functionDisabled = false; }, transitionSpeed);
     }
 });
-
-// Campus Interactive
-const wrap = document.querySelector('.campus-interact');
-const three = document.querySelector('.campus-three');
-const wrapTop = wrap.offsetTop;
-const wrapHeight = wrap.offsetHeight;
-const meta = document.querySelector('.campus-interact-meta');
-const minMetaBtn = document.getElementById('minMetaBtn');
-
-minMetaBtn.style.display = 'none';
-let buttonCount = 0;
-
-const buttons = document.querySelectorAll('.campus-interact-form-view');
-buttons.forEach(function (button) {
-    button.addEventListener('click', function () {
-        buttonCount++;
-        if (window.innerWidth > 768) {
-            three.style.marginLeft = '0';
-            minMetaBtn.style.display = 'block';
-        }
-    });
-});
-
-function campusAnimCheck() {
-
-    if (window.innerWidth > 768) {
-        three.style.transform = "";
-        window.addEventListener("scroll", debouncedCampusAnim);
-    } else {
-        window.removeEventListener("scroll", debouncedCampusAnim);
-        three.style = "";
-        meta.style = "";
-        minMetaBtn.style.display = 'none';
-        if (window.innerWidth < 600) {
-            three.style.transform = 'scale(0.4)';
-        } else {
-            three.style.transform = 'scale(0.7)';
-        }
-    }
-}
-
-function campusScrollAnim() {
-
-    const scrollPosition = window.pageYOffset;
-    const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
-    const transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
-    const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
-
-    if ((buttonCount === 0) && (window.pageYOffset > wrapTop) && (scrollPosition > wrapTop && scrollPosition < transformPointTwo)) {
-        let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
-        let transformLeft = progress * 250;
-        three.style.transform = "translateX(" + transformLeft + "px)";
-    }
-
-    if (scrollPosition > opacityPoint) {
-        meta.style.opacity = '1';
-    } else {
-        meta.style.opacity = '0';
-    }
-}
-
-function debounce(func, delay) {
-    let timerId;
-    return function (...args) {
-        if (timerId) {
-            clearTimeout(timerId);
-        }
-        timerId = setTimeout(() => {
-            func.apply(this, args);
-        }, delay);
-    };
-}
-
-const debouncedCampusAnim = debounce(campusScrollAnim, 2000);
-
-window.addEventListener("load", campusAnimCheck);
-window.addEventListener("resize", campusAnimCheck);
