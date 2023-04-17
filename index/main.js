@@ -578,28 +578,33 @@ const debouncedCampusScrollAnim = debounce(campusScrollAnim, 2000);
 
 function campusScrollAnim() {
 
+  const campusThreeRect = three.getBoundingClientRect();
+
+  if (campusThreeRect.top < window.innerHeight && campusThreeRect.bottom > 0) {
     const scrollPosition = window.pageYOffset;
     const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
     const transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
     const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
 
     if (buttonCount === 0) {
-        if (window.pageYOffset > wrapTop) {
-            if (scrollPosition > wrapTop && scrollPosition < transformPointTwo) {
-                let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
-                let transformLeft = progress * 250;
-                three.style.transform = "translateX(" + transformLeft + "px)";
-            }
+      if (window.pageYOffset > wrapTop) {
+        if (scrollPosition > wrapTop && scrollPosition < transformPointTwo) {
+          let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
+          let transformLeft = progress * 250;
+          three.style.transform = "translateX(" + transformLeft + "px)";
         }
+      }
     }
 
     if (scrollPosition > opacityPoint) {
-        meta.style.opacity = '1';
+      meta.style.opacity = '1';
     } else {
-        meta.style.opacity = '0';
+      meta.style.opacity = '0';
     }
-    window.requestAnimationFrame(campusScrollAnim);
+  }
+  window.requestAnimationFrame(campusScrollAnim);
 }
+
 
 window.addEventListener("load", campusAnimCheck);
 window.addEventListener("resize", campusAnimCheck);
