@@ -1,4 +1,4 @@
-// 04.16 7pm, LA
+// 04.16 8:15pm, LA
 
 window.addEventListener('load', async () => {
 
@@ -545,9 +545,9 @@ function campusAnimCheck() {
 
     if (window.innerWidth > 768) {
         three.style.transform = "";
-        window.addEventListener("scroll", campusScrollAnim);
+        window.addEventListener("scroll", debouncedCampusAnim);
     } else {
-        window.removeEventListener("scroll", campusScrollAnim);
+        window.removeEventListener("scroll", debouncedCampusAnim);
         three.style = "";
         meta.style = "";
         minMetaBtn.style.display = 'none';
@@ -578,6 +578,20 @@ function campusScrollAnim() {
         meta.style.opacity = '0';
     }
 }
+
+function debounce(func, delay) {
+    let timerId;
+    return function (...args) {
+        if (timerId) {
+            clearTimeout(timerId);
+        }
+        timerId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
+
+const debouncedCampusAnim = debounce(campusScrollAnim, 2000);
 
 window.addEventListener("load", campusAnimCheck);
 window.addEventListener("resize", campusAnimCheck);
