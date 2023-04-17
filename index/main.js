@@ -574,7 +574,7 @@ function debounce(func, wait = 100, immediate = true) {
     };
 }
 
-const debouncedCampusScrollAnim = debounce(campusScrollAnim, 100);
+const debouncedCampusScrollAnim = debounce(campusScrollAnim, 2000);
 
 function campusScrollAnim() {
 
