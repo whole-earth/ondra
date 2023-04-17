@@ -1,4 +1,5 @@
-// 04.16 8:15pm, LA
+// 9:08 LA time
+// 4.16.23
 
 window.addEventListener('load', async () => {
 
@@ -281,7 +282,6 @@ function updateCover() {
     if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
         contentOpacity = 1 - coverOpacity;
         content.style.opacity = contentOpacity;
-
         const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
         content.children[0].style.transform = `scale(${childScale})`;
     } else if (scrollPos > endPoint) {
@@ -292,11 +292,10 @@ function updateCover() {
         content.children[0].style.transform = 'scale(0.6)';
     }
 
-    // cover pointerEvents
-    cover.style.pointerEvents = scrollPos > 2 ? 'none' : '';
-
-    // content position pinning
+    if (window.innerWidth > 768) {
+    cover.style.pointerEvents = scrollPos > 2 ? 'none' : 'auto';
     content.classList.toggle('flow', window.scrollY >= endPoint);
+    }
 }
 
 function handleWindowResize() {
@@ -324,14 +323,8 @@ function animateOnScroll() {
     requestAnimationFrame(updateCover);
 }
 
-// on init
 handleWindowResize();
-
-// add an event listener to handle window resize
 window.addEventListener('resize', handleWindowResize);
-
-// 
-// new 03/10
 
 // weather
 fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.491188&units=imperial&appid=e94859be42276a7dd1791b66b543e1b5')
