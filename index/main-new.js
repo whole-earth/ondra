@@ -105,6 +105,31 @@ window.addEventListener('load', async () => {
     handleWindowResize();
     window.addEventListener('resize', handleWindowResize);
 
+    let researchIsAnimating = false;
+    let designIsAnimating = false;
+    let devIsAnimating = false;
+
+    // label animations
+    document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+
+    await delay(1000);
+    researchAnimate();
+    await waitUntil(() => !researchIsAnimating);
+
+    await delay(400);
+    designAnimate();
+    await waitUntil(() => !designIsAnimating);
+
+    await delay(400);
+    devAnimate();
+    await waitUntil(() => !devIsAnimating);
+
+    document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+
+    document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
+    document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
+    document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
+
 });
 
 function delay(ms) {
@@ -122,31 +147,6 @@ function waitUntil(condition) {
         const interval = setInterval(checkCondition, 100);
     });
 }
-
-let researchIsAnimating = false;
-let designIsAnimating = false;
-let devIsAnimating = false;
-
-// label animations
-document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-
-await delay(1000);
-researchAnimate();
-await waitUntil(() => !researchIsAnimating);
-
-await delay(400);
-designAnimate();
-await waitUntil(() => !designIsAnimating);
-
-await delay(400);
-devAnimate();
-await waitUntil(() => !devIsAnimating);
-
-document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-
-document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
-document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
-document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 function researchAnimate() {
 
@@ -322,6 +322,7 @@ function devAnimate() {
 
 }
 
+// disable pointer events on:scroll
 let timeout;
 window.addEventListener('scroll', function () {
     clearTimeout(timeout);
@@ -340,6 +341,21 @@ window.addEventListener('scroll', function () {
             }
         }
     }, 100);
+});
+
+// navExpand() at top of page
+window.addEventListener("scroll", function () {
+    if (window.scrollY == 0) {
+        navExpand();
+        functionDisabled = true;
+        let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
+        setTimeout(() => { functionDisabled = false; }, transitionSpeed);
+    }
+
+    else if (navState % 2 === 0) {
+        navCollapse();
+    }
+
 });
 
 const cover = document.querySelector('.intro-wrap');
@@ -511,21 +527,6 @@ function navExpand() {
 
 }
 
-// navExpand() at top of page
-window.addEventListener("scroll", function () {
-    if (window.scrollY == 0) {
-        navExpand();
-        functionDisabled = true;
-        let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
-        setTimeout(() => { functionDisabled = false; }, transitionSpeed);
-    }
-
-    else if (navState % 2 === 0) {
-        navCollapse();
-    }
-
-});
-
 // Campus Interactive
 const wrap = document.querySelector('.campus-interact');
 const three = document.querySelector('.campus-three');
@@ -554,27 +555,31 @@ function campusAnimCheck() {
 
 function campusScrollAnim() {
 
+    // also add a 40ms debounce
+
     // add a condition that checks that the either the top of element has been passed, or bottom is in viewport... before entering
+    if (three.getBoundingClientRect().top >= 0 && container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
 
-    console.log('campusScrollAnim fired');
+        console.log('campusScrollAnim fired');
 
-    const scrollPosition = window.pageYOffset;
-    const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
-    const transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
-    const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
+        const scrollPosition = window.pageYOffset;
+        const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
+        const transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
+        const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
 
-    const buttonCount = 0;
+        const buttonCount = 0;
 
-    if ((buttonCount === 0) && (window.pageYOffset > wrapTop) && (scrollPosition > wrapTop && scrollPosition < transformPointTwo)) {
-        let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
-        let transformLeft = progress * 250;
-        three.style.transform = "translateX(" + transformLeft + "px)";
-    }
+        if ((buttonCount === 0) && (window.pageYOffset > wrapTop) && (scrollPosition > wrapTop && scrollPosition < transformPointTwo)) {
+            let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
+            let transformLeft = progress * 250;
+            three.style.transform = "translateX(" + transformLeft + "px)";
+        }
 
-    if (scrollPosition > opacityPoint) {
-        meta.style.opacity = '1';
-    } else {
-        meta.style.opacity = '0';
+        if (scrollPosition > opacityPoint) {
+            meta.style.opacity = '1';
+        } else {
+            meta.style.opacity = '0';
+        }
     }
 }
 
