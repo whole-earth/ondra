@@ -558,7 +558,7 @@ function campusScrollAnim() {
     // also add a 40ms debounce
 
     // add a condition that checks that the either the top of element has been passed, or bottom is in viewport... before entering
-    if (three.getBoundingClientRect().top >= 0 || container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+    if (three.getBoundingClientRect().top >= 0 || three.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
 
         console.log('campusScrollAnim fired');
 
