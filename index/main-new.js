@@ -105,10 +105,6 @@ window.addEventListener('load', async () => {
     handleWindowResize();
     window.addEventListener('resize', handleWindowResize);
 
-    let researchIsAnimating = false;
-    let designIsAnimating = false;
-    let devIsAnimating = false;
-
     // label animations
     document.querySelector('.intro-wrap').style.pointerEvents = 'none';
 
@@ -131,6 +127,10 @@ window.addEventListener('load', async () => {
     document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 });
+
+let researchIsAnimating = false;
+let designIsAnimating = false;
+let devIsAnimating = false;
 
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -435,7 +435,7 @@ function fixedCoverScroll() {
     window.addEventListener('scroll', () => {
 
         // if in viewport
-        if (container.getBoundingClientRect().top >= 0 && container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+        if (container.getBoundingClientRect().top >= 0 || container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
             console.log('cover is in view.');
             const scrollY = window.scrollY;
             if (window.innerWidth > 768) {
@@ -558,7 +558,7 @@ function campusScrollAnim() {
     // also add a 40ms debounce
 
     // add a condition that checks that the either the top of element has been passed, or bottom is in viewport... before entering
-    if (three.getBoundingClientRect().top >= 0 && container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+    if (three.getBoundingClientRect().top >= 0 || container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
 
         console.log('campusScrollAnim fired');
 
