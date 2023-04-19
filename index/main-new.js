@@ -257,7 +257,7 @@ function devAnimate() {
         arrow.style.height = '0';
         arrow.style.border = 'solid black';
         arrow.style.borderWidth = '0 2px 2px 0';
-        arrow.style.padding = '6px';
+        arrow.style.padding = '0';
         arrow.style.transform = 'rotate(-45deg)';
         arrow.style.transition = 'opacity 0.3s ease-out';
         devDesign.appendChild(arrow);
