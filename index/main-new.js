@@ -433,8 +433,7 @@ function fixedCoverScroll() {
     window.addEventListener('scroll', () => {
 
         // if in viewport
-        if (container.getBoundingClientRect().bottom > 0 && container.getBoundingClientRect().top < window.innerHeight) {   
-        //if (container.getBoundingClientRect().top >= 0 || container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+        if (container.getBoundingClientRect().bottom > 0 && container.getBoundingClientRect().top < window.innerHeight) {
             console.log('cover is in view.');
             const scrollY = window.scrollY;
             if (window.innerWidth > 768) {
@@ -538,9 +537,9 @@ function campusAnimCheck() {
 
     if (window.innerWidth > 768) {
         three.style.transform = "";
-        window.addEventListener("scroll", campusScrollAnim);
+        window.addEventListener("scroll", debouncedCampusScrollAnim);
     } else {
-        window.removeEventListener("scroll", campusScrollAnim);
+        window.removeEventListener("scroll", debouncedCampusScrollAnim);
         three.style = "";
         meta.style = "";
         minMetaBtn.style.display = 'none';
@@ -554,13 +553,10 @@ function campusAnimCheck() {
 
 function campusScrollAnim() {
 
-    // also add a 40ms debounce
 
-    // add a condition that checks that the either the top of element has been passed, or bottom is in viewport... before entering
-    if (three.getBoundingClientRect().bottom > 0 && three.getBoundingClientRect().top < window.innerHeight) {   
-    //if (three.getBoundingClientRect().top >= 0 || three.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+    if (three.getBoundingClientRect().bottom > 0 && three.getBoundingClientRect().top < window.innerHeight) {
 
-        console.log('campusScrollAnim fired');
+        //console.log('campusScrollAnim fired');
 
         const scrollPosition = window.pageYOffset;
         const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
@@ -581,6 +577,19 @@ function campusScrollAnim() {
             meta.style.opacity = '0';
         }
     }
+}
+
+let rafId, timeoutId;
+function debouncedCampusScrollAnim() {
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+        }
+        rafId = requestAnimationFrame(campusScrollAnim);
+    }, 100);
 }
 
 window.addEventListener("load", campusAnimCheck);
