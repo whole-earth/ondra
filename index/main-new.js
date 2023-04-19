@@ -1,7 +1,7 @@
 // 9:08 LA time
-// 4.16.23
-// weather
+// 4.17.23
 
+// weather emoji
 fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.491188&units=imperial&appid=e94859be42276a7dd1791b66b543e1b5')
     .then(response => response.json())
     .then(data => {
@@ -47,10 +47,8 @@ fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.49
 
 window.addEventListener('DOMContentLoaded', function () {
 
-    // let coverOffset = getComputedStyle(document.querySelector('.nav-bubble')).paddingLeft;
-    document.querySelector('.nav').style.opacity = "1";
-
     navCollapse();
+    document.querySelector('.nav').style.opacity = "1";
 
     // place grid
     let gridContainer = document.querySelector(".head-dev-grid");
@@ -69,6 +67,10 @@ window.addEventListener('DOMContentLoaded', function () {
             gridContainer.appendChild(square);
         }
     }
+
+    document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
+    document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
+    document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 });
 
@@ -121,10 +123,6 @@ window.addEventListener('load', async () => {
     await waitUntil(() => !devIsAnimating);
 
     document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-
-    document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
-    document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
-    document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 });
 
