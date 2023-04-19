@@ -1,7 +1,54 @@
 // 9:08 LA time
-// 4.16.23
+// 4.17.23
 
-window.addEventListener('load', async () => {
+// weather emoji
+fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.491188&units=imperial&appid=e94859be42276a7dd1791b66b543e1b5')
+    .then(response => response.json())
+    .then(data => {
+
+        icons = {
+            "01d": "☀️",
+            "02d": "⛅️",
+            "03d": "☁️",
+            "04d": "☁️",
+            "09d": "\uD83C\uDF27",
+            "10d": "\uD83C\uDF26",
+            "11d": "⛈",
+            "13d": "❄️",
+            "50d": "\uD83C\uDF2B",
+            "01n": "\uD83C\uDF11",
+            "02n": "\uD83C\uDF11 ☁",
+            "03n": "☁️",
+            "04n": "️️☁",
+            "09n": "\uD83C\uDF27",
+            "10n": "☔️",
+            "11n": "⛈",
+            "13n": "❄️",
+            "50n": "\uD83C\uDF2B"
+        }
+
+        const apiResponse = JSON.stringify(data);
+        const response = JSON.parse(apiResponse);
+
+        // Extract from JSON obj
+        const inputIcon = response.weather[0].icon;
+        const temp = Math.round(response.main.temp);
+
+        let weatherEmoji = '';
+        if (inputIcon in icons) {
+            weatherEmoji = icons[inputIcon];
+        }
+
+        document.getElementById('clIcon').innerHTML = weatherEmoji;
+        document.getElementById('clDegrees').innerHTML = temp + "°F";
+
+    })
+    .catch(error => console.error(error));
+
+window.addEventListener('DOMContentLoaded', function () {
+
+    navCollapse();
+    document.querySelector('.nav').style.opacity = "1";
 
     // place grid
     let gridContainer = document.querySelector(".head-dev-grid");
@@ -21,6 +68,50 @@ window.addEventListener('load', async () => {
         }
     }
 
+    document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
+    document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
+    document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
+
+});
+
+window.addEventListener('load', async () => {
+
+    minMetaBtn.style.display = 'none';
+
+    const buttons = document.querySelectorAll('.campus-interact-form-view');
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            buttonCount++;
+            if (window.innerWidth > 768) {
+                three.style.marginLeft = '0';
+                minMetaBtn.style.display = 'block';
+            }
+        });
+    });
+
+    // hover to expand
+    bubbles.forEach(bubble => {
+        bubble.addEventListener('mouseover', function () {
+            if (navState % 2 === 1) {
+                navExpand();
+            }
+        });
+    });
+
+    setTimeout(navExpand, 600);
+
+    // cover scroll transform animation
+    fixedCoverScroll();
+
+    // initialize 'pinned' class based on window.width
+    handleWindowResize();
+    window.addEventListener('resize', handleWindowResize);
+
+    // initialize campusAnimateCheck (screen sizes)
+    campusAnimCheck();
+    window.addEventListener("resize", campusAnimCheck);
+
+    // label animations
     document.querySelector('.intro-wrap').style.pointerEvents = 'none';
 
     await delay(1000);
@@ -39,6 +130,10 @@ window.addEventListener('load', async () => {
 
 });
 
+let researchIsAnimating = false;
+let designIsAnimating = false;
+let devIsAnimating = false;
+
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -54,28 +149,6 @@ function waitUntil(condition) {
         const interval = setInterval(checkCondition, 100);
     });
 }
-
-let researchIsAnimating = false;
-let designIsAnimating = false;
-let devIsAnimating = false;
-
-window.addEventListener('scroll', function () {
-    // if screen is greater than 768px
-    if (window.innerWidth > 768) {
-        if (window.scrollY > 5) {
-            document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-        } else {
-            document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-        }
-    } else {
-        // screen is less than or equal to 768px
-        if (window.scrollY > 20) {
-            document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-        } else {
-            document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-        }
-    }
-});
 
 function researchAnimate() {
 
@@ -251,9 +324,41 @@ function devAnimate() {
 
 }
 
-document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
-document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
-document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
+// disable pointer events on:scroll
+let timeout;
+window.addEventListener("scroll", function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+        if (window.innerWidth > 768) {
+            if (window.scrollY > 5) {
+                document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+            } else {
+                document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+            }
+        } else { // for window.widths < 768px
+            if (window.scrollY > 20) {
+                document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+            } else {
+                document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+            }
+        }
+    }, 100);
+});
+
+// navExpand() at top of page
+window.addEventListener("scroll", function () {
+    if (window.scrollY == 0) {
+        navExpand();
+        functionDisabled = true;
+        let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
+        setTimeout(() => { functionDisabled = false; }, transitionSpeed);
+    }
+
+    else if (navState % 2 === 0) {
+        navCollapse();
+    }
+
+});
 
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
@@ -268,15 +373,15 @@ cover.style.transform = `scale(${startScale})`;
 function updateCover() {
     const scrollPos = window.scrollY;
 
-    // cover scale
+    // cover scale 
     if (scrollPos <= endPoint) {
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
+        // cover opacity
+        // moved from outside 'if' to inside.
+        coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+        cover.style.opacity = coverOpacity;
     }
-
-    // cover opacity
-    coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-    cover.style.opacity = coverOpacity;
 
     // content opacity and scale
     if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
@@ -293,8 +398,8 @@ function updateCover() {
     }
 
     if (window.innerWidth > 768) {
-    cover.style.pointerEvents = scrollPos > 2 ? 'none' : 'auto';
-    content.classList.toggle('flow', window.scrollY >= endPoint);
+        cover.style.pointerEvents = scrollPos > 2 ? 'none' : 'auto';
+        content.classList.toggle('flow', window.scrollY >= endPoint);
     }
 }
 
@@ -304,11 +409,11 @@ function handleWindowResize() {
         if (window.pageYOffset === 0) {
             content.style.opacity = "0";
         }
-        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener("scroll", updateCover);
     } else {
         content.style.opacity = "";
         content.classList.remove("pinned");
-        window.removeEventListener('scroll', animateOnScroll);
+        window.removeEventListener('scroll', updateCover);
         // clear updateCover styling
         cover.style.transform = "";
         cover.style.opacity = "";
@@ -318,57 +423,6 @@ function handleWindowResize() {
         content.children[0].style.transform = "";
     }
 }
-
-function animateOnScroll() {
-    requestAnimationFrame(updateCover);
-}
-
-handleWindowResize();
-window.addEventListener('resize', handleWindowResize);
-
-// weather
-fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.491188&units=imperial&appid=e94859be42276a7dd1791b66b543e1b5')
-    .then(response => response.json())
-    .then(data => {
-
-        icons = {
-            "01d": "☀️",
-            "02d": "⛅️",
-            "03d": "☁️",
-            "04d": "☁️",
-            "09d": "\uD83C\uDF27",
-            "10d": "\uD83C\uDF26",
-            "11d": "⛈",
-            "13d": "❄️",
-            "50d": "\uD83C\uDF2B",
-            "01n": "\uD83C\uDF11",
-            "02n": "\uD83C\uDF11 ☁",
-            "03n": "☁️",
-            "04n": "️️☁",
-            "09n": "\uD83C\uDF27",
-            "10n": "☔️",
-            "11n": "⛈",
-            "13n": "❄️",
-            "50n": "\uD83C\uDF2B"
-        }
-
-        const apiResponse = JSON.stringify(data);
-        const response = JSON.parse(apiResponse);
-
-        // Extract from JSON obj
-        const inputIcon = response.weather[0].icon;
-        const temp = Math.round(response.main.temp);
-
-        let weatherEmoji = '';
-        if (inputIcon in icons) {
-            weatherEmoji = icons[inputIcon];
-        }
-
-        document.getElementById('clIcon').innerHTML = weatherEmoji;
-        document.getElementById('clDegrees').innerHTML = temp + "°F";
-
-    })
-    .catch(error => console.error(error));
 
 // fixed corner divs transition
 function fixedCoverScroll() {
@@ -380,41 +434,42 @@ function fixedCoverScroll() {
     const bottomChange = -6;
     const maxScrollMobile = 40;
 
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        if (window.innerWidth > 768) {
+    window.addEventListener("scroll", () => {
 
-            if (scrollY > maxScroll) {
-                container.style.display = 'none';
-            } else {
-                container.style.display = 'block';
-                let topValue = containerTop + (scrollY / maxScroll * (containerTop + topChange));
-                let bottomValue = containerBottom + (scrollY / maxScroll * (containerBottom + bottomChange));
+        if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
+            const scrollY = window.scrollY;
+            if (window.innerWidth > 768) {
 
-                if (topValue < topChange) {
-                    topValue = topChange;
+                if (scrollY > maxScroll) {
+                    container.style.display = 'none';
+                } else {
+                    container.style.display = 'block';
+                    let topValue = containerTop + (scrollY / maxScroll * (containerTop + topChange));
+                    let bottomValue = containerBottom + (scrollY / maxScroll * (containerBottom + bottomChange));
+
+                    if (topValue < topChange) {
+                        topValue = topChange;
+                    }
+
+                    if (bottomValue < bottomChange) {
+                        bottomValue = bottomChange;
+                    }
+
+                    container.style.top = `${topValue}em`;
+                    container.style.bottom = `${bottomValue}em`;
                 }
 
-                if (bottomValue < bottomChange) {
-                    bottomValue = bottomChange;
-                }
-
-                container.style.top = `${topValue}em`;
-                container.style.bottom = `${bottomValue}em`;
-            }
-
-        } else {
-            if (scrollY > maxScrollMobile) {
-                container.style.opacity = 0;
             } else {
-                const opacity = 1 - (scrollY / maxScrollMobile);
-                container.style.opacity = opacity;
+                if (scrollY > maxScrollMobile) {
+                    container.style.opacity = 0;
+                } else {
+                    const opacity = 1 - (scrollY / maxScrollMobile);
+                    container.style.opacity = opacity;
+                }
             }
         }
     });
 }
-
-fixedCoverScroll();
 
 const items = document.querySelectorAll('.nav-item');
 const bubbleOneOffset = parseInt(getComputedStyle(document.querySelector('.nav-btn')).width, 10); // px
@@ -422,19 +477,6 @@ const bubbles = document.querySelectorAll('.nav-bubble');
 const labels = document.querySelectorAll('.nav-item-label');
 let functionDisabled = false;
 let navState = 0; // default: open
-
-window.addEventListener('DOMContentLoaded', function () {
-
-    navCollapse();
-
-    let coverOffset = getComputedStyle(document.querySelector('.nav-bubble')).paddingLeft;
-    document.querySelector('.nav').style.opacity = "1";
-
-});
-
-window.addEventListener('load', function () {
-    setTimeout(navExpand, 400);
-});
 
 function navCollapse() {
 
@@ -485,32 +527,6 @@ function navExpand() {
 
 }
 
-// collapse on scroll
-document.addEventListener('scroll', function () {
-    if (navState % 2 === 0) {
-        navCollapse();
-    }
-});
-
-// hover to expand
-bubbles.forEach(bubble => {
-    bubble.addEventListener('mouseover', function () {
-        if (navState % 2 === 1) {
-            navExpand();
-        }
-    });
-});
-
-// navExpand() at top of page
-window.addEventListener("scroll", function () {
-    if (window.scrollY == 0) {
-        navExpand();
-        functionDisabled = true;
-        let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
-        setTimeout(() => { functionDisabled = false; }, transitionSpeed);
-    }
-});
-
 // Campus Interactive
 const wrap = document.querySelector('.campus-interact');
 const three = document.querySelector('.campus-three');
@@ -518,20 +534,6 @@ const wrapTop = wrap.offsetTop;
 const wrapHeight = wrap.offsetHeight;
 const meta = document.querySelector('.campus-interact-meta');
 const minMetaBtn = document.getElementById('minMetaBtn');
-
-minMetaBtn.style.display = 'none';
-let buttonCount = 0;
-
-const buttons = document.querySelectorAll('.campus-interact-form-view');
-buttons.forEach(function (button) {
-    button.addEventListener('click', function () {
-        buttonCount++;
-        if (window.innerWidth > 768) {
-            three.style.marginLeft = '0';
-            minMetaBtn.style.display = 'block';
-        }
-    });
-});
 
 function campusAnimCheck() {
 
@@ -552,26 +554,28 @@ function campusAnimCheck() {
 }
 
 function campusScrollAnim() {
-    
-    console.log('campusScrollAnim fired');
 
-    const scrollPosition = window.pageYOffset;
-    const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
-    const transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
-    const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
+    if (three.getBoundingClientRect().bottom > 0 && three.getBoundingClientRect().top < window.innerHeight) {
 
-    if ((buttonCount === 0) && (window.pageYOffset > wrapTop) && (scrollPosition > wrapTop && scrollPosition < transformPointTwo)) {
-        let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
-        let transformLeft = progress * 250;
-        three.style.transform = "translateX(" + transformLeft + "px)";
-    }
+        // console.log('campusScrollAnim fired');
 
-    if (scrollPosition > opacityPoint) {
-        meta.style.opacity = '1';
-    } else {
-        meta.style.opacity = '0';
+        const scrollPosition = window.pageYOffset;
+        const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
+        const transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
+        const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
+
+        const buttonCount = 0;
+
+        if ((buttonCount === 0) && (window.pageYOffset > wrapTop) && (scrollPosition > wrapTop && scrollPosition < transformPointTwo)) {
+            let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
+            let transformLeft = progress * 250;
+            three.style.transform = "translateX(" + transformLeft + "px)";
+        }
+
+        if (scrollPosition > opacityPoint) {
+            meta.style.opacity = '1';
+        } else {
+            meta.style.opacity = '0';
+        }
     }
 }
-
-window.addEventListener("load", campusAnimCheck);
-window.addEventListener("resize", campusAnimCheck);
