@@ -536,9 +536,9 @@ function campusAnimCheck() {
 
     if (window.innerWidth > 768) {
         three.style.transform = "";
-        window.addEventListener("scroll", debouncedCampusScrollAnim);
+        window.addEventListener("scroll", campusScrollAnim);
     } else {
-        window.removeEventListener("scroll", debouncedCampusScrollAnim);
+        window.removeEventListener("scroll", campusScrollAnim);
         three.style = "";
         meta.style = "";
         minMetaBtn.style.display = 'none';
