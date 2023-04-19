@@ -252,7 +252,7 @@ function devAnimate() {
         arrow.setAttribute("id", "arrow");
         arrow.style.position = 'absolute';
         arrow.style.top = '4px';
-        arrow.style.right = '-28px';
+        arrow.style.left = '0';
         arrow.style.width = '0';
         arrow.style.height = '0';
         arrow.style.border = 'solid black';
@@ -284,7 +284,7 @@ function devAnimate() {
             }
             let timeElapsed = currentTime - startTime;
             let newPos = easeInOutQuad(timeElapsed, startPos, endPos, duration);
-            arrow.style.left = newPos + 'px';
+            arrow.style.left = newPos + 2 + 'px';
             line.style.width = newPos + 12 + 'px';
             if (timeElapsed < duration) {
                 requestAnimationFrame(animate);
