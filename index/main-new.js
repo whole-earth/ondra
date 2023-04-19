@@ -82,7 +82,7 @@ window.addEventListener('load', async () => {
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
             buttonCount++;
-            if (window.innerWidth > 768) {
+            if (window.innerWidth >= 768) {
                 three.style.marginLeft = '0';
                 minMetaBtn.style.display = 'block';
             }
@@ -251,13 +251,13 @@ function devAnimate() {
         let arrow = document.createElement('div');
         arrow.setAttribute("id", "arrow");
         arrow.style.position = 'absolute';
-        arrow.style.top = '5px';
+        arrow.style.top = '4px'; // from 5
         arrow.style.left = '0';
         arrow.style.width = '0';
         arrow.style.height = '0';
         arrow.style.border = 'solid black';
         arrow.style.borderWidth = '0 2px 2px 0';
-        arrow.style.padding = '5px';
+        arrow.style.padding = '4px'; // from 5
         arrow.style.transform = 'rotate(-45deg)';
         arrow.style.transition = 'opacity 0.3s ease-out';
         devDesign.appendChild(arrow);
@@ -329,7 +329,7 @@ let timeout;
 window.addEventListener("scroll", function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth >= 768) {
             if (window.scrollY > 5) {
                 document.querySelector('.intro-wrap').style.pointerEvents = 'none';
             } else {
@@ -378,17 +378,15 @@ function updateCover() {
         console.log('cover in view');
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
-        // cover opacity
     }
 
-    // moved from outside 'if' to inside back outside
-    coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+    // moved from outside 'if' to inside back outside... try back inside tho
+    const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
     cover.style.opacity = coverOpacity;
 
     // content opacity and scale
     if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
-        contentOpacity = 1 - coverOpacity;
-        content.style.opacity = contentOpacity;
+        content.style.opacity = 1 - coverOpacity;
         const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
         content.children[0].style.transform = `scale(${childScale})`;
     } else if (scrollPos > endPoint) {
@@ -399,14 +397,14 @@ function updateCover() {
         content.children[0].style.transform = 'scale(0.6)';
     }
 
-    if (window.innerWidth > 768) {
+    if (window.innerWidth >= 768) {
         cover.style.pointerEvents = scrollPos > 2 ? 'none' : 'auto';
-        content.classList.toggle('flow', window.scrollY >= endPoint);
+        content.classList.toggle('flow', scrollPos >= endPoint);
     }
 }
 
 function handleWindowResize() {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth >= 768) {
         content.classList.add("pinned");
         if (window.pageYOffset === 0) {
             content.style.opacity = "0";
@@ -440,7 +438,7 @@ function fixedCoverScroll() {
 
         if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
             const scrollY = window.scrollY;
-            if (window.innerWidth > 768) {
+            if (window.innerWidth >= 768) {
 
                 if (scrollY > maxScroll) {
                     container.style.display = 'none';
@@ -539,7 +537,7 @@ const minMetaBtn = document.getElementById('minMetaBtn');
 
 function campusAnimCheck() {
 
-    if (window.innerWidth > 768) {
+    if (window.innerWidth >= 768) {
         three.style.transform = "";
         window.addEventListener("scroll", campusScrollAnim);
     } else {
