@@ -70,7 +70,6 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
 });
 
 window.addEventListener('load', async () => {
@@ -97,7 +96,7 @@ window.addEventListener('load', async () => {
         });
     });
 
-    setTimeout(navExpand, 400);
+    setTimeout(navExpand, 600);
 
     // cover scroll transform animation
     fixedCoverScroll();
@@ -105,27 +104,6 @@ window.addEventListener('load', async () => {
     // initialize 'pinned' class based on window.width
     handleWindowResize();
     window.addEventListener('resize', handleWindowResize);
-
-    // label animations
-    document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-
-    await delay(1000);
-    researchAnimate();
-    await waitUntil(() => !researchIsAnimating);
-
-    await delay(400);
-    designAnimate();
-    await waitUntil(() => !designIsAnimating);
-
-    await delay(400);
-    devAnimate();
-    await waitUntil(() => !devIsAnimating);
-
-    document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-
-    document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
-    document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
-    document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 });
 
@@ -148,6 +126,27 @@ function waitUntil(condition) {
 let researchIsAnimating = false;
 let designIsAnimating = false;
 let devIsAnimating = false;
+
+// label animations
+document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+
+await delay(1000);
+researchAnimate();
+await waitUntil(() => !researchIsAnimating);
+
+await delay(400);
+designAnimate();
+await waitUntil(() => !designIsAnimating);
+
+await delay(400);
+devAnimate();
+await waitUntil(() => !devIsAnimating);
+
+document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+
+document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
+document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
+document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
 function researchAnimate() {
 
