@@ -252,12 +252,12 @@ function devAnimate() {
         arrow.setAttribute("id", "arrow");
         arrow.style.position = 'absolute';
         arrow.style.top = '4px';
-        arrow.style.left = '0';
+        arrow.style.left = '-4px';
         arrow.style.width = '0';
         arrow.style.height = '0';
         arrow.style.border = 'solid black';
         arrow.style.borderWidth = '0 2px 2px 0';
-        arrow.style.padding = '0';
+        arrow.style.padding = '4px';
         arrow.style.transform = 'rotate(-45deg)';
         arrow.style.transition = 'opacity 0.3s ease-out';
         devDesign.appendChild(arrow);
