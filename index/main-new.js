@@ -433,7 +433,8 @@ function fixedCoverScroll() {
     window.addEventListener('scroll', () => {
 
         // if in viewport
-        if (container.getBoundingClientRect().top >= 0 || container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+        if (container.getBoundingClientRect().bottom > 0 && container.getBoundingClientRect().top < window.innerHeight) {   
+        //if (container.getBoundingClientRect().top >= 0 || container.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
             console.log('cover is in view.');
             const scrollY = window.scrollY;
             if (window.innerWidth > 768) {
@@ -556,7 +557,8 @@ function campusScrollAnim() {
     // also add a 40ms debounce
 
     // add a condition that checks that the either the top of element has been passed, or bottom is in viewport... before entering
-    if (three.getBoundingClientRect().top >= 0 || three.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+    if (three.getBoundingClientRect().bottom > 0 && three.getBoundingClientRect().top < window.innerHeight) {   
+    //if (three.getBoundingClientRect().top >= 0 || three.getBoundingClientRect().bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
 
         console.log('campusScrollAnim fired');
 
