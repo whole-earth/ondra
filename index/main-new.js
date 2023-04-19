@@ -372,12 +372,12 @@ cover.style.transform = `scale(${startScale})`;
 
 function updateCover() {
     const scrollPos = window.scrollY;
+    const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
 
     // cover scale 
     if (scrollPos <= endPoint) {
         console.log('cover in view');
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
-        const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
         cover.style.transform = `scale(${scale})`;
         cover.style.opacity = coverOpacity;
     } else if (window.innerWidth > 768) {
