@@ -552,6 +552,8 @@ function campusAnimCheck() {
 }
 
 function campusScrollAnim() {
+    
+    console.log('campusScrollAnim fired');
 
     const scrollPosition = window.pageYOffset;
     const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
