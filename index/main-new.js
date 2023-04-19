@@ -252,7 +252,7 @@ function devAnimate() {
         arrow.setAttribute("id", "arrow");
         arrow.style.position = 'absolute';
         arrow.style.top = '4px';
-        arrow.style.right = '-4px';
+        arrow.style.right = '-8px';
         arrow.style.width = '0';
         arrow.style.height = '0';
         arrow.style.border = 'solid black';
