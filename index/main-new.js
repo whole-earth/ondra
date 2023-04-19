@@ -432,8 +432,7 @@ function fixedCoverScroll() {
 
     window.addEventListener('scroll', () => {
 
-        // if in viewport
-        if (container.getBoundingClientRect().bottom > 0 && container.getBoundingClientRect().top < window.innerHeight) {
+        if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
             console.log('cover is in view.');
             const scrollY = window.scrollY;
             if (window.innerWidth > 768) {
@@ -553,10 +552,9 @@ function campusAnimCheck() {
 
 function campusScrollAnim() {
 
-
     if (three.getBoundingClientRect().bottom > 0 && three.getBoundingClientRect().top < window.innerHeight) {
 
-        //console.log('campusScrollAnim fired');
+        console.log('campusScrollAnim fired');
 
         const scrollPosition = window.pageYOffset;
         const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
