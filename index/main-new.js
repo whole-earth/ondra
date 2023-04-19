@@ -375,6 +375,7 @@ function updateCover() {
 
     // cover scale 
     if (scrollPos <= endPoint) {
+        console.log('cover in view');
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
         // cover opacity
@@ -557,7 +558,7 @@ function campusScrollAnim() {
 
     if (three.getBoundingClientRect().bottom > 0 && three.getBoundingClientRect().top < window.innerHeight) {
 
-        // console.log('campusScrollAnim fired');
+        console.log('campusScrollAnim fired');
 
         const scrollPosition = window.pageYOffset;
         const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
