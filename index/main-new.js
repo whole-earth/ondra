@@ -379,10 +379,11 @@ function updateCover() {
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
         // cover opacity
-        // moved from outside 'if' to inside.
-        coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-        cover.style.opacity = coverOpacity;
     }
+
+    // moved from outside 'if' to inside back outside
+    coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+    cover.style.opacity = coverOpacity;
 
     // content opacity and scale
     if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
