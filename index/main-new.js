@@ -377,13 +377,12 @@ function updateCover() {
     if (scrollPos <= endPoint) {
         console.log('cover in view');
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
+        const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
         cover.style.transform = `scale(${scale})`;
-        // cover opacity
+        cover.style.opacity = coverOpacity;
+    } else if (window.innerWidth > 768) {
+        content.classList.toggle('flow', window.scrollY >= endPoint);
     }
-
-    // moved from outside 'if' to inside back outside
-    coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-    cover.style.opacity = coverOpacity;
 
     // content opacity and scale
     if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
@@ -399,10 +398,11 @@ function updateCover() {
         content.children[0].style.transform = 'scale(0.6)';
     }
 
+    // move to inside 'handleWindowResize'
     if (window.innerWidth > 768) {
-        cover.style.pointerEvents = scrollPos > 2 ? 'none' : 'auto';
-        content.classList.toggle('flow', window.scrollY >= endPoint);
+        cover.style.pointerEvents = scrollPos > 2 ? 'none' : 'auto'; // if (scrollPos > 2) { cover.style.pointerEvents = 'none'; } else { cover.style.pointerEvents = 'auto'; }
     }
+
 }
 
 function handleWindowResize() {
