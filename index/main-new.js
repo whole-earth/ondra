@@ -1,5 +1,5 @@
 // 9:08 LA time
-// 4.17.23
+// 4.19.23
 
 // weather emoji
 fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.491188&units=imperial&appid=e94859be42276a7dd1791b66b543e1b5')
@@ -106,6 +106,10 @@ window.addEventListener('load', async () => {
     // initialize 'pinned' class based on window.width
     handleWindowResize();
     window.addEventListener('resize', handleWindowResize);
+
+    // initialize campusAnimateCheck (screen sizes)
+    campusAnimCheck();
+    window.addEventListener("resize", campusAnimCheck);
 
     // label animations
     document.querySelector('.intro-wrap').style.pointerEvents = 'none';
@@ -322,7 +326,7 @@ function devAnimate() {
 
 // disable pointer events on:scroll
 let timeout;
-window.addEventListener('scroll', function () {
+window.addEventListener("scroll", function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
         if (window.innerWidth > 768) {
@@ -369,15 +373,15 @@ cover.style.transform = `scale(${startScale})`;
 function updateCover() {
     const scrollPos = window.scrollY;
 
-    // cover scale
+    // cover scale 
     if (scrollPos <= endPoint) {
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
+        // cover opacity
+        // moved from outside 'if' to inside.
+        coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+        cover.style.opacity = coverOpacity;
     }
-
-    // cover opacity
-    coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-    cover.style.opacity = coverOpacity;
 
     // content opacity and scale
     if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
@@ -405,7 +409,7 @@ function handleWindowResize() {
         if (window.pageYOffset === 0) {
             content.style.opacity = "0";
         }
-        window.addEventListener('scroll', updateCover);
+        window.addEventListener("scroll", updateCover);
     } else {
         content.style.opacity = "";
         content.classList.remove("pinned");
@@ -430,10 +434,9 @@ function fixedCoverScroll() {
     const bottomChange = -6;
     const maxScrollMobile = 40;
 
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
 
         if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
-            console.log('cover is in view.');
             const scrollY = window.scrollY;
             if (window.innerWidth > 768) {
 
@@ -554,7 +557,7 @@ function campusScrollAnim() {
 
     if (three.getBoundingClientRect().bottom > 0 && three.getBoundingClientRect().top < window.innerHeight) {
 
-        console.log('campusScrollAnim fired');
+        // console.log('campusScrollAnim fired');
 
         const scrollPosition = window.pageYOffset;
         const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
@@ -576,19 +579,3 @@ function campusScrollAnim() {
         }
     }
 }
-
-let rafId, timeoutId;
-function debouncedCampusScrollAnim() {
-    if (timeoutId) {
-        clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-        if (rafId) {
-            cancelAnimationFrame(rafId);
-        }
-        rafId = requestAnimationFrame(campusScrollAnim);
-    }, 100);
-}
-
-window.addEventListener("load", campusAnimCheck);
-window.addEventListener("resize", campusAnimCheck);
