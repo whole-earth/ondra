@@ -74,7 +74,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 });
 
-const buttonCount = 0;
+let buttonCount = 0; // dangling variable dec, that how we do things
 
 window.addEventListener('load', async () => {
 
