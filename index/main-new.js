@@ -79,6 +79,8 @@ window.addEventListener('load', async () => {
     minMetaBtn.style.display = 'none';
 
     const buttons = document.querySelectorAll('.campus-interact-form-view');
+    const buttonCount = 0;
+    
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
             buttonCount++;
@@ -563,8 +565,6 @@ function campusScrollAnim() {
         const transformPointOne = wrapTop + (wrapHeight * (1 / 20));
         const transformPointTwo = wrapTop + (wrapHeight * (3 / 8));
         const opacityPoint = wrapTop + (wrapHeight * (1 / 5));
-
-        const buttonCount = 0;
 
         if ((buttonCount === 0) && (window.pageYOffset > wrapTop) && (scrollPosition > wrapTop && scrollPosition < transformPointTwo)) {
             let progress = (scrollPosition - transformPointOne) / (transformPointTwo - transformPointOne);
