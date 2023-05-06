@@ -75,7 +75,9 @@ html::-webkit-scrollbar { display: none; }
   }
 }
 
-.fixed-bl { pointer-events: none; }
+.fixed { pointer-events: none; }
+
+.fixed-tr, .fixed-br { pointer-events: auto; }
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
 	.nav-bubble {
