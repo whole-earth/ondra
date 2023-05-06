@@ -63,6 +63,8 @@ fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.49
     .catch(error => console.error(error));
 
 window.addEventListener('DOMContentLoaded', function () {
+  
+    window.scrollTo(0,0); // scroll to top of page
 
     navCollapse();
     document.querySelector('.nav').style.opacity = "1";
