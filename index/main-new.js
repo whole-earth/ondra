@@ -74,12 +74,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
 });
 
+const buttonCount = 0;
+
 window.addEventListener('load', async () => {
 
     minMetaBtn.style.display = 'none';
 
     const buttons = document.querySelectorAll('.campus-interact-form-view');
-    const buttonCount = 0;
     
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
