@@ -16,7 +16,6 @@
          | |               __/ |                                        
          |_|              |___/     
 
-Supa Hot Ondra
 */
 
 // weather emoji
