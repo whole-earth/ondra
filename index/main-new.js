@@ -376,7 +376,8 @@ cover.style.transform = `scale(${startScale})`;
 document.querySelector('.scrollhundo').addEventListener('click', () => {
     window.scrollBy({
         top: (endPoint + opacityTransLength),
-        behavior: 'smooth'
+        behavior: 'smooth',
+        scrollDuration: 1000 // hm?
     });
 });
 
