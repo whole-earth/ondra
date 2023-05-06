@@ -373,6 +373,13 @@ const opacityTransMark = endPoint - opacityTransLength;
 
 cover.style.transform = `scale(${startScale})`;
 
+document.querySelector('.scrollhundo').addEventListener('click', () => {
+    window.scrollBy({
+        top: (endPoint + opacityTransLength),
+        behavior: 'smooth'
+    });
+});
+
 function updateCover() {
     const scrollPos = window.scrollY;
 
