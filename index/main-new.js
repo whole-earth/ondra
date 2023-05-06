@@ -394,7 +394,7 @@ document.querySelector('.scrollhundo').addEventListener('click', () => {
     window.scrollBy({
         top: (endPoint + opacityTransLength),
         behavior: 'smooth',
-        scrollDuration: 1800 // hm?
+        scrollDuration: 2400
     });
 });
 
