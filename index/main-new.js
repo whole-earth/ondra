@@ -405,7 +405,7 @@ function updateCover() {
 
 function handleWindowResize() {
     if (window.innerWidth >= 768) {
-        // content.classList.add("pinned"); 05.06
+        content.classList.add("pinned");
         if (window.pageYOffset === 0) {
             content.style.opacity = "0";
         }
