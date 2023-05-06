@@ -86,7 +86,7 @@ window.addEventListener('load', async () => {
         button.addEventListener('click', function () {
             buttonCount++;
             if (window.innerWidth >= 768) {
-                three.style.marginLeft = '0';
+                three.style.transform = "translateX(0)";
                 minMetaBtn.style.display = 'block';
             }
         });
