@@ -1,5 +1,5 @@
 // 9:08 LA time
-// 4.19.23
+// 05.06.23
 
 // weather emoji
 fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.491188&units=imperial&appid=e94859be42276a7dd1791b66b543e1b5')
@@ -405,7 +405,7 @@ function updateCover() {
 
 function handleWindowResize() {
     if (window.innerWidth >= 768) {
-        content.classList.add("pinned");
+        // content.classList.add("pinned"); 05.06
         if (window.pageYOffset === 0) {
             content.style.opacity = "0";
         }
