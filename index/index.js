@@ -291,10 +291,6 @@ function scrollUpDown(){
     window.scrollTo(0, window.innerHeight - 30);
 }
 
-window.onscroll = function(){
-    document.querySelector("#fixed button svg").parentElement.style.opacity="0";
-}
-
 function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
