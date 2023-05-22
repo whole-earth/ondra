@@ -475,6 +475,7 @@ function updateCover() {
         }
 
     } else if (scrollPos > endPoint) {
+        cover.style.opacity = 0;
         content.style.opacity = 1;
         contentChild.style.transform = 'scale(1)';
     } else {
