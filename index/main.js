@@ -50,9 +50,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
     placeDevGrid();
 
-    // moved this from reg load
-    hideCampusMeta.style.display = 'none';
-    // hideCampusMeta.classList.add('hidden');
+    // hideCampusMeta.style.display = 'none';
+    hideCampusMeta.classList.add('hidden');
 
     document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
     document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
@@ -64,7 +63,8 @@ window.addEventListener('DOMContentLoaded', function () {
             buttonCount++;
             if (window.innerWidth >= 768) {
                 three.style.transform = "translateX(0)";
-                hideCampusMeta.style.display = 'block';
+                // hideCampusMeta.style.display = 'block';
+                hideCampusMeta.classList.remove('hidden');
             }
         });
     });
@@ -85,18 +85,14 @@ window.addEventListener('load', async () => {
 
     setTimeout(navExpand, 800);
 
-    // cover scroll transform animation
     fixedCoverScroll();
 
-    // initialize 'pinned' class based on window.width
     handleWindowResize();
     window.addEventListener('resize', handleWindowResize);
 
-    // initialize campusAnimateCheck (screen sizes)
     campusAnimCheck();
     window.addEventListener("resize", campusAnimCheck);
 
-    // label animations
     document.querySelector('.intro-wrap').style.pointerEvents = 'none';
 
     await delay(1000);
@@ -111,7 +107,6 @@ window.addEventListener('load', async () => {
     devAnimate();
     await waitUntil(() => !devIsAnimating);
 
-    // after sequence complete, release pointer-events
     document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
 
 });
@@ -559,7 +554,8 @@ function campusAnimCheck() {
         window.removeEventListener("scroll", campusScrollAnim);
         three.style = "";
         meta.style = "";
-        hideCampusMeta.style.display = 'none';
+        // hideCampusMeta.style.display = 'none';
+        hideCampusMeta.classList.add('hidden');
         if (window.innerWidth < 600) {
             three.style.transform = 'scale(0.4)';
         } else {
