@@ -43,88 +43,61 @@ fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.49
     .catch(error => console.error(error));
 
 window.addEventListener('DOMContentLoaded', function () {
-
-    window.scrollTo(0, 0);
+  
+    window.scrollTo(0,0); // scroll to top of page
 
     navCollapse();
+    document.querySelector('.nav').style.opacity = "1";
 
-    placeDevAnimGrid();
+    // place grid
+    let gridContainer = document.querySelector(".head-dev-grid");
+
+    let gridContainerWidth = gridContainer.offsetWidth + 12;
+    let gridContainerHeight = gridContainer.offsetHeight + 12;
+    let gridNumCols = Math.floor(gridContainerWidth / 16);
+    let gridNumRows = Math.floor(gridContainerHeight / 16);
+
+    for (let row = 0; row < gridNumRows; row++) {
+        for (let col = 0; col < gridNumCols; col++) {
+            const square = document.createElement("div");
+            square.classList.add("square");
+            square.style.left = `${col * 16}px`;
+            square.style.top = `${row * 16}px`;
+            gridContainer.appendChild(square);
+        }
+    }
 
     document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
     document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
     document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
-    campusHideCard.classList.add('hidden');
-
 });
 
-let buttonCount = 0;
+let buttonCount = 0; // dangling variable dec, that how we do things
 
 window.addEventListener('load', async () => {
 
-    // Campus view-btn: click events
+    minMetaBtn.style.display = 'none';
+
     const buttons = document.querySelectorAll('.campus-interact-form-view');
+    
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
             buttonCount++;
             if (window.innerWidth >= 768) {
                 three.style.transform = "translateX(0)";
-                campusHideCard.classList.remove('hidden');
+                minMetaBtn.style.display = 'block';
             }
         });
     });
 
-    // nav hover to expand
+    // hover to expand
     bubbles.forEach(bubble => {
         bubble.addEventListener('mouseover', function () {
             if (navState % 2 === 1) {
                 navExpand();
             }
         });
-    });
-
-    // 'enter' campus button
-    document.querySelector('.scrollhundo').addEventListener('click', () => {
-        window.scrollBy({
-            top: (endPoint + opacityTransLength),
-            behavior: 'smooth',
-            scrollDuration: 2400
-        });
-    });
-
-    let timeout;
-    const transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
-    window.addEventListener("scroll", function () {
-        clearTimeout(timeout);
-        timeout = setTimeout(function () {
-
-            // disable pointer events on:scroll
-            if (window.innerWidth >= 768) {
-                if (window.scrollY > 5) {
-                    document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-                } else {
-                    document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-                }
-            } else { // for window.widths < 768px
-                if (window.scrollY > 20) {
-                    document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-                } else {
-                    document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-                }
-            }
-
-            // navExpand() at top of page
-            if (window.scrollY == 0) {
-                navExpand();
-                functionDisabled = true;
-                setTimeout(() => { functionDisabled = false; }, transitionSpeed);
-            }
-
-            else if (navState % 2 === 0) {
-                navCollapse();
-            }
-        }, 1000);
-
     });
 
     setTimeout(navExpand, 600);
@@ -140,6 +113,7 @@ window.addEventListener('load', async () => {
     campusAnimCheck();
     window.addEventListener("resize", campusAnimCheck);
 
+    // label animations
     document.querySelector('.intro-wrap').style.pointerEvents = 'none';
 
     await delay(1000);
@@ -352,6 +326,42 @@ function devAnimate() {
 
 }
 
+// disable pointer events on:scroll
+let timeout;
+window.addEventListener("scroll", function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+        if (window.innerWidth >= 768) {
+            if (window.scrollY > 5) {
+                document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+            } else {
+                document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+            }
+        } else { // for window.widths < 768px
+            if (window.scrollY > 20) {
+                document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+            } else {
+                document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+            }
+        }
+    }, 100);
+});
+
+// navExpand() at top of page
+window.addEventListener("scroll", function () {
+    if (window.scrollY == 0) {
+        navExpand();
+        functionDisabled = true;
+        let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
+        setTimeout(() => { functionDisabled = false; }, transitionSpeed);
+    }
+
+    else if (navState % 2 === 0) {
+        navCollapse();
+    }
+
+});
+
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
 const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
@@ -362,28 +372,38 @@ const opacityTransMark = endPoint - opacityTransLength;
 
 cover.style.transform = `scale(${startScale})`;
 
-const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
-const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
-const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+document.querySelector('.scrollhundo').addEventListener('click', () => {
+    window.scrollBy({
+        top: (endPoint + opacityTransLength),
+        behavior: 'smooth',
+        scrollDuration: 2400
+    });
+});
 
 function updateCover() {
     const scrollPos = window.scrollY;
+
     // cover scale 
     if (scrollPos <= endPoint) {
         console.log('cover in view');
+        const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
-        cover.style.opacity = coverOpacity;
+    }
 
-        if (scrollPos > opacityTransMark) {
-            content.style.opacity = 1 - coverOpacity;
-            content.children[0].style.transform = `scale(${childScale})`;
-        }
+    // moved from outside 'if' to inside back outside... try back inside tho
+    const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+    cover.style.opacity = coverOpacity;
 
+    // content opacity and scale
+    if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
+        content.style.opacity = 1 - coverOpacity;
+        const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
+        content.children[0].style.transform = `scale(${childScale})`;
     } else if (scrollPos > endPoint) {
         content.style.opacity = 1;
         content.children[0].style.transform = 'scale(1)';
     } else {
-        // content.style.opacity = 0;
+        content.style.opacity = 0;
         content.children[0].style.transform = 'scale(0.6)';
     }
 
@@ -415,18 +435,18 @@ function handleWindowResize() {
 }
 
 // fixed corner divs transition
-const container = document.querySelector('.fixed');
-const containerTop = 1.6;
-const containerBottom = 2;
-const maxScroll = 60;
-const topChange = -6;
-const bottomChange = -6;
-const maxScrollMobile = 40;
 function fixedCoverScroll() {
+    const container = document.querySelector('.fixed');
+    const containerTop = 1.6;
+    const containerBottom = 2;
+    const maxScroll = 60;
+    const topChange = -6;
+    const bottomChange = -6;
+    const maxScrollMobile = 40;
 
     window.addEventListener("scroll", () => {
 
-        if (document.documentElement.scrollTop < maxScroll) {
+        if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
             const scrollY = window.scrollY;
             if (window.innerWidth >= 768) {
 
@@ -523,7 +543,7 @@ const three = document.querySelector('.campus-three');
 const wrapTop = wrap.offsetTop;
 const wrapHeight = wrap.offsetHeight;
 const meta = document.querySelector('.campus-interact-meta');
-const campusHideCard = document.getElementById('hideCampusCard');
+const minMetaBtn = document.getElementById('minMetaBtn');
 
 function campusAnimCheck() {
 
@@ -534,7 +554,7 @@ function campusAnimCheck() {
         window.removeEventListener("scroll", campusScrollAnim);
         three.style = "";
         meta.style = "";
-        campusHideCard.classList.add('hidden');
+        minMetaBtn.style.display = 'none';
         if (window.innerWidth < 600) {
             three.style.transform = 'scale(0.4)';
         } else {
@@ -566,23 +586,4 @@ function campusScrollAnim() {
             meta.style.opacity = '0';
         }
     }
-}
-
-function placeDevAnimGrid() {
-    let gridContainer = document.querySelector(".head-dev-grid");
-    let gridContainerWidth = gridContainer.offsetWidth + 12;
-    let gridContainerHeight = gridContainer.offsetHeight + 12;
-    let gridNumCols = Math.floor(gridContainerWidth / 16);
-    let gridNumRows = Math.floor(gridContainerHeight / 16);
-
-    for (let row = 0; row < gridNumRows; row++) {
-        for (let col = 0; col < gridNumCols; col++) {
-            const square = document.createElement("div");
-            square.classList.add("square");
-            square.style.left = `${col * 16}px`;
-            square.style.top = `${row * 16}px`;
-            gridContainer.appendChild(square);
-        }
-    }
-
 }
