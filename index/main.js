@@ -66,15 +66,14 @@ fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.49
     .catch(error => console.error(error));
 
 window.addEventListener('DOMContentLoaded', function () {
-  
-    window.scrollTo(0,0); // scroll to top of page
+
+    window.scrollTo(0, 0);
 
     navCollapse();
     document.querySelector('.nav').style.opacity = "1";
 
     // place grid
     let gridContainer = document.querySelector(".head-dev-grid");
-
     let gridContainerWidth = gridContainer.offsetWidth + 12;
     let gridContainerHeight = gridContainer.offsetHeight + 12;
     let gridNumCols = Math.floor(gridContainerWidth / 16);
@@ -96,20 +95,19 @@ window.addEventListener('DOMContentLoaded', function () {
 
 });
 
-let buttonCount = 0; // dangling variable dec, that how we do things
+let buttonCount = 0;
 
 window.addEventListener('load', async () => {
 
-    minMetaBtn.style.display = 'none';
+    campusHideCard.style.display = 'none';
 
     const buttons = document.querySelectorAll('.campus-interact-form-view');
-    
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
             buttonCount++;
             if (window.innerWidth >= 768) {
                 three.style.transform = "translateX(0)";
-                minMetaBtn.style.display = 'block';
+                campusHideCard.style.display = 'block';
             }
         });
     });
@@ -136,7 +134,6 @@ window.addEventListener('load', async () => {
     campusAnimCheck();
     window.addEventListener("resize", campusAnimCheck);
 
-    // label animations
     document.querySelector('.intro-wrap').style.pointerEvents = 'none';
 
     await delay(1000);
@@ -367,7 +364,7 @@ window.addEventListener("scroll", function () {
                 document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
             }
         }
-    }, 100);
+    }, 1000);
 });
 
 // navExpand() at top of page
@@ -385,6 +382,15 @@ window.addEventListener("scroll", function () {
 
 });
 
+// 'enter' campus button
+document.querySelector('.scrollhundo').addEventListener('click', () => {
+    window.scrollBy({
+        top: (endPoint + opacityTransLength),
+        behavior: 'smooth',
+        scrollDuration: 2400
+    });
+});
+
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
 const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
@@ -395,33 +401,24 @@ const opacityTransMark = endPoint - opacityTransLength;
 
 cover.style.transform = `scale(${startScale})`;
 
-document.querySelector('.scrollhundo').addEventListener('click', () => {
-    window.scrollBy({
-        top: (endPoint + opacityTransLength),
-        behavior: 'smooth',
-        scrollDuration: 2400
-    });
-});
-
 function updateCover() {
     const scrollPos = window.scrollY;
+    const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
 
     // cover scale 
     if (scrollPos <= endPoint) {
         console.log('cover in view');
         const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
-    }
 
-    // moved from outside 'if' to inside back outside... try back inside tho
-    const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-    cover.style.opacity = coverOpacity;
+        const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+        cover.style.opacity = coverOpacity;
 
-    // content opacity and scale
-    if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
-        content.style.opacity = 1 - coverOpacity;
-        const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
-        content.children[0].style.transform = `scale(${childScale})`;
+        if (scrollPos > opacityTransMark) {
+            content.style.opacity = 1 - coverOpacity;
+            content.children[0].style.transform = `scale(${childScale})`;
+        }
+        
     } else if (scrollPos > endPoint) {
         content.style.opacity = 1;
         content.children[0].style.transform = 'scale(1)';
@@ -469,7 +466,7 @@ function fixedCoverScroll() {
 
     window.addEventListener("scroll", () => {
 
-        if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
+        if (document.documentElement.scrollTop < maxScroll) {
             const scrollY = window.scrollY;
             if (window.innerWidth >= 768) {
 
@@ -566,7 +563,7 @@ const three = document.querySelector('.campus-three');
 const wrapTop = wrap.offsetTop;
 const wrapHeight = wrap.offsetHeight;
 const meta = document.querySelector('.campus-interact-meta');
-const minMetaBtn = document.getElementById('minMetaBtn');
+const campusHideCard = document.getElementById('minMetaBtn');
 
 function campusAnimCheck() {
 
@@ -577,7 +574,7 @@ function campusAnimCheck() {
         window.removeEventListener("scroll", campusScrollAnim);
         three.style = "";
         meta.style = "";
-        minMetaBtn.style.display = 'none';
+        campusHideCard.style.display = 'none';
         if (window.innerWidth < 600) {
             three.style.transform = 'scale(0.4)';
         } else {
