@@ -40,6 +40,12 @@ window.addEventListener('load', function() {
     recentHoverAnim();
     projectHoverAnim();
 
+    if ((window.innerWidth >= 600) && (!isMobileDevice())) {
+    setTimeout(function() {
+        document.getElementById("toggleBtn").classList.remove("invisible")
+    }, 3000);
+}
+
 });
 
 window.addEventListener('resize', function() {
@@ -270,12 +276,6 @@ function dePixelate(element) {
 function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
-  
-if ((window.innerWidth <= 600) && (!isMobileDevice())) {
-    setTimeout(function() {
-        document.getElementById("toggleBtn").classList.remove("invisible")
-    }, 3000);
-}
 
 let replacementCopy;
 
