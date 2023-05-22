@@ -98,6 +98,50 @@ window.addEventListener('load', async () => {
         });
     });
 
+    // 'enter' campus button
+    document.querySelector('.scrollhundo').addEventListener('click', () => {
+        window.scrollBy({
+            top: (endPoint + opacityTransLength),
+            behavior: 'smooth',
+            scrollDuration: 2400
+        });
+    });
+
+    let timeout;
+    const transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
+    window.addEventListener("scroll", function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+
+            // disable pointer events on:scroll
+            if (window.innerWidth >= 768) {
+                if (window.scrollY > 5) {
+                    document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+                } else {
+                    document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+                }
+            } else { // for window.widths < 768px
+                if (window.scrollY > 20) {
+                    document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+                } else {
+                    document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+                }
+            }
+
+            // navExpand() at top of page
+            if (window.scrollY == 0) {
+                navExpand();
+                functionDisabled = true;
+                setTimeout(() => { functionDisabled = false; }, transitionSpeed);
+            }
+
+            else if (navState % 2 === 0) {
+                navCollapse();
+            }
+        }, 1000);
+
+    });
+
     setTimeout(navExpand, 600);
 
     // cover scroll transform animation
@@ -322,51 +366,6 @@ function devAnimate() {
     }, 2400);
 
 }
-
-// disable pointer events on:scroll
-let timeout;
-window.addEventListener("scroll", function () {
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-        if (window.innerWidth >= 768) {
-            if (window.scrollY > 5) {
-                document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-            } else {
-                document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-            }
-        } else { // for window.widths < 768px
-            if (window.scrollY > 20) {
-                document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-            } else {
-                document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-            }
-        }
-    }, 1000);
-});
-
-// navExpand() at top of page
-window.addEventListener("scroll", function () {
-    if (window.scrollY == 0) {
-        navExpand();
-        functionDisabled = true;
-        let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
-        setTimeout(() => { functionDisabled = false; }, transitionSpeed);
-    }
-
-    else if (navState % 2 === 0) {
-        navCollapse();
-    }
-
-});
-
-// 'enter' campus button
-document.querySelector('.scrollhundo').addEventListener('click', () => {
-    window.scrollBy({
-        top: (endPoint + opacityTransLength),
-        behavior: 'smooth',
-        scrollDuration: 2400
-    });
-});
 
 const cover = document.querySelector('.intro-wrap');
 const content = document.querySelector('.content');
