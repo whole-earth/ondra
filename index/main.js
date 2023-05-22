@@ -457,25 +457,29 @@ const opacityTransMark = endPoint - opacityTransLength;
 // init transform scale
 cover.style.transform = `scale(${startScale})`;
 
+
+let scrollPos;
+let scale;
+let coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+let childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
+
 function updateCover() {
-    const scrollPos = window.scrollY;
+    scrollPos = window.scrollY;
+    scale = startScale + (endScale - startScale) * scrollPos / endPoint;
 
     // cover scale 
     if (scrollPos <= endPoint) {
         console.log('cover in view');
-        const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
+
         cover.style.transform = `scale(${scale})`;
-    }
+        coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+        cover.style.opacity = coverOpacity;
 
-    // moved from outside 'if' to inside back outside... try back inside tho
-    const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-    cover.style.opacity = coverOpacity;
-
-    // content opacity and scale
-    if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
-        content.style.opacity = 1 - coverOpacity;
-        const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
-        content.children[0].style.transform = `scale(${childScale})`;
+        if (scrollPos > opacityTransMark) {
+            content.style.opacity = 1 - coverOpacity;
+            childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
+            content.children[0].style.transform = `scale(${childScale})`;
+        }
     } else if (scrollPos > endPoint) {
         content.style.opacity = 1;
         content.children[0].style.transform = 'scale(1)';
