@@ -1,3 +1,7 @@
+setTimeout(function(){
+    document.getElementById("toggleBtn").classList.remove("invisible")
+}, 3000);
+
 let replacementCopy;
 
 let n;
