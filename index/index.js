@@ -300,7 +300,6 @@ function chooseDirection() {
     }
 }
 
-
 function reset() {
     // document.querySelector(".hero").innerHTML = replacementCopy;
     for (let i of letters.listAll()) {
@@ -510,7 +509,6 @@ function lettersInView() {
     }
 }
 
-
 function map(value, low1, high1, low2, high2) {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
@@ -556,7 +554,6 @@ function findAncestor(el, cls) {
     while ((el = el.parentElement) && !el.classList.contains(cls));
     return el;
 }
-
 
 function scrollUpDown() {
     window.scrollTo(0, window.innerHeight - 30);
