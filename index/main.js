@@ -470,7 +470,7 @@ function updateCover() {
         content.style.opacity = 0; // overwritten if next cond = true
         
         if (scrollPos > opacityTransMark) {
-            content.style.opacity = (Math.max((1 - coverOpacity), 1)); //  max 1
+            content.style.opacity = (Math.min((1 - coverOpacity), 1)); //  max 1
             contentChild.style.transform = `scale(${childScale})`;
         }
 
