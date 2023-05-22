@@ -398,7 +398,7 @@ function updateCover() {
         content.style.opacity = 1;
         content.children[0].style.transform = 'scale(1)';
     } else {
-        content.style.opacity = 0;
+        // content.style.opacity = 0;
         content.children[0].style.transform = 'scale(0.6)';
     }
 
