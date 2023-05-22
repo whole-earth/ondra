@@ -271,7 +271,7 @@ function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
   
-if ((window.innerWidth <= 600) || (isMobileDevice())) {
+if ((window.innerWidth <= 600) && (isMobileDevice())) {
     setTimeout(function() {
         document.getElementById("toggleBtn").classList.remove("invisible")
     }, 3000);
