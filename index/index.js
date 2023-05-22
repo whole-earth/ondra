@@ -40,8 +40,9 @@ window.addEventListener('load', function() {
     recentHoverAnim();
     projectHoverAnim();
 
-    if ((window.innerWidth >= 600) && (!isMobileDevice())) {
+    if (window.innerWidth >= 600) {
     setTimeout(function() {
+        console.log('reveal hero prompt');
         document.getElementById("toggleBtn").classList.remove("invisible")
     }, 3000);
 }
@@ -272,10 +273,6 @@ function dePixelate(element) {
 }
 
 // hero section
-
-function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  }
 
 let replacementCopy;
 
