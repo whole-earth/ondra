@@ -456,7 +456,7 @@ document.addEventListener("mousemove", function (e) {
                 }
                 if (n == 2) {
                     if (e.clientX < headerBounds.right) {
-                        s.style.color = '#111111'; // spotlight = invisible
+                        s.style.color = '#111111'; // spotlight = invisible?
                     } else {
                         s.style.color = 'white';
                     }
@@ -468,7 +468,7 @@ document.addEventListener("mousemove", function (e) {
             }
             if (n == 2) {
                 if (e.clientX < headerBounds.right) {
-                    s.style.color = 'black';
+                    s.style.color = '#111111'; // spotlight = invisible?
                 } else {
                     s.style.color = 'white';
                 }
