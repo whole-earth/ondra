@@ -1,26 +1,3 @@
-// 9:08 LA time
-// 05.12.23
-/*
-
-  ____        _     _____ _                         _                   
- |  _ \      | |   |_   _( )                       | |                  
- | |_) |_   _| |_    | | |/ _ __ ___    _ __   ___ | |_                 
- |  _ <| | | | __|   | |   | '_ ` _ \  | '_ \ / _ \| __|                
- | |_) | |_| | |_   _| |_  | | | | | | | | | | (_) | |_                 
- |____/ \__,_|\__|_|_____| |_|_|_|_|_|_|_|_|_|\___/ \__| 
-
-   ____   _ __ 
-  / _` | | '_ \| '__/ _ \ / _` | '__/ _` | '_ ` _ \| '_ ` _ \ / _ \ '__|
- | (_| | | |_) | | | (_) | (_| | | | (_| | | | | | | | | | | |  __/ |   
-  \__,_| | .__/|_|  \___/ \__, |_|  \__,_|_| |_| |_|_| |_| |_|\___|_|   
-         | |               __/ |                                        
-         |_|              |___/     
-
-Are you? Let's work together.
-access2tools@gmail.com
-
-*/
-
 // weather emoji
 fetch('https://api.openweathermap.org/data/2.5/weather?lat=34.019451&lon=-118.491188&units=imperial&appid=e94859be42276a7dd1791b66b543e1b5')
     .then(response => response.json())
@@ -401,24 +378,23 @@ const opacityTransMark = endPoint - opacityTransLength;
 
 cover.style.transform = `scale(${startScale})`;
 
-function updateCover() {
-    const scrollPos = window.scrollY;
-    const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
 
+const scrollPos = window.scrollY;
+const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
+const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
+const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+function updateCover() {
     // cover scale 
     if (scrollPos <= endPoint) {
         console.log('cover in view');
-        const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
         cover.style.transform = `scale(${scale})`;
-
-        const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
         cover.style.opacity = coverOpacity;
 
         if (scrollPos > opacityTransMark) {
             content.style.opacity = 1 - coverOpacity;
             content.children[0].style.transform = `scale(${childScale})`;
         }
-        
+
     } else if (scrollPos > endPoint) {
         content.style.opacity = 1;
         content.children[0].style.transform = 'scale(1)';
@@ -455,14 +431,14 @@ function handleWindowResize() {
 }
 
 // fixed corner divs transition
+const container = document.querySelector('.fixed');
+const containerTop = 1.6;
+const containerBottom = 2;
+const maxScroll = 60;
+const topChange = -6;
+const bottomChange = -6;
+const maxScrollMobile = 40;
 function fixedCoverScroll() {
-    const container = document.querySelector('.fixed');
-    const containerTop = 1.6;
-    const containerBottom = 2;
-    const maxScroll = 60;
-    const topChange = -6;
-    const bottomChange = -6;
-    const maxScrollMobile = 40;
 
     window.addEventListener("scroll", () => {
 
