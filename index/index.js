@@ -266,10 +266,11 @@ function dePixelate(element) {
 }
 
 // hero section
-
-setTimeout(function() {
-    document.getElementById("toggleBtn").classList.remove("invisible")
-}, 3000);
+if (window.innerWidth <= 600) {
+    setTimeout(function() {
+        document.getElementById("toggleBtn").classList.remove("invisible")
+    }, 3000);
+}
 
 let replacementCopy;
 
