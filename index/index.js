@@ -41,7 +41,6 @@ window.addEventListener('load', function () {
     projectHoverAnim();
 
     if (window.innerWidth >= 600) {
-        console.log('should fire');
         setTimeout(function () {
             document.getElementById("toggleBtn").classList.remove("invisible")
         }, 3000);
@@ -457,7 +456,7 @@ document.addEventListener("mousemove", function (e) {
                 }
                 if (n == 2) {
                     if (e.clientX < headerBounds.right) {
-                        s.style.color = 'black';
+                        s.style.color = '#111111'; // spotlight = invisible
                     } else {
                         s.style.color = 'white';
                     }
