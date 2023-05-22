@@ -1,6 +1,6 @@
 const recentImgWidths = [];
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
     // get initial widths and set to 0
     const recentProjects = document.querySelectorAll('.recent-project');
@@ -41,50 +41,50 @@ window.addEventListener('load', function() {
     projectHoverAnim();
 
     if (window.innerWidth >= 600) {
-    setTimeout(function() {
-        console.log('reveal hero prompt');
-        document.getElementById("toggleBtn").classList.remove("invisible")
-    }, 3000);
-}
+        console.log('should fire');
+        setTimeout(function () {
+            document.getElementById("toggleBtn").classList.remove("invisible")
+        }, 3000);
+    }
 
 });
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
     recentHoverAnim();
     projectHoverAnim();
 });
 
 // Filter-label click events
 const areaFields = document.querySelector('.project-filter-list').querySelectorAll('[fs-cmsfilter-field="area"]');
-areaFields.forEach(function(areaField) {
-    areaField.addEventListener('click', function(event) {
+areaFields.forEach(function (areaField) {
+    areaField.addEventListener('click', function (event) {
         document.querySelector('.is-open').style.display = 'inline-block';
         document.querySelector('.is-closed').style.display = 'none';
     });
 });
 
 // filter-reset click mirrors
-document.getElementById('isOpen').addEventListener('click', function() {
+document.getElementById('isOpen').addEventListener('click', function () {
     document.querySelector('[fs-cmsfilter-element="reset"]').click();
     document.querySelector('.is-closed').style.display = 'inline-block';
     document.querySelector('.is-open').style.display = 'none';
 });
 // anotha click-mirra
-document.querySelector('.noresultsreset').addEventListener('click', function() {
+document.querySelector('.noresultsreset').addEventListener('click', function () {
     document.querySelector('[fs-cmsfilter-element="reset"]').click();
 });
 
 // visual carats: sorting states
 let carats = document.querySelectorAll('.filter-carat');
 let labels = document.querySelectorAll("[fs-cmssort-element='trigger']");
-carats.forEach(function(carat) {
+carats.forEach(function (carat) {
     carat.style.visibility = 'hidden';
 })
 
 labels.forEach((label, i) => {
     label.addEventListener('click', () => {
 
-        carats.forEach(function(carat) {
+        carats.forEach(function (carat) {
             carat.style.visibility = "hidden";
         });
 
@@ -142,7 +142,7 @@ function projectHoverAnim() {
         project.addEventListener('mouseleave', () => {
             if (window.innerWidth > 768) {
                 img.style.opacity = '0';
-                setTimeout(function() {
+                setTimeout(function () {
                     img.style = '';
                 }.bind(this), parseFloat(imgTrans) * 1000);
                 link.style = '';
@@ -235,7 +235,7 @@ function dePixelate(element) {
     let img = new Image();
     img.src = origImage.getAttribute('src');
 
-    img.onload = function() {
+    img.onload = function () {
 
         function pixelate(pixelSize) {
             let size = pixelSize * 0.01,
@@ -252,19 +252,19 @@ function dePixelate(element) {
 
         pixelate(4);
 
-        setTimeout(function() {
+        setTimeout(function () {
             pixelate(8);
         }, 100);
 
-        setTimeout(function() {
+        setTimeout(function () {
             pixelate(14);
         }, 180);
 
-        setTimeout(function() {
+        setTimeout(function () {
             pixelate(24);
         }, 260);
 
-        setTimeout(function() {
+        setTimeout(function () {
             canvas.parentNode.removeChild(canvas);
         }, 300);
 
@@ -317,7 +317,7 @@ function reset() {
     }
 }
 
-document.querySelector(".hero").addEventListener("mousedown", function() {
+document.querySelector(".hero").addEventListener("mousedown", function () {
     document.getElementById("toggleBtn").classList.add("invisible");
     reset();
     // chooseDirection();
@@ -326,7 +326,7 @@ document.querySelector(".hero").addEventListener("mousedown", function() {
 
 // this is for direction 2
 let headerBounds = document.querySelector(".hero h1").getBoundingClientRect();
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
     headerBounds = document.querySelector(".hero h1").getBoundingClientRect();
 })
 
@@ -339,7 +339,7 @@ var letters = new Letterize({
 let expandBtns = document.querySelectorAll("#info button");
 
 for (let btn of expandBtns) {
-    btn.onclick = function() {
+    btn.onclick = function () {
         this.classList.toggle("view-more");
     }
 }
@@ -367,7 +367,7 @@ for (let i of letters.listAll()) {
     } else {
         i.classList.remove("n7");
     }
-    i.addEventListener("mouseenter", function() {
+    i.addEventListener("mouseenter", function () {
         // console.log(i.parentElement);
         if (n == 1) {
             i.classList.add("on")
@@ -380,7 +380,7 @@ for (let i of letters.listAll()) {
         if (n == 5) {
             // i.style.transform = "scaleY(-1)";
             i.classList.add('upsideDown');
-            setTimeout(function() {
+            setTimeout(function () {
                 i.classList.remove('upsideDown')
                 // i.style.transform = "scaleY(1)";
             }, 1000)
@@ -389,7 +389,7 @@ for (let i of letters.listAll()) {
             i.style.left = -30 + Math.random() * 60 + "px";
             i.style.top = -30 + Math.random() * 60 + "px";
             i.style.color = palette2[Math.floor(Math.random() * palette2.length)];
-            setTimeout(function() {
+            setTimeout(function () {
                 i.removeAttribute('style')
             }, 1000)
         }
@@ -403,10 +403,10 @@ let h = document.querySelector("h1");
 
 hHover = true;
 for (let container of document.querySelectorAll(".d3container")) {
-    container.addEventListener("mousemove", function(e) {
+    container.addEventListener("mousemove", function (e) {
         container.classList.add("mouseover")
     })
-    container.addEventListener("mouseout", function(e) {
+    container.addEventListener("mouseout", function (e) {
         container.classList.remove("mouseover")
     })
 }
@@ -415,7 +415,7 @@ let spanArray = [];
 
 lettersInView();
 
-document.addEventListener("scroll", function() {
+document.addEventListener("scroll", function () {
     lettersInView();
 })
 
@@ -426,7 +426,7 @@ for (let i = 0; i < spanArray.length; i++) {
     boundsArr.push(s.getBoundingClientRect());
 }
 
-document.addEventListener("mousemove", function(e) {
+document.addEventListener("mousemove", function (e) {
 
     for (let i = 0; i < spanArray.length; i++) {
         let s = spanArray[i];
