@@ -54,13 +54,13 @@ window.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
     document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
+    campusHideCard.classList.add('hidden');
+
 });
 
 let buttonCount = 0;
 
 window.addEventListener('load', async () => {
-
-    campusHideCard.classList.add('hidden');
 
     // Campus view-btn: click events
     const buttons = document.querySelectorAll('.campus-interact-form-view');
