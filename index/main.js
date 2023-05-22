@@ -76,6 +76,14 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    document.querySelector('.scrollhundo').addEventListener('click', () => {
+        window.scrollBy({
+            top: (endPoint + opacityTransLength),
+            behavior: 'smooth',
+            scrollDuration: 2400
+        });
+    });
+
 
 });
 
@@ -357,125 +365,7 @@ window.addEventListener("scroll", function () {
     }, 100);
 });
 
-const cover = document.querySelector('.intro-wrap');
-const content = document.querySelector('.content');
-const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
-const endPoint = 200;
-const endScale = 2.8;
-const opacityTransLength = 140;
-const opacityTransMark = endPoint - opacityTransLength;
-
-cover.style.transform = `scale(${startScale})`;
-
-document.querySelector('.scrollhundo').addEventListener('click', () => {
-    window.scrollBy({
-        top: (endPoint + opacityTransLength),
-        behavior: 'smooth',
-        scrollDuration: 2400
-    });
-});
-
-function updateCover() {
-    const scrollPos = window.scrollY;
-
-    // cover scale 
-    if (scrollPos <= endPoint) {
-        console.log('cover in view');
-        const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
-        cover.style.transform = `scale(${scale})`;
-    }
-
-    // moved from outside 'if' to inside back outside... try back inside tho
-    const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-    cover.style.opacity = coverOpacity;
-
-    // content opacity and scale
-    if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
-        content.style.opacity = 1 - coverOpacity;
-        const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
-        content.children[0].style.transform = `scale(${childScale})`;
-    } else if (scrollPos > endPoint) {
-        content.style.opacity = 1;
-        content.children[0].style.transform = 'scale(1)';
-    } else {
-        content.style.opacity = 0;
-        content.children[0].style.transform = 'scale(0.6)';
-    }
-
-    if (window.innerWidth >= 768) {
-        cover.style.pointerEvents = scrollPos > 2 ? 'none' : 'auto';
-        content.classList.toggle('flow', scrollPos >= endPoint);
-    }
-}
-
-function handleWindowResize() {
-    if (window.innerWidth >= 768) {
-        content.classList.add("pinned");
-        if (window.pageYOffset === 0) {
-            content.style.opacity = "0";
-        }
-        window.addEventListener("scroll", updateCover);
-    } else {
-        content.style.opacity = "";
-        content.classList.remove("pinned");
-        window.removeEventListener('scroll', updateCover);
-        // clear updateCover styling
-        cover.style.transform = "";
-        cover.style.opacity = "";
-        cover.style.pointerEvents = "";
-        content.style.opacity = "";
-        content.classList.remove("pinned", "flow");
-        content.children[0].style.transform = "";
-    }
-}
-
-// fixed corner divs transition
-function fixedCoverScroll() {
-    const container = document.querySelector('.fixed');
-    const containerTop = 1.6;
-    const containerBottom = 2;
-    const maxScroll = 60;
-    const topChange = -6;
-    const bottomChange = -6;
-    const maxScrollMobile = 40;
-
-    window.addEventListener("scroll", () => {
-
-        if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
-            const scrollY = window.scrollY;
-            if (window.innerWidth >= 768) {
-
-                if (scrollY > maxScroll) {
-                    container.style.display = 'none';
-                } else {
-                    container.style.display = 'block';
-                    let topValue = containerTop + (scrollY / maxScroll * (containerTop + topChange));
-                    let bottomValue = containerBottom + (scrollY / maxScroll * (containerBottom + bottomChange));
-
-                    if (topValue < topChange) {
-                        topValue = topChange;
-                    }
-
-                    if (bottomValue < bottomChange) {
-                        bottomValue = bottomChange;
-                    }
-
-                    container.style.top = `${topValue}em`;
-                    container.style.bottom = `${bottomValue}em`;
-                }
-
-            } else {
-                if (scrollY > maxScrollMobile) {
-                    container.style.opacity = 0;
-                } else {
-                    const opacity = 1 - (scrollY / maxScrollMobile);
-                    container.style.opacity = opacity;
-                }
-            }
-        }
-    });
-}
-
+// ------- NAV ----------
 const items = document.querySelectorAll('.nav-item');
 const bubbleOneOffset = parseInt(getComputedStyle(document.querySelector('.nav-btn')).width, 10); // px
 const bubbles = document.querySelectorAll('.nav-bubble');
@@ -531,6 +421,172 @@ function navExpand() {
     navState++;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------- /NAV ---------
+
+const cover = document.querySelector('.intro-wrap');
+const content = document.querySelector('.content');
+const startScale = window.innerHeight < 500 ? 0.8 : window.innerHeight < 650 ? 1 : 1.3;
+const endPoint = 200;
+const endScale = 2.8;
+const opacityTransLength = 140;
+const opacityTransMark = endPoint - opacityTransLength;
+
+// init transform scale
+cover.style.transform = `scale(${startScale})`;
+
+function updateCover() {
+    const scrollPos = window.scrollY;
+
+    // cover scale 
+    if (scrollPos <= endPoint) {
+        console.log('cover in view');
+        const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
+        cover.style.transform = `scale(${scale})`;
+    }
+
+    // moved from outside 'if' to inside back outside... try back inside tho
+    const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+    cover.style.opacity = coverOpacity;
+
+    // content opacity and scale
+    if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
+        content.style.opacity = 1 - coverOpacity;
+        const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
+        content.children[0].style.transform = `scale(${childScale})`;
+    } else if (scrollPos > endPoint) {
+        content.style.opacity = 1;
+        content.children[0].style.transform = 'scale(1)';
+    } else {
+        content.style.opacity = 0;
+        content.children[0].style.transform = 'scale(0.6)';
+    }
+
+    if (window.innerWidth >= 768) {
+        cover.style.pointerEvents = scrollPos > 2 ? 'none' : 'auto';
+        content.classList.toggle('flow', scrollPos >= endPoint);
+    }
+}
+
+function handleWindowResize() {
+    if (window.innerWidth >= 768) {
+        content.classList.add("pinned");
+        if (window.pageYOffset === 0) {
+            content.style.opacity = "0";
+        }
+        window.addEventListener("scroll", updateCover);
+    } else {
+        content.style.opacity = "";
+        content.classList.remove("pinned");
+        window.removeEventListener('scroll', updateCover);
+        // clear updateCover styling
+        cover.style.transform = "";
+        cover.style.opacity = "";
+        cover.style.pointerEvents = "";
+        content.style.opacity = "";
+        content.classList.remove("pinned", "flow");
+        content.children[0].style.transform = "";
+    }
+}
+
+// COVER: fixed corner divs transition
+function fixedCoverScroll() {
+    const container = document.querySelector('.fixed');
+    const containerTop = 1.6;
+    const containerBottom = 2;
+    const maxScroll = 60;
+    const topChange = -6;
+    const bottomChange = -6;
+    const maxScrollMobile = 40;
+
+    window.addEventListener("scroll", () => {
+
+        if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
+            const scrollY = window.scrollY;
+            if (window.innerWidth >= 768) {
+
+                if (scrollY > maxScroll) {
+                    container.style.display = 'none';
+                } else {
+                    container.style.display = 'block';
+                    let topValue = containerTop + (scrollY / maxScroll * (containerTop + topChange));
+                    let bottomValue = containerBottom + (scrollY / maxScroll * (containerBottom + bottomChange));
+
+                    if (topValue < topChange) {
+                        topValue = topChange;
+                    }
+
+                    if (bottomValue < bottomChange) {
+                        bottomValue = bottomChange;
+                    }
+
+                    container.style.top = `${topValue}em`;
+                    container.style.bottom = `${bottomValue}em`;
+                }
+
+            } else {
+                if (scrollY > maxScrollMobile) {
+                    container.style.opacity = 0;
+                } else {
+                    const opacity = 1 - (scrollY / maxScrollMobile);
+                    container.style.opacity = opacity;
+                }
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Campus Interactive
 const wrap = document.querySelector('.campus-interact');
