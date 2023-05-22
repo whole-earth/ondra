@@ -50,20 +50,15 @@ window.addEventListener('DOMContentLoaded', function () {
 
     placeDevGrid();
 
+    // moved this from reg load
+    hideCampusMeta.style.display = 'none';
+    // hideCampusMeta.classList.add('hidden');
+
     document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
     document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
     document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
 
-});
-
-let buttonCount = 0; // dangling variable dec, that how we do things
-
-window.addEventListener('load', async () => {
-
-    hideCampusMeta.style.display = 'none';
-
     const buttons = document.querySelectorAll('.campus-interact-form-view');
-
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
             buttonCount++;
@@ -83,7 +78,12 @@ window.addEventListener('load', async () => {
         });
     });
 
-    setTimeout(navExpand, 600);
+
+});
+
+window.addEventListener('load', async () => {
+
+    setTimeout(navExpand, 800);
 
     // cover scroll transform animation
     fixedCoverScroll();
@@ -111,9 +111,12 @@ window.addEventListener('load', async () => {
     devAnimate();
     await waitUntil(() => !devIsAnimating);
 
+    // after sequence complete, release pointer-events
     document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
 
 });
+
+let buttonCount = 0;
 
 let researchIsAnimating = false;
 let designIsAnimating = false;
@@ -307,6 +310,25 @@ function devAnimate() {
         devIsAnimating = false;
     }, 2400);
 
+}
+
+function placeDevGrid() {
+    let gridContainer = document.querySelector(".head-dev-grid");
+
+    let gridContainerWidth = gridContainer.offsetWidth + 12;
+    let gridContainerHeight = gridContainer.offsetHeight + 12;
+    let gridNumCols = Math.floor(gridContainerWidth / 16);
+    let gridNumRows = Math.floor(gridContainerHeight / 16);
+
+    for (let row = 0; row < gridNumRows; row++) {
+        for (let col = 0; col < gridNumCols; col++) {
+            const square = document.createElement("div");
+            square.classList.add("square");
+            square.style.left = `${col * 16}px`;
+            square.style.top = `${row * 16}px`;
+            gridContainer.appendChild(square);
+        }
+    }
 }
 
 // disable pointer events on:scroll
@@ -567,25 +589,6 @@ function campusScrollAnim() {
             meta.style.opacity = '1';
         } else {
             meta.style.opacity = '0';
-        }
-    }
-}
-
-function placeDevGrid() {
-    let gridContainer = document.querySelector(".head-dev-grid");
-
-    let gridContainerWidth = gridContainer.offsetWidth + 12;
-    let gridContainerHeight = gridContainer.offsetHeight + 12;
-    let gridNumCols = Math.floor(gridContainerWidth / 16);
-    let gridNumRows = Math.floor(gridContainerHeight / 16);
-
-    for (let row = 0; row < gridNumRows; row++) {
-        for (let col = 0; col < gridNumCols; col++) {
-            const square = document.createElement("div");
-            square.classList.add("square");
-            square.style.left = `${col * 16}px`;
-            square.style.top = `${row * 16}px`;
-            gridContainer.appendChild(square);
         }
     }
 }
