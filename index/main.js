@@ -334,19 +334,20 @@ function placeDevGrid() {
 
 let timeout;
 window.addEventListener("scroll", function () {
+
+    // navExpand() at top of page
+    if (window.scrollY == 0) {
+        navExpand();
+        functionDisabled = true;
+        let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
+        setTimeout(() => { functionDisabled = false; }, transitionSpeed);
+    }
+    else if (navState % 2 === 0) {
+        navCollapse();
+    }
+
     clearTimeout(timeout);
     timeout = setTimeout(function () {
-
-        // navExpand() at top of page
-        if (window.scrollY == 0) {
-            navExpand();
-            functionDisabled = true;
-            let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
-            setTimeout(() => { functionDisabled = false; }, transitionSpeed);
-        }
-        else if (navState % 2 === 0) {
-            navCollapse();
-        }
 
         // disable pointer events on:scroll
         if (window.innerWidth >= 768) {
@@ -457,7 +458,6 @@ const opacityTransMark = endPoint - opacityTransLength;
 // init transform scale
 cover.style.transform = `scale(${startScale})`;
 
-
 let scrollPos;
 let scale;
 let coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
@@ -474,12 +474,13 @@ function updateCover() {
         cover.style.transform = `scale(${scale})`;
         coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
         cover.style.opacity = coverOpacity;
+    }
 
-        if (scrollPos > opacityTransMark) {
-            content.style.opacity = 1 - coverOpacity;
-            childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
-            content.children[0].style.transform = `scale(${childScale})`;
-        }
+    // content opacity and scale
+    if (scrollPos > opacityTransMark && scrollPos <= endPoint) {
+        content.style.opacity = 1 - coverOpacity;
+        const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
+        content.children[0].style.transform = `scale(${childScale})`;
     } else if (scrollPos > endPoint) {
         content.style.opacity = 1;
         content.children[0].style.transform = 'scale(1)';
