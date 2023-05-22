@@ -50,7 +50,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
     placeDevGrid();
 
-    // hideCampusMeta.style.display = 'none';
     hideCampusMeta.classList.add('hidden');
 
     document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
@@ -63,7 +62,6 @@ window.addEventListener('DOMContentLoaded', function () {
             buttonCount++;
             if (window.innerWidth >= 768) {
                 three.style.transform = "translateX(0)";
-                // hideCampusMeta.style.display = 'block';
                 hideCampusMeta.classList.remove('hidden');
             }
         });
@@ -326,11 +324,23 @@ function placeDevGrid() {
     }
 }
 
-// disable pointer events on:scroll
 let timeout;
 window.addEventListener("scroll", function () {
     clearTimeout(timeout);
     timeout = setTimeout(function () {
+
+        // navExpand() at top of page
+        if (window.scrollY == 0) {
+            navExpand();
+            functionDisabled = true;
+            let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
+            setTimeout(() => { functionDisabled = false; }, transitionSpeed);
+        }
+        else if (navState % 2 === 0) {
+            navCollapse();
+        }
+
+        // disable pointer events on:scroll
         if (window.innerWidth >= 768) {
             if (window.scrollY > 5) {
                 document.querySelector('.intro-wrap').style.pointerEvents = 'none';
@@ -345,21 +355,6 @@ window.addEventListener("scroll", function () {
             }
         }
     }, 100);
-});
-
-// navExpand() at top of page
-window.addEventListener("scroll", function () {
-    if (window.scrollY == 0) {
-        navExpand();
-        functionDisabled = true;
-        let transitionSpeed = parseFloat(getComputedStyle(document.querySelector('.nav-item')).transitionDuration) * 1000;
-        setTimeout(() => { functionDisabled = false; }, transitionSpeed);
-    }
-
-    else if (navState % 2 === 0) {
-        navCollapse();
-    }
-
 });
 
 const cover = document.querySelector('.intro-wrap');
@@ -554,7 +549,6 @@ function campusAnimCheck() {
         window.removeEventListener("scroll", campusScrollAnim);
         three.style = "";
         meta.style = "";
-        // hideCampusMeta.style.display = 'none';
         hideCampusMeta.classList.add('hidden');
         if (window.innerWidth < 600) {
             three.style.transform = 'scale(0.4)';
