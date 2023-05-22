@@ -467,11 +467,10 @@ function updateCover() {
         console.log('cover in view');
         cover.style.transform = `scale(${scale})`;
         cover.style.opacity = (Math.max(0, coverOpacity)); //  min 0
-        
-        content.style.opacity = (Math.max((1 - coverOpacity), 1)); //  max 1
+        content.style.opacity = 0; // overwritten if next cond = true
         
         if (scrollPos > opacityTransMark) {
-            // content.style.opacity = (Math.max((1 - coverOpacity), 1)); //  max 1
+            content.style.opacity = (Math.max((1 - coverOpacity), 1)); //  max 1
             contentChild.style.transform = `scale(${childScale})`;
         }
 
