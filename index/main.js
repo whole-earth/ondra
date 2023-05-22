@@ -47,24 +47,8 @@ window.addEventListener('DOMContentLoaded', function () {
     window.scrollTo(0, 0);
 
     navCollapse();
-    document.querySelector('.nav').style.opacity = "1";
 
-    // place grid
-    let gridContainer = document.querySelector(".head-dev-grid");
-    let gridContainerWidth = gridContainer.offsetWidth + 12;
-    let gridContainerHeight = gridContainer.offsetHeight + 12;
-    let gridNumCols = Math.floor(gridContainerWidth / 16);
-    let gridNumRows = Math.floor(gridContainerHeight / 16);
-
-    for (let row = 0; row < gridNumRows; row++) {
-        for (let col = 0; col < gridNumCols; col++) {
-            const square = document.createElement("div");
-            square.classList.add("square");
-            square.style.left = `${col * 16}px`;
-            square.style.top = `${row * 16}px`;
-            gridContainer.appendChild(square);
-        }
-    }
+    placeDevAnimGrid();
 
     document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
     document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
@@ -76,20 +60,21 @@ let buttonCount = 0;
 
 window.addEventListener('load', async () => {
 
-    campusHideCard.style.display = 'none';
+    campusHideCard.classList.add('hidden');
 
+    // Campus view-btn: click events
     const buttons = document.querySelectorAll('.campus-interact-form-view');
     buttons.forEach(function (button) {
         button.addEventListener('click', function () {
             buttonCount++;
             if (window.innerWidth >= 768) {
                 three.style.transform = "translateX(0)";
-                campusHideCard.style.display = 'block';
+                campusHideCard.classList.remove('hidden');
             }
         });
     });
 
-    // hover to expand
+    // nav hover to expand
     bubbles.forEach(bubble => {
         bubble.addEventListener('mouseover', function () {
             if (navState % 2 === 1) {
@@ -377,12 +362,12 @@ const opacityTransMark = endPoint - opacityTransLength;
 
 cover.style.transform = `scale(${startScale})`;
 
-
-const scrollPos = window.scrollY;
 const childScale = 0.6 + (1 - 0.6) * (scrollPos - opacityTransMark) / opacityTransLength;
 const scale = startScale + (endScale - startScale) * scrollPos / endPoint;
 const coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
+
 function updateCover() {
+    const scrollPos = window.scrollY;
     // cover scale 
     if (scrollPos <= endPoint) {
         console.log('cover in view');
@@ -538,7 +523,7 @@ const three = document.querySelector('.campus-three');
 const wrapTop = wrap.offsetTop;
 const wrapHeight = wrap.offsetHeight;
 const meta = document.querySelector('.campus-interact-meta');
-const campusHideCard = document.getElementById('minMetaBtn');
+const campusHideCard = document.getElementById('hideCampusCard');
 
 function campusAnimCheck() {
 
@@ -549,7 +534,7 @@ function campusAnimCheck() {
         window.removeEventListener("scroll", campusScrollAnim);
         three.style = "";
         meta.style = "";
-        campusHideCard.style.display = 'none';
+        campusHideCard.classList.add('hidden');
         if (window.innerWidth < 600) {
             three.style.transform = 'scale(0.4)';
         } else {
@@ -581,4 +566,23 @@ function campusScrollAnim() {
             meta.style.opacity = '0';
         }
     }
+}
+
+function placeDevAnimGrid() {
+    let gridContainer = document.querySelector(".head-dev-grid");
+    let gridContainerWidth = gridContainer.offsetWidth + 12;
+    let gridContainerHeight = gridContainer.offsetHeight + 12;
+    let gridNumCols = Math.floor(gridContainerWidth / 16);
+    let gridNumRows = Math.floor(gridContainerHeight / 16);
+
+    for (let row = 0; row < gridNumRows; row++) {
+        for (let col = 0; col < gridNumCols; col++) {
+            const square = document.createElement("div");
+            square.classList.add("square");
+            square.style.left = `${col * 16}px`;
+            square.style.top = `${row * 16}px`;
+            gridContainer.appendChild(square);
+        }
+    }
+
 }
