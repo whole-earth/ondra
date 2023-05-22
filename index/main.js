@@ -332,7 +332,6 @@ function placeDevGrid() {
     }
 }
 
-let timeout;
 window.addEventListener("scroll", function () {
 
     // navExpand() at top of page
@@ -346,24 +345,21 @@ window.addEventListener("scroll", function () {
         navCollapse();
     }
 
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-
-        // disable pointer events on:scroll
-        if (window.innerWidth >= 768) {
-            if (window.scrollY > 5) {
-                document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-            } else {
-                document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-            }
-        } else { // for window.widths < 768px
-            if (window.scrollY > 20) {
-                document.querySelector('.intro-wrap').style.pointerEvents = 'none';
-            } else {
-                document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-            }
+    // disable pointer events on:scroll
+    if (window.innerWidth >= 768) {
+        if (window.scrollY > 5) {
+            document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+        } else {
+            document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
         }
-    }, 100);
+    } else { // for window.widths < 768px
+        if (window.scrollY > 20) {
+            document.querySelector('.intro-wrap').style.pointerEvents = 'none';
+        } else {
+            document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+        }
+    }
+    
 });
 
 // ------- NAV ----------
@@ -473,7 +469,7 @@ function updateCover() {
 
         cover.style.transform = `scale(${scale})`;
         coverOpacity = scrollPos > opacityTransMark && scrollPos <= endPoint ? 1 - ((scrollPos - opacityTransMark) / 100) : scrollPos > endPoint ? 0 : 1;
-        cover.style.opacity = coverOpacity;
+        cover.style.opacity = (Math.max(0, coverOpacity)); //  min 0
 
         if (scrollPos > opacityTransMark) {
             content.style.opacity = 1 - coverOpacity;
