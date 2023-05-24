@@ -60,7 +60,7 @@ window.addEventListener("resize", function(){
 })
 
 var letters = new Letterize({
-    targets: "bio-h1",
+    targets: ".bio-h1",
     wrapper: "i"
 });
 
