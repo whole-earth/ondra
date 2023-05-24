@@ -45,7 +45,7 @@ function reset(){
     }
 }
 
-chooseDirection()
+// chooseDirection()
 
 document.querySelector(".bio").addEventListener("mousedown", function(){
     document.querySelector(".bio-toggle-btn").classList.add("invisible");
