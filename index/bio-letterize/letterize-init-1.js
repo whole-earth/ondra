@@ -20,14 +20,14 @@ function chooseDirection(){
     
 
     if (n==5){
-        document.querySelector(".hero").classList.add("upsideDown")
+        document.querySelector(".bio").classList.add("upsideDown")
     } else {
-        document.querySelector(".hero").classList.remove("upsideDown")
+        document.querySelector(".bio").classList.remove("upsideDown")
     }
     if (n==5 || n == 7 || n==6){
-        document.querySelector(".hero").classList.add("transition")
+        document.querySelector(".bio").classList.add("transition")
     } else {
-        document.querySelector(".hero").classList.remove("transition")
+        document.querySelector(".bio").classList.remove("transition")
     }
 }
 
@@ -70,7 +70,7 @@ function insertAfter(newNode, referenceNode) {
 
 for (let i of letters.listAll()){
     i.innerHTML = i.innerHTML.replace(/&nbsp;/g, " ");
-    replacementCopy = document.querySelector(".hero").innerHTML;
+    replacementCopy = document.querySelector(".bio").innerHTML;
     if (n == 5){
         i.style.transition = 'transform 200ms';
     } else {
@@ -250,9 +250,9 @@ function SWITCH(x){
         }
     }
     if (n==5 || n == 7 || n==6){
-        document.querySelector(".hero").classList.add("transition")
+        document.querySelector(".bio").classList.add("transition")
     } else {
-        document.querySelector(".hero").classList.remove("transition")
+        document.querySelector(".bio").classList.remove("transition")
     }
 }
 
