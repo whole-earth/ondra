@@ -171,7 +171,7 @@ document.addEventListener("mousemove", function(e){
                     }
                     if (n==2){
                         if(e.clientX < headerBounds.right){
-                            s.style.color = 'black';
+                            s.style.color = '#1c1c1c';
                         } else {
                             s.style.color = 'white';
                         }
@@ -183,7 +183,7 @@ document.addEventListener("mousemove", function(e){
                 }
                 if (n == 2){
                     if(e.clientX < headerBounds.right){
-                        s.style.color = 'black';
+                        s.style.color = '#1c1c1c';
                     } else {
                         s.style.color = 'white';
                     }
