@@ -265,7 +265,3 @@ function findAncestor (el, cls) {
 function scrollUpDown(){
     window.scrollTo(0, window.innerHeight - 30);
 }
-
-window.onscroll = function(){
-    document.querySelector("#fixed button svg").parentElement.style.opacity="0";
-}
