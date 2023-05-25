@@ -123,3 +123,36 @@
 		color: white;
 	}
 }
+
+.bio .bio-h1:last-of-type:after {
+	display: inline-block;
+	content: "";
+	height: 1.8rem;
+	width: 1.4px;
+	position: relative;
+	top: 0.3rem;
+	right: -0.2rem;
+	background-color: #fff;
+	opacity: 0.5;
+	-webkit-animation: bio-cursor 1s steps(2, start) infinite;
+	animation: bio-cursor 1s steps(2, start) infinite;
+}
+
+@media screen and (max-width: 767px) {
+	.bio .bio-h1:last-of-type:after {
+		height: 1.4rem;
+		top: 0.1rem;
+	}
+}
+
+@-webkit-keyframes bio-cursor {
+	to {
+		visibility: hidden
+	}
+}
+
+@keyframes bio-cursor {
+	to {
+		visibility: hidden
+	}
+}
