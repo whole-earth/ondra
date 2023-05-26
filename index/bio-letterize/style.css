@@ -138,6 +138,10 @@
 	animation: bio-cursor 1s steps(2, start) infinite;
 }
 
+.bio .bio-h1:last-of-type.clicked:after {
+  opacity: 0;
+}
+
 @media screen and (max-width: 767px) {
 	.bio .bio-h1:last-of-type:after {
 		height: 1.4rem;
