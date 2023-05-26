@@ -22,7 +22,7 @@ html::-webkit-scrollbar { display: none; }
 }
 
 /* added 5/26/23 to enable scrolling */
-.scroll {
+.scroll-enable {
 	width: 100%;
 	height: calc(100vh + 200px);
 	opacity: 0;
