@@ -51,6 +51,12 @@ window.addEventListener('DOMContentLoaded', function () {
     placeDevGrid();
 
     hideCampusMeta.classList.add('hidden');
+    
+    const scroll = document.createElement("div");
+    scroll.classList.add("scroll-enable");
+    document.body.appendChild(scroll);
+    // scroll-enable props defined in StylesP.css
+
 
     document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
     document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
