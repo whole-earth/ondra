@@ -49,7 +49,7 @@ function reset(){
 
 document.querySelector(".bio").addEventListener("mousedown", function(){
     document.querySelector(".bio-toggle-btn").classList.add("invisible");
-    document.document.querySelector(".bio .bio-h1:last-of-type").classList.add("clicked"); // makes :after opacity = 0
+    document.querySelector(".bio .bio-h1:last-of-type").classList.add("clicked"); // makes :after opacity = 0
     reset();
     SWITCH(Math.floor(Math.random()*8));
 })
