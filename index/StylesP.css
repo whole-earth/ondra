@@ -21,6 +21,13 @@ html::-webkit-scrollbar { display: none; }
   z-index: 1;
 }
 
+/* added 5/26/23 to enable scrolling */
+.scroll {
+	width: 100%;
+	height: calc(100vh + 200px);
+	opacity: 0;
+}
+
 /* Research */
 .research-glass::after {
   --glass-size: 2.6em;
