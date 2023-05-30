@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function changeWallpaper() {
 
     const canvas = document.querySelector('.i-module');
-    const logo = document.querySelector('ondra-os-logo');
+    const logo = document.querySelector('.ondra-os-logo');
     let radioButtons = document.querySelector('[name="wallpaper"]:checked').value;
 
     switch (radioButtons) {
