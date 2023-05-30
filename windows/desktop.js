@@ -88,22 +88,33 @@ document.addEventListener("DOMContentLoaded", function() {
 function changeWallpaper() {
 
     const canvas = document.querySelector('.i-module');
+    const logo = document.querySelector('ondra-os-logo');
     let radioButtons = document.querySelector('[name="wallpaper"]:checked').value;
 
     switch (radioButtons) {
         case 'default':
+            logo.style.opacity = 1;
+            logo.style.pointerEvents = "auto";
             canvas.setAttribute('id', 'default-wallpaper');
             break;
         case 'skyline':
+            logo.style.opacity = 0;
+            logo.style.pointerEvents = "none";
             canvas.setAttribute('id', 'skyline-wallpaper');
             break;
         case 'dawn':
+            logo.style.opacity = 0;
+            logo.style.pointerEvents = "none";
             canvas.setAttribute('id', 'dawn-wallpaper');
             break;
         case 'hakone':
+            logo.style.opacity = 0;
+            logo.style.pointerEvents = "none";
             canvas.setAttribute('id', 'hakone-wallpaper');
             break;
         case 'elCap':
+            logo.style.opacity = 0;
+            logo.style.pointerEvents = "none";
             canvas.setAttribute('id', 'elCap-wallpaper');
             break;
     }
