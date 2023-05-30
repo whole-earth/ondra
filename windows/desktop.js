@@ -93,7 +93,7 @@ function changeWallpaper() {
 
     switch (radioButtons) {
         case 'default':
-            logo.style.opacity = 1;
+            logo.style.opacity = 0.2;
             logo.style.pointerEvents = "auto";
             canvas.setAttribute('id', 'default-wallpaper');
             break;
