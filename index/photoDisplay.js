@@ -41,7 +41,7 @@ function init(images) {
     if (window.innerWidth > 768) {
            transform(targets.helix, 0, .5, .5, .5);
         } else {
-            transform(targets.helix, 0, 1, 1, 1);
+            transform(targets.helix, 0, 1, 1, 0.5);
         }
     
     // transform(targets.helix, 1000, .5, .5, .5);
