@@ -37,7 +37,12 @@ function init(images) {
     const buttonTable = createTransformationButton('table', duration, targets.table, -199, 185, 6000)
 
     // Start the initial transformation
-    transform(targets.helix, 1000, .5, .5, .5);
+    if (window.innerWidth < 768) {
+        transform(targets.helix, 1000, 0.7, 0.7, 0.5); // mobile
+    } else {
+        transform(targets.helix, 1000, 0.5, 0.5, 0.5);
+    }
+    
     window.addEventListener('resize', onWindowResize);
 }
 
