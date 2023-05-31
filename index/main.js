@@ -426,28 +426,6 @@ function navExpand() {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ------- /NAV ---------
 
 const cover = document.querySelector('.intro-wrap');
