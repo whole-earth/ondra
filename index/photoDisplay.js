@@ -38,7 +38,7 @@ function init(images) {
 
     // Start the initial transformation
     // transform(targets.helix, 1000, .5, .5, .5);
-    transform(targets.helix, 600, .5, .5, .5);
+    transform(targets.helix, 0, .5, .5, .5);
 
     window.addEventListener('resize', onWindowResize);
 }
