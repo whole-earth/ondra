@@ -82,7 +82,7 @@ function defineHelixTransform(objects, vector) {
         if (window.innerWidth > 768) {
             distance = 2000;
         } else {
-            distance = 700; // mobile
+            distance = 1400; // mobile
         }
 
         const object = new THREE.Object3D();
