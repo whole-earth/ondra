@@ -77,9 +77,15 @@ function defineHelixTransform(objects, vector) {
     for (let i = 0; i < objects.length; i++) {
         const theta = i * 0.175 + Math.PI;
         const y = - (i * 8) + 450;
+        
+        const distance;
+        if (window.innerWidth > 768) {
+            distance = 2000;
+        } else {
+            distance = 700; // mobile
 
         const object = new THREE.Object3D();
-        object.position.setFromCylindricalCoords(2000, theta, y);
+        object.position.setFromCylindricalCoords(distance, theta, y);
 
         vector.x = object.position.x * 2;
         vector.y = object.position.y;
