@@ -36,6 +36,9 @@ function init(images) {
     const buttonGrid = createTransformationButton('grid', duration, targets.grid, 297, 560, 6000);
     const buttonTable = createTransformationButton('table', duration, targets.table, -199, 185, 6000)
     
+    // init
+    transform(targets.helix, 1000, 0.5, 0.5, 0.5);
+    
     window.addEventListener('resize', onWindowResize);
 }
 
