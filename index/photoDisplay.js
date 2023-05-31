@@ -85,7 +85,7 @@ function defineHelixTransform(objects, vector) {
         }
 
         const object = new THREE.Object3D();
-        object.position.setFromCylindricalCoords(2000, theta, y);
+        object.position.setFromCylindricalCoords(distance, theta, y);
 
         vector.x = object.position.x * 2;
         vector.y = object.position.y;
