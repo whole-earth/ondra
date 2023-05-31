@@ -41,7 +41,7 @@ function init(images) {
     if (window.innerWidth > 768) {
            transform(targets.helix, 0, 0.55, 0.55, 0.5);
         } else {
-            transform(targets.helix, 0, 0.8, 0.8, 0.5); // mobile increase size
+            transform(targets.helix, 0, 0.55, 0.55, 0.5); // mobile increase size
         }
 
     window.addEventListener('resize', onWindowResize);
