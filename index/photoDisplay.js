@@ -41,7 +41,7 @@ function init(images) {
     if (window.innerWidth > 768) {
            transform(targets.helix, 0, .5, .5, .5);
         } else {
-            transform(targets.helix, 0, 0.8, 0.8, 0.8);
+            transform(targets.helix, 0, 0.8, 0.8, 0.5);
         }
 
     window.addEventListener('resize', onWindowResize);
