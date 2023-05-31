@@ -37,7 +37,9 @@ function init(images) {
     const buttonTable = createTransformationButton('table', duration, targets.table, -199, 185, 6000)
 
     // Start the initial transformation
-    transform(targets.helix, 1000, .5, .5, .5);
+    // transform(targets.helix, 1000, .5, .5, .5);
+    transform(targets.helix, 600, .5, .5, .5);
+
     window.addEventListener('resize', onWindowResize);
 }
 
@@ -76,16 +78,9 @@ function defineHelixTransform(objects, vector) {
     for (let i = 0; i < objects.length; i++) {
         const theta = i * 0.175 + Math.PI;
         const y = - (i * 8) + 450;
-        
-        let distance;
-        if (window.innerWidth > 768) {
-            distance = 2000;
-        } else {
-            distance = 1500; // mobile
-        }
 
         const object = new THREE.Object3D();
-        object.position.setFromCylindricalCoords(distance, theta, y);
+        object.position.setFromCylindricalCoords(2000, theta, y);
 
         vector.x = object.position.x * 2;
         vector.y = object.position.y;
