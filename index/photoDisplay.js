@@ -39,7 +39,7 @@ function init(images) {
     // Start the initial transformation
     
     if (window.innerWidth > 768) {
-           transform(targets.helix, 0, .5, .5, .5);
+           transform(targets.helix, 0, 0.6, 0.6, .5);
         } else {
             transform(targets.helix, 0, 0.8, 0.8, 0.5); // mobile increase size
         }
