@@ -39,9 +39,6 @@ function init(images) {
     window.addEventListener('resize', onWindowResize);
 }
 
-// init
-transform(targets.helix, 1000, 0.5, 0.5, 0.5);
-
 function initControls(renderer) {
     let controls = new TrackballControls(camera, renderer.domElement);
     controls.minDistance = 5000;
