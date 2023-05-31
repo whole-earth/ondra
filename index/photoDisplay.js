@@ -37,8 +37,15 @@ function init(images) {
     const buttonTable = createTransformationButton('table', duration, targets.table, -199, 185, 6000)
 
     // Start the initial transformation
+    
+    if (window.innerWidth > 768) {
+           transform(targets.helix, 0, .5, .5, .5);
+        } else {
+            transform(targets.helix, 0, 1, 1, 1);
+        }
+    
     // transform(targets.helix, 1000, .5, .5, .5);
-    transform(targets.helix, 0, .5, .5, .5);
+    // transform(targets.helix, 0, .5, .5, .5);
 
     window.addEventListener('resize', onWindowResize);
 }
