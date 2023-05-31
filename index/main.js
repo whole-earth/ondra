@@ -541,36 +541,6 @@ function fixedCoverScroll() {
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Campus Interactive
 const wrap = document.querySelector('.campus-interact');
 const three = document.querySelector('.campus-three');
