@@ -86,6 +86,10 @@ function defineHelixTransform(objects, vector) {
         vector.z = object.position.z * 2;
 
         object.lookAt(vector);
+        
+        if (window.innerWidth > 768) {
+            objects[i].scale.set(2, 2, 2); // Set the desired scale values
+        }
 
         targets.helix.push(object);
     }
