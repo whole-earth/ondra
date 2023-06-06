@@ -506,7 +506,7 @@ function fixedCoverScroll() {
 
     window.addEventListener("scroll", () => {
 
-        if (document.documentElement.scrollTop < maxScroll) { // eh i do not like this!
+        if (document.documentElement.scrollTop < maxScroll) {
             const scrollY = window.scrollY;
             if (window.innerWidth >= 768) {
 
