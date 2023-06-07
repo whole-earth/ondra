@@ -26,6 +26,8 @@ html::-webkit-scrollbar { display: none; }
 	width: 100%;
 	height: calc(100vh + 200px);
 	opacity: 0;
+	position: relative;
+	z-index: -1;
 }
 
 /* Research */
