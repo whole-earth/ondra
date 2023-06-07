@@ -107,7 +107,7 @@ window.addEventListener('load', async () => {
 
     document.querySelector('.intro-wrap').style.pointerEvents = 'none';
 
-    await delay(1400);
+    await delay(1100);
     researchAnimate();
     await waitUntil(() => !researchIsAnimating);
 
