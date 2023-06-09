@@ -532,7 +532,6 @@ function fixedCoverScroll() {
             } else {
                 if (scrollY > maxScrollMobile) {
                     container.style.opacity = 0;
-                    container.style.display = 'none'; // just added 6.9
                 } else {
                     const opacity = 1 - (scrollY / maxScrollMobile);
                     container.style.opacity = opacity;
