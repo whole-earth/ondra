@@ -52,12 +52,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
     hideCampusMeta.classList.add('hidden');
     
-    const scroll = document.createElement("div");
-    scroll.classList.add("scroll-enable");
-    document.body.appendChild(scroll);
-    // scroll-enable props defined in StylesP.css
-
-
+    if (window.innerWidth >= 768) {
+        const scroll = document.createElement("div");
+        scroll.classList.add("scroll-enable");
+        document.body.appendChild(scroll);
+        // scroll-enable props defined in StylesP.css
+    }
+    
     document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
     document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
     document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
