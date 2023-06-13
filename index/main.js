@@ -51,14 +51,14 @@ window.addEventListener('DOMContentLoaded', function () {
     placeDevGrid();
 
     hideCampusMeta.classList.add('hidden');
-    
+
     if (window.innerWidth >= 768) {
         const scroll = document.createElement("div");
         scroll.classList.add("scroll-enable");
         document.body.appendChild(scroll);
         // scroll-enable props defined in StylesP.css
     }
-    
+
     document.querySelector('.head-research').addEventListener('mouseenter', researchAnimate);
     document.querySelector('.head-design').addEventListener('mouseenter', designAnimate);
     document.querySelector('.head-dev').addEventListener('mouseenter', devAnimate);
@@ -342,6 +342,8 @@ function placeDevGrid() {
 // top of page
 window.addEventListener("scroll", function () {
 
+    scrollCRT(); // Windows CRT turn on
+
     // navExpand() at top of page
     if (window.scrollY == 0) {
         navExpand();
@@ -453,7 +455,7 @@ function updateCover() {
         cover.style.transform = `scale(${scale})`;
         cover.style.opacity = (Math.max(0, coverOpacity)); //  min 0
         content.style.opacity = 0; // overwritten if next cond = true
-        
+
         if (scrollPos > opacityTransMark) {
             content.style.opacity = (Math.min((1 - coverOpacity), 1)); //  max 1
             contentChild.style.transform = `scale(${childScale})`;
@@ -590,5 +592,79 @@ function campusScrollAnim() {
         } else {
             meta.style.opacity = '0';
         }
+    }
+}
+
+let hor = document.querySelector('.windex-blackout-snap');
+let vert = document.querySelectorAll('.windex-blackout');
+let winScreenToggle = 0;
+
+document.querySelector('.windex-togglebtn').addEventListener('click', toggleCRT);
+
+function toggleCRT() {
+    if (winScreenToggle % 2 === 0) {
+        onCRT();
+    } else {
+        offCRT();
+    }
+    winScreenToggle++;
+}
+
+function onCRT() {
+
+    setTimeout(function () {
+
+        hor.style.left = '0';
+        hor.style.right = '0';
+
+        setTimeout(function () {
+            hor.style.opacity = '0';
+
+            vert.forEach((blackout) => {
+                blackout.style.borderTop = '2px solid white';
+                blackout.style.borderBottom = '2px solid white';
+                blackout.style.height = '0';
+            });
+
+            setTimeout(function () {
+                hor.parentNode.style.opacity = '0';
+            }, 200); // second - vert
+        }, 100); // first - hor
+    });
+
+}
+
+function offCRT() {
+    setTimeout(function () {
+        hor.parentNode.style.opacity = '1';
+
+        setTimeout(function () {
+            vert.forEach((blackout) => {
+                blackout.style.borderTop = '';
+                blackout.style.borderBottom = '';
+                blackout.style.height = '';
+            });
+
+            setTimeout(function () {
+                hor.style.opacity = '1';
+
+                setTimeout(function () {
+                    hor.style.left = '';
+                    hor.style.right = '';
+                }, 100); // first - hor
+            }, 200); // second - vert
+        }, 100); // first - hor
+    });
+}
+
+function scrollCRT() {
+    let monitorScreen = document.querySelector('.monitor-screen');
+    let rect = monitorScreen.getBoundingClientRect();
+    let viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    let threshold = Math.floor(rect.height * 0.75);
+
+    if (rect.top <= viewportHeight - threshold && rect.bottom >= threshold) {
+        toggleCRT();
+        window.removeEventListener('scroll', scrollCRT);
     }
 }
