@@ -341,9 +341,7 @@ function placeDevGrid() {
 
 // top of page
 window.addEventListener("scroll", function () {
-
-    scrollCRT(); // Windows CRT turn on
-
+    
     // navExpand() at top of page
     if (window.scrollY == 0) {
         navExpand();
@@ -601,6 +599,8 @@ let winScreenToggle = 0;
 
 document.querySelector('.windex-togglebtn').addEventListener('click', toggleCRT);
 
+window.addEventListener('scroll', scrollCRT, { once: true });
+
 function toggleCRT() {
     if (winScreenToggle % 2 === 0) {
         onCRT();
@@ -631,7 +631,6 @@ function onCRT() {
             }, 200); // second - vert
         }, 100); // first - hor
     });
-
 }
 
 function offCRT() {
@@ -665,6 +664,5 @@ function scrollCRT() {
 
     if (rect.top <= viewportHeight - threshold && rect.bottom >= threshold) {
         toggleCRT();
-        window.removeEventListener('scroll', scrollCRT);
     }
 }
