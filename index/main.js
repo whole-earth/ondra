@@ -656,17 +656,13 @@ function offCRT() {
     });
 }
 
-let monitorScreen = document.querySelector('.monitor-screen');
-let rect = monitorScreen.getBoundingClientRect();
-let viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-let threshold = Math.floor(rect.height * 0.75);
-let crtScrollAuto = true;
-
 function scrollCRT() {
-    if (crtScrollAuto) {
-        if (rect.top <= viewportHeight - threshold && rect.bottom >= threshold) {
+    let monitorScreen = document.querySelector('.monitor-screen');
+    let rect = monitorScreen.getBoundingClientRect();
+    let viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    let threshold = Math.floor(rect.height * 0.75);
+    if (rect.top <= viewportHeight - threshold && rect.bottom >= threshold) {
         toggleCRT();
-        crtScrollAuto = false;
-        }
+        window.removeEventListener('scroll', scrollCRT);
     }
 }
