@@ -595,7 +595,7 @@ function campusScrollAnim() {
 
 let hor = document.querySelector('.windex-blackout-snap');
 let vert = document.querySelectorAll('.windex-blackout');
-let blinker = document.querySelectorAll('.windex-blinker');
+let blinker = document.querySelector('.windex-blinker');
 let winScreenToggle = 0;
 
 document.querySelector('.windex-togglebtn').addEventListener('click', toggleCRT);
