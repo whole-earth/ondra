@@ -121,8 +121,6 @@ window.addEventListener('load', async () => {
     await waitUntil(() => !devIsAnimating);
 
     document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
-    
-    window.addEventListener('scroll', scrollCRT, { once: true });
 
 });
 
@@ -601,6 +599,8 @@ let winScreenToggle = 0;
 
 document.querySelector('.windex-togglebtn').addEventListener('click', toggleCRT);
 
+window.addEventListener('scroll', scrollCRT);
+
 function toggleCRT() {
     if (winScreenToggle % 2 === 0) {
         onCRT();
@@ -656,13 +656,17 @@ function offCRT() {
     });
 }
 
-function scrollCRT() {
-    let monitorScreen = document.querySelector('.monitor-screen');
-    let rect = monitorScreen.getBoundingClientRect();
-    let viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    let threshold = Math.floor(rect.height * 0.75);
+let monitorScreen = document.querySelector('.monitor-screen');
+let rect = monitorScreen.getBoundingClientRect();
+let viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+let threshold = Math.floor(rect.height * 0.75);
+let crtScrollAuto = true;
 
-    if (rect.top <= viewportHeight - threshold && rect.bottom >= threshold) {
+function scrollCRT() {
+    if (crtScrollAuto) {
+        if (rect.top <= viewportHeight - threshold && rect.bottom >= threshold) {
         toggleCRT();
+        crtScrollAuto = false;
+        }
     }
 }
