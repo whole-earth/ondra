@@ -121,6 +121,8 @@ window.addEventListener('load', async () => {
     await waitUntil(() => !devIsAnimating);
 
     document.querySelector('.intro-wrap').style.pointerEvents = 'auto';
+    
+    window.addEventListener('scroll', scrollCRT, { once: true });
 
 });
 
@@ -598,8 +600,6 @@ let vert = document.querySelectorAll('.windex-blackout');
 let winScreenToggle = 0;
 
 document.querySelector('.windex-togglebtn').addEventListener('click', toggleCRT);
-
-window.addEventListener('scroll', scrollCRT, { once: true });
 
 function toggleCRT() {
     if (winScreenToggle % 2 === 0) {
