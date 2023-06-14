@@ -208,3 +208,45 @@ html::-webkit-scrollbar { display: none; }
 .invisible { opacity: 0; }
 
 .windex-off { pointer-events: none; }
+
+.crt-overlay {
+    filter: alpha(opacity=80);
+    pointer-events: none;
+    background-image: -webkit-radial-gradient( center,ellipse cover,transparent 0%,transparent 60%,rgba(0,0,0,0.25) 100% ),-webkit-repeating-linear-gradient( top,transparent 0px,transparent 1px,rgba(0,0,0,0.35) 3px );
+    background-image: -moz-radial-gradient( center,ellipse cover,transparent 0%,transparent 60%,rgba(0,0,0,0.25) 100% ),-moz-repeating-linear-gradient( top,transparent 0px,transparent 1px,rgba(0,0,0,0.35) 3px );
+    background-image: repeating-linear-gradient( 0deg,transparent 0px,transparent 1px,rgba(0,0,0,0.25) 2px );
+    -webkit-background-size: 100% 100%,100% 6px;
+    -moz-background-size: 100% 100%,100% 6px;
+    background-size: 100% 100%,100% 6px;
+    animation: flicker 2800ms linear infinite;
+	}
+	
+  @keyframes flicker {
+		50% { filter: alpha(opacity=85); }
+	}
+  
+  .monitor-outline {
+  pointer-events: none;
+  }
+  
+  .windex-blinker {
+  	animation-name: blinker;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  
+  @-moz-keyframes blinker {  
+    0% { opacity: 30%; }
+    50% { opacity: 90%; }
+    100% { opacity: 30%; }
+}@-webkit-keyframes blinker {  
+    0% { opacity: 30%; }
+    50% { opacity: 90%; }
+    100% { opacity: 30%; }
+}
+@keyframes blinker {  
+    0% { opacity: 30%; }
+    50% { opacity: 90%; }
+    100% { opacity: 30%; }
+}
