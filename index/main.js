@@ -660,7 +660,7 @@ function scrollCRT() {
     let monitorScreen = document.querySelector('.monitor-screen');
     let rect = monitorScreen.getBoundingClientRect();
     let viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    let threshold = Math.floor(rect.height * 0.75);
+    let threshold = Math.floor(rect.height * 0.9);
     if (rect.top <= viewportHeight - threshold && rect.bottom >= threshold) {
         toggleCRT();
         window.removeEventListener('scroll', scrollCRT);
