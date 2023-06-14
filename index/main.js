@@ -595,6 +595,7 @@ function campusScrollAnim() {
 
 let hor = document.querySelector('.windex-blackout-snap');
 let vert = document.querySelectorAll('.windex-blackout');
+let blinker = document.querySelectorAll('.windex-blinker');
 let winScreenToggle = 0;
 
 document.querySelector('.windex-togglebtn').addEventListener('click', toggleCRT);
@@ -611,6 +612,9 @@ function toggleCRT() {
 }
 
 function onCRT() {
+    
+    blinker.style.backgroundColor = "#48ad82";
+    blinker.style.boxShadow = "0 0 4px 1px #48ad82";
 
     setTimeout(function () {
 
@@ -634,6 +638,10 @@ function onCRT() {
 }
 
 function offCRT() {
+    
+    blinker.style.backgroundColor = "#bd5153";
+    blinker.style.boxShadow = "0 0 4px 1px rgba(255, 255, 255, 0)"; // no blink
+    
     setTimeout(function () {
         hor.parentNode.style.opacity = '1';
 
