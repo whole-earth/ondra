@@ -94,10 +94,8 @@ html::-webkit-scrollbar { display: none; }
     backdrop-filter: blur(1rem);
 	}
 }
-  
-.campus-btn > .c-ondra, .campus-btn > .c-ondra-icon { transition: filter 0.2s ease-in; }
 
-.campus_glow {
+.hire-glow {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -111,28 +109,28 @@ html::-webkit-scrollbar { display: none; }
   filter: saturate(70%) brightness(110%);
 }
 
-.campus-btn:hover > .campus_glow_wrap {
+.hire-btn:hover > .hire-glow-wrap {
 	filter: brightness(110%) saturate(100%);
   -webkit-filter: brightness(110%) saturate(100%);
 }
 
-.campus-btn:hover > .c-ondra, .campus-btn:hover > .c-ondra-icon {
+.hire-btn:hover > .hire-ondra {
 	filter: invert(1);
   color: black;
 }
 
-.campus_glow:nth-of-type(2) {
+.hire-glow:nth-of-type(2) {
   left: 20%;
   animation: gatekeeper_spin 20s linear infinite reverse;
 }
 
-.campus_glow:nth-of-type(3) {
+.hire-glow:nth-of-type(3) {
   left: 80%;
-  animation: campus_spin 8s linear infinite reverse;
+  animation: hire_spin 8s linear infinite reverse;
 }
 
-.campus_glow::after,
-.campus_glow::before {
+.hire-glow::after,
+.hire-glow::before {
   content: "";
   display: block;
   position: absolute;
@@ -147,21 +145,21 @@ html::-webkit-scrollbar { display: none; }
   z-index: 1;
 }
 
-.campus_glow::before {
+.hire-glow::before {
   transform: translateX(-50px);
 }
 
-.campus_glow::after {
+.hire-glow::after {
   transform: translateX(50px);
 }
 
-@-webkit-keyframes campus_spin {
+@-webkit-keyframes hire_spin {
   to {
     transform: rotate(1turn)
   }
 }
 
-@keyframes campus_spin {
+@keyframes hire_spin {
   to {
     transform: rotate(1turn)
   }
