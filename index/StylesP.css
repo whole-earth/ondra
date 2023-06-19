@@ -115,12 +115,11 @@ html::-webkit-scrollbar { display: none; }
 }
 
 .hire-btn:hover > .hire-ondra {
-	filter: invert(1);
-  color: black;
+  color: white;
 }
 
 .hire-btn:hover > .hire-status {
-	background-color: #DDDDDD;
+	background-color: white;
 }
 
 .hire-glow:nth-of-type(2) {
