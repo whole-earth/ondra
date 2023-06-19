@@ -119,6 +119,10 @@ html::-webkit-scrollbar { display: none; }
   color: black;
 }
 
+.hire-btn:hover > .hire-status {
+	background-color: #DDDDDD;
+}
+
 .hire-glow:nth-of-type(2) {
   left: 20%;
   animation: gatekeeper_spin 20s linear infinite reverse;
