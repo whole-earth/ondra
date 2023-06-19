@@ -119,7 +119,7 @@ html::-webkit-scrollbar { display: none; }
 }
 
 .hire-btn:hover > .hire-status {
-	background-color: white;
+	background-color: #97ffbe;
 }
 
 .hire-glow:nth-of-type(2) {
