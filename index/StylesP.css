@@ -103,9 +103,16 @@ html::-webkit-scrollbar {
 }
 
 .hire-glow-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.1px;
+  height: 0.1px;
+  border-radius: 50%;
+  background-color: #0ff;
+  box-shadow: 0 0 40px 20px #0ff, 0 0 100px 50px #0ff;
   -webkit-animation: gatekeeper_spin 12s linear infinite;
   animation: gatekeeper_spin 12s linear infinite;
-  background-color: rgb(133, 207, 230);
 }
 
 .hire-btn:hover>.hire-glow-wrap {
