@@ -103,7 +103,7 @@ html::-webkit-scrollbar {
   opacity: 0;
 }
 
-.hire-btn:hover > .hire-glow {
+.hire-btn:hover .hire-glow {
   opacity: 1;
 }
 
