@@ -105,8 +105,10 @@ html::-webkit-scrollbar { display: none; }
 }
 
 .hire-btn:hover > .hire-glow-wrap {
-  background-color: #0078ff;
-  box-shadow: 0 0 40px 20px #0078ff, 0 0 100px 50px #0078ff;
+  background-color: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
   -webkit-animation: gatekeeper_spin 12s linear infinite;
   animation: gatekeeper_spin 12s linear infinite;
 }
@@ -139,10 +141,14 @@ html::-webkit-scrollbar { display: none; }
   width: 0.1px;
   height: 0.1px;
   border-radius: 50%;
-  background-color: #00c389;
-  box-shadow: 0 0 40px 20px #00c389, 0 0 50px 25px #00c389;
   transition: opacity 8s, transform 8s;
   z-index: 1;
+}
+
+.hire-btn:hover > .hire-glow::after,
+.hire-btn:hover > .hire-glow::before {
+  background-color: #00c389;
+  box-shadow: 0 0 40px 20px #00c389, 0 0 50px 25px #00c389;
 }
 
 .hire-glow::before {
