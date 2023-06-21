@@ -105,7 +105,11 @@ html::-webkit-scrollbar {
 .hire-glow-wrap {
   -webkit-animation: gatekeeper_spin 12s linear infinite;
   animation: gatekeeper_spin 12s linear infinite;
-  background-color: red;
+  background-color: rgb(133, 207, 230);
+}
+
+.hire-btn:hover>.hire-glow-wrap {
+  opacity: 1;
 }
 
 .hire-btn:hover>.hire-ondra {
