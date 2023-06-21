@@ -1,12 +1,14 @@
 html {
-	scrollbar-width: none;
-	overscroll-behavior: none;
-  	overscroll-behavior-y: none;
-    	-webkit-overscroll-behavior-y: none;
-	overflow-x: hidden;
+  scrollbar-width: none;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  -webkit-overscroll-behavior-y: none;
+  overflow-x: hidden;
 }
 
-html::-webkit-scrollbar { display: none; }
+html::-webkit-scrollbar {
+  display: none;
+}
 
 .pinned {
   position: fixed;
@@ -16,18 +18,19 @@ html::-webkit-scrollbar { display: none; }
 
 .pinned.flow {
   position: absolute;
-  top: 200px; /* must match 'endPoint' const */
+  top: 200px;
+  /* must match 'endPoint' const */
   pointer-events: auto;
   z-index: 1;
 }
 
 /* added 5/26/23 to enable scrolling */
 .scroll-enable {
-	width: 100%;
-	height: calc(100vh + 200px);
-	opacity: 0;
-	position: relative;
-	z-index: -1;
+  width: 100%;
+  height: calc(100vh + 200px);
+  opacity: 0;
+  position: relative;
+  z-index: -1;
 }
 
 /* Research */
@@ -55,7 +58,9 @@ html::-webkit-scrollbar { display: none; }
   width: fit-content;
 }
 
-.head-dev-grid { pointer-events: none; }
+.head-dev-grid {
+  pointer-events: none;
+}
 
 .square {
   position: absolute;
@@ -65,11 +70,11 @@ html::-webkit-scrollbar { display: none; }
 }
 
 .disable-text {
-	-webkit-user-select:none;
-	-webkit-touch-callout:none;
-	-moz-user-select:none;
-	-ms-user-select:none;
-	user-select:none;   
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* mobile '&' */
@@ -84,15 +89,20 @@ html::-webkit-scrollbar { display: none; }
   }
 }
 
-.fixed { pointer-events: none; }
+.fixed {
+  pointer-events: none;
+}
 
-.fixed-tr, .fixed-br { pointer-events: auto; }
+.fixed-tr,
+.fixed-br {
+  pointer-events: auto;
+}
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-	.nav-bubble {
-		-webkit-backdrop-filter: blur(1rem);
+  .nav-bubble {
+    -webkit-backdrop-filter: blur(1rem);
     backdrop-filter: blur(1rem);
-	}
+  }
 }
 
 .hire-glow {
@@ -104,21 +114,21 @@ html::-webkit-scrollbar { display: none; }
   border-radius: 50%;
 }
 
-.hire-btn:hover > .hire-glow-wrap {
+.hire-btn:hover>.hire-glow-wrap {
   background-color: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   -webkit-animation: gatekeeper_spin 12s linear infinite;
   animation: gatekeeper_spin 12s linear infinite;
 }
 
-.hire-btn:hover > .hire-ondra {
+.hire-btn:hover>.hire-ondra {
   color: white;
 }
 
-.hire-btn:hover > .hire-status {
-	background-color: #97ffbe;
+.hire-btn:hover>.hire-status {
+  background-color: #97ffbe;
 }
 
 .hire-glow:nth-of-type(2) {
@@ -145,8 +155,8 @@ html::-webkit-scrollbar { display: none; }
   z-index: 1;
 }
 
-.hire-btn:hover > .hire-glow::after,
-.hire-btn:hover > .hire-glow::before {
+.hire-btn:hover>.hire-glow::after,
+.hire-btn:hover>.hire-glow::before {
   background-color: #00c389;
   box-shadow: 0 0 40px 20px #00c389, 0 0 50px 25px #00c389;
 }
@@ -172,85 +182,122 @@ html::-webkit-scrollbar { display: none; }
 }
 
 .campus-three {
-	pointer-events: none;
-	-webkit-user-select: none;
-	-webkit-touch-callout: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none; 
+  pointer-events: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .campus-interact-meta-wrap {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .campus-interact-meta {
-	pointer-events: auto;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
-              0 2px 4px rgba(0,0,0,0.07), 
-              0 4px 8px rgba(0,0,0,0.07), 
-              0 8px 16px rgba(0,0,0,0.07),
-              0 16px 32px rgba(0,0,0,0.07);
+  pointer-events: auto;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07),
+    0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07);
 }
 
-.render--android, .render {
-	width: 512px;
-	cursor: pointer;
+.render--android,
+.render {
+  width: 512px;
+  cursor: pointer;
 }
 
 .render {
-	border-radius: 12px;
-	transition: box-shadow 0.15s linear;
+  border-radius: 12px;
+  transition: box-shadow 0.15s linear;
 }
 
 .render:hover {
-	-webkit-box-shadow: 0px 0px 30px 0px white;
-	box-shadow: 0px 0px 30px 0px white;
+  -webkit-box-shadow: 0px 0px 30px 0px white;
+  box-shadow: 0px 0px 30px 0px white;
 }
 
-.hidden { display: none; }
-.invisible { opacity: 0; }
+.hidden {
+  display: none;
+}
 
-.windex-off { pointer-events: none; }
+.invisible {
+  opacity: 0;
+}
+
+.windex-off {
+  pointer-events: none;
+}
 
 .crt-overlay {
-    filter: alpha(opacity=80);
-    pointer-events: none;
-    background-image: -webkit-radial-gradient( center,ellipse cover,transparent 0%,transparent 60%,rgba(0,0,0,0.25) 100% ),-webkit-repeating-linear-gradient( top,transparent 0px,transparent 1px,rgba(0,0,0,0.35) 3px );
-    background-image: -moz-radial-gradient( center,ellipse cover,transparent 0%,transparent 60%,rgba(0,0,0,0.25) 100% ),-moz-repeating-linear-gradient( top,transparent 0px,transparent 1px,rgba(0,0,0,0.35) 3px );
-    background-image: repeating-linear-gradient( 0deg,transparent 0px,transparent 1px,rgba(0,0,0,0.25) 2px );
-    -webkit-background-size: 100% 100%,100% 6px;
-    -moz-background-size: 100% 100%,100% 6px;
-    background-size: 100% 100%,100% 6px;
-    animation: flicker 2800ms linear infinite;
-	}
-	
-  @keyframes flicker {
-		50% { filter: alpha(opacity=85); }
-	}
-  
-  .monitor-outline {
+  filter: alpha(opacity=80);
   pointer-events: none;
-  }
-  
-  .windex-blinker {
-  	animation-name: blinker;
-    animation-duration: 3s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-  }
-  
-  @-moz-keyframes blinker {  
-    0% { opacity: 30%; }
-    50% { opacity: 90%; }
-    100% { opacity: 30%; }
-}@-webkit-keyframes blinker {  
-    0% { opacity: 30%; }
-    50% { opacity: 90%; }
-    100% { opacity: 30%; }
+  background-image: -webkit-radial-gradient(center, ellipse cover, transparent 0%, transparent 60%, rgba(0, 0, 0, 0.25) 100%), -webkit-repeating-linear-gradient(top, transparent 0px, transparent 1px, rgba(0, 0, 0, 0.35) 3px);
+  background-image: -moz-radial-gradient(center, ellipse cover, transparent 0%, transparent 60%, rgba(0, 0, 0, 0.25) 100%), -moz-repeating-linear-gradient(top, transparent 0px, transparent 1px, rgba(0, 0, 0, 0.35) 3px);
+  background-image: repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(0, 0, 0, 0.25) 2px);
+  -webkit-background-size: 100% 100%, 100% 6px;
+  -moz-background-size: 100% 100%, 100% 6px;
+  background-size: 100% 100%, 100% 6px;
+  animation: flicker 2800ms linear infinite;
 }
-@keyframes blinker {  
-    0% { opacity: 30%; }
-    50% { opacity: 90%; }
-    100% { opacity: 30%; }
+
+@keyframes flicker {
+  50% {
+    filter: alpha(opacity=85);
+  }
+}
+
+.monitor-outline {
+  pointer-events: none;
+}
+
+.windex-blinker {
+  animation-name: blinker;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {
+  0% {
+    opacity: 30%;
+  }
+
+  50% {
+    opacity: 90%;
+  }
+
+  100% {
+    opacity: 30%;
+  }
+}
+
+@-webkit-keyframes blinker {
+  0% {
+    opacity: 30%;
+  }
+
+  50% {
+    opacity: 90%;
+  }
+
+  100% {
+    opacity: 30%;
+  }
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 30%;
+  }
+
+  50% {
+    opacity: 90%;
+  }
+
+  100% {
+    opacity: 30%;
+  }
 }
