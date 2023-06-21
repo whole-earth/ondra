@@ -100,19 +100,10 @@ html::-webkit-scrollbar {
   width: 0.1px;
   height: 0.1px;
   border-radius: 50%;
-}
-
-.hire-glow-wrap {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 0.1px;
-  height: 0.1px;
-  border-radius: 50%;
   background-color: #0ff;
   box-shadow: 0 0 40px 20px #0ff, 0 0 100px 50px #0ff;
-  -webkit-animation: gatekeeper_spin 12s linear infinite;
-  animation: gatekeeper_spin 12s linear infinite;
+  animation: hire_spin 16s linear infinite;
+  -webkit-animation: hire_spin 16s linear infinite;
 }
 
 .hire-btn:hover>.hire-glow-wrap {
@@ -129,7 +120,7 @@ html::-webkit-scrollbar {
 
 .hire-glow:nth-of-type(2) {
   left: 20%;
-  animation: gatekeeper_spin 20s linear infinite reverse;
+  animation: hire_spin 20s linear infinite reverse;
 }
 
 .hire-glow:nth-of-type(3) {
