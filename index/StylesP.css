@@ -100,20 +100,12 @@ html::-webkit-scrollbar {
   width: 0.1px;
   height: 0.1px;
   border-radius: 50%;
-  opacity: 0;
 }
 
-.hire-btn:hover .hire-glow {
-  opacity: 1;
-}
-
-.hire-btn:hover>.hire-glow-wrap {
-  background-color: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+.hire-glow-wrap {
   -webkit-animation: gatekeeper_spin 12s linear infinite;
   animation: gatekeeper_spin 12s linear infinite;
+  background-color: red;
 }
 
 .hire-btn:hover>.hire-ondra {
