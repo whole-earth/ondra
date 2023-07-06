@@ -72,7 +72,7 @@ darkDivs.forEach(div => {
   });
 
   div.addEventListener('mouseout', () => {
-    const gradient = div.querySelector('.gradient-div');
+    const gradient = div.querySelector('.radial-gradient');
     gradient.style.opacity = 0;
   });
 });
