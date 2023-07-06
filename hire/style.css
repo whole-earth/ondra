@@ -46,8 +46,8 @@
 
 .bits .radial-gradient {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
   background: radial-gradient(circle closest-side, #505050, transparent);
   pointer-events: none;
