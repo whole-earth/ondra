@@ -83,19 +83,32 @@
   transition: 1s all;
 }
 
-	.folder:hover { color: white; }
-  
-  .folder-outline { pointer-events: none; }
-  .folder-row { pointer-events: none; }
-  .folder { pointer-events: auto; }
-  
-  .folder:hover > .hover { opacity: 0.92; }
+.folder:hover {
+  color: white;
+}
+
+.folder-outline {
+  pointer-events: none;
+}
+
+.folder-row {
+  pointer-events: none;
+}
+
+.folder {
+  pointer-events: auto;
+}
+
+.folder:hover>.hover {
+  opacity: 0.92;
+}
 
 
 @media (max-width: 479px) {
-  
-  .folder:last-child > .folder-p {
-  opacity: 1 !important; /* hack */
-	}
-  
+
+  .folder:last-child>.folder-p {
+    opacity: 1 !important;
+    /* hack */
+  }
+
 }
