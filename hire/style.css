@@ -1,0 +1,84 @@
+  .pillar-title:before {
+    content: "";
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: black;
+    margin-right: 0.5rem;
+    position: relative;
+    top: -0.15rem;
+  }
+  
+	#crossdisciplinary:hover #venn1 {
+		transform: translateX(-46%);
+	}
+
+	#crossdisciplinary:hover #venn3 {
+		transform: translateX(-54%);
+	}
+    
+	#speed:hover #speed1 {
+		transform: translateX(-55.5%);
+	}
+
+	#speed:hover #speed3 {
+		transform: translateX(-45.5%);
+	}
+  
+  /* shoshin on:hover :after reveal citation */
+  #beginner .pillar-slug:after {
+  content: "–Shunryu Suzuki";
+  color: inherit;
+  margin-left: 0.4rem;
+  transition: opacity 0.12s linear;
+  transition-delay: 0s;
+  opacity: 0;
+}
+
+#beginner:hover .pillar-slug:after {
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
+  transition-delay: 0.3s;
+}
+
+/* everything below is bitmap animation styling */
+
+.bits .gradient-div {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle closest-side, #242424, transparent);
+    pointer-events: none;
+    opacity: 0;
+    transition: 400ms opacity linear;
+    z-index: 0;
+  }
+
+  .cdj-row {
+    display: flex;
+  }
+
+  .cdj-cell {
+    width: 8px;
+    height: 8px;
+    border: 0.5px solid #333;
+    cursor: crosshair;
+  }
+
+  .peace-row {
+    display: flex;
+  }
+
+  .peace-cell {
+    width: 14px;
+    height: 14px;
+    border: 0.5px solid #333;
+    cursor: crosshair;
+  }
+
+  .peace-reset {
+    opacity: 0;
+    transition: 1s all;
+  }
