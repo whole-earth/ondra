@@ -56,11 +56,6 @@ function toggleScroll() {
     }
 }
 
-
-</script>
-
-<script>
-
 // Get all elements with the class '.bits'
 const elements = document.querySelectorAll('.bits');
 
