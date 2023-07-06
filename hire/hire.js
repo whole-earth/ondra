@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', setFolderPosition);
 window.addEventListener('resize', setFolderPosition);
+
 window.addEventListener("scroll", toggleScroll);
+
 
 const youAreContainer = document.querySelector(".folder-container");
 const youAreFolder = document.querySelectorAll(".folder");
@@ -9,48 +11,55 @@ const youAreP = document.querySelectorAll('.folder-p');
 
 function setFolderPosition() {
 
-  if (window.innerWidth >= 768) {
-    let folderRowHeight = document.querySelector('.folder-row').offsetHeight;
-    let paddingValue = (window.innerHeight - folderRowHeight) + 'px';
-    // youAreContainer.style.paddingTop = paddingValue;
+    if (window.innerWidth >= 768) {
+        let folderRowHeight = document.querySelector('.folder-row').offsetHeight;
+        let paddingValue = (window.innerHeight - folderRowHeight) + 'px';
+        // youAreContainer.style.paddingTop = paddingValue;
 
-    youAreP.forEach(p => {
-      p.style.opacity = '0';
-    });
+        youAreP.forEach(p => {
+            p.style.opacity = '0';
+        });
 
-  } else {
-    youAreContainer.removeAttribute('style');
-    youAreP.forEach(p => {
-      p.removeAttribute('style');
-    });
-  }
+    } else {
+        youAreContainer.removeAttribute('style');
+        youAreP.forEach(p => {
+            p.removeAttribute('style');
+        });
+    }
 }
 
+
+
 function isInViewport(element) {
-  const rect = element.getBoundingClientRect();
-  return (
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-  );
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    );
 }
 
 function handleScroll() {
-  youAreFolder.forEach((folder) => {
+    youAreFolder.forEach((folder) => {
 
-    if (isInViewport(folder)) {
-      folder.querySelector('.folder-p').style.opacity = 1;
-    } else {
-      folder.querySelector('.folder-p').style.opacity = 0;
-    }
-  });
+        if (isInViewport(folder)) {
+            folder.querySelector('.folder-p').style.opacity = 1;
+        } else {
+            folder.querySelector('.folder-p').style.opacity = 0;
+        }
+    });
 }
 
 function toggleScroll() {
-  if (!isInViewport(youAreContainer)) {
-    window.addEventListener("scroll", handleScroll);
-  } else {
-    window.removeEventListener("scroll", handleScroll);
-  }
+    if (!isInViewport(youAreContainer)) {
+        window.addEventListener("scroll", handleScroll);
+    } else {
+        window.removeEventListener("scroll", handleScroll);
+    }
 }
+
+
+</script>
+
+<script>
 
 // Get all elements with the class '.bits'
 const elements = document.querySelectorAll('.bits');
@@ -495,14 +504,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   cdjGrid.addEventListener("mouseenter", function () {
     document.querySelector(".cdj-reset").style.opacity = "0.8";
-  }, { once: true });
+  },{ once: true });
 
   document.querySelector(".cdj-reset").addEventListener("click", function () {
     setInitialConfiguration(initialCoordinates);
   });
 });
 
-window.addEventListener("DOMContentLoaded", (event) => {
+  window.addEventListener("DOMContentLoaded", (event) => {
   const peaceGrid = document.querySelector(".peace-grid");
   const peaceNumCells = 24;
   const peaceCells = [];
@@ -663,13 +672,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
   ];
 
   setInitialConfiguration(initialCoordinates);
-
-  peaceGrid.addEventListener("mouseenter", function () {
+  
+   peaceGrid.addEventListener("mouseenter", function () {
     document.querySelector(".peace-reset").style.opacity = "1";
-  }, { once: true });
+  },{ once: true });
 
   document.querySelector(".peace-reset").addEventListener("click", function () {
     setInitialConfiguration(initialCoordinates);
   });
-
+  
 });
