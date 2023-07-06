@@ -44,7 +44,7 @@
 
 /* everything below is bitmap animation styling */
 
-.bits .gradient-div {
+.bits .radial-gradient {
   position: absolute;
   width: 200px;
   height: 200px;
