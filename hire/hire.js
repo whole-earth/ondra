@@ -52,6 +52,7 @@ function youAre__toggleScroll() {
     }
 }
 
+/*
 // Dark popout div: radial-gradient cursor
 const darkDivs = document.querySelectorAll('.bits');
 darkDivs.forEach(div => {
@@ -76,3 +77,5 @@ darkDivs.forEach(div => {
     gradient.style.opacity = 0;
   });
 });
+
+*/
