@@ -12,7 +12,7 @@
     }
 
     .project-filter-list .is-active {
-        color: blue;
+        color: blue; /* this should change */
     }
 
     .filters #isClosed {
