@@ -2,7 +2,7 @@
         cursor: pointer;
         user-select: none;
         -webkit-user-select: none;
-        -webkit-touch-callout: none; 
+        -webkit-touch-callout: none;
         -moz-user-select: none;
         -ms-user-select: none;
     }
@@ -92,12 +92,13 @@
         font-size: 1.4rem;
         font-weight: 300;
     }
-    
+
     .head-mobile .head-li:not(:last-of-type)::after {
         content: ',';
         display: inline;
         white-space: nowrap;
-        font-size: 1rem; /* this may need to change?? */
+        font-size: 1rem;
+        /* this may need to change?? */
         font-weight: 300;
     }
 
