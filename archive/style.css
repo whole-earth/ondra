@@ -1,1 +1,115 @@
+    .column-label .project-p {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none; 
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
 
+    .column-label .page-p:hover {
+        color: #222;
+    }
+
+    .project-filter-list .is-active {
+        color: blue;
+    }
+
+    .filters #isClosed {
+        position: relative;
+        cursor: pointer;
+        padding-left: 0.6em;
+        --thickness: 0.2em;
+    }
+
+    .filters #isClosed:before,
+    .filters #isClosed:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        display: block;
+        border: var(--thickness) solid transparent;
+        border-left-width: calc(var(--thickness) * 2 / 3);
+        border-right-width: calc(var(--thickness) * 2 / 3);
+        transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .filters #isClosed:before {
+        border-bottom-color: black;
+        top: calc(50% - var(--thickness) * 2);
+        transform: translateY(calc(var(--thickness) * -0.25));
+    }
+
+    .filters #isClosed:after {
+        transform: translateY(calc(var(--thickness) * 0.25));
+        border-top-color: black;
+    }
+
+    .filters #isClosed:hover:before {
+        transform: translateY(calc(var(--thickness) * -0.6));
+    }
+
+    .filters #isClosed:hover:after {
+        transform: translateY(calc(var(--thickness) * 0.6));
+    }
+
+    #isOpen {
+        position: relative;
+        cursor: pointer;
+    }
+
+    #isOpen:before {
+        content: "×";
+        position: relative;
+        bottom: 0.1em;
+        display: inline-block;
+        transition: all 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+        margin-right: 0.1em;
+    }
+
+    #isOpen:hover:before {
+        transform: rotate(-180deg) translateY(-0.2em);
+    }
+
+
+    .filters .project-filter-list .project-filter-wrap:not(:last-of-type) .project-big-p::after {
+        content: ',';
+        display: inline;
+        white-space: nowrap;
+        font-size: 1em;
+        font-weight: 300;
+    }
+
+    .filters .project-filter-list .project-filter-wrap:last-of-type .filterareacount {
+        padding-left: 0.4em;
+    }
+
+    .head .head-nav .head-li:not(:last-of-type)::after {
+        content: ',';
+        display: inline;
+        white-space: nowrap;
+        font-size: 1.4rem;
+        font-weight: 300;
+    }
+    
+    .head-mobile .head-li:not(:last-of-type)::after {
+        content: ',';
+        display: inline;
+        white-space: nowrap;
+        font-size: 1rem; /* this may need to change?? */
+        font-weight: 300;
+    }
+
+    .filters .is-open .filter-label-wrap .filter-label:not(:last-of-type) .filter-current-label::after {
+        content: ',';
+        display: inline;
+        white-space: nowrap;
+        font-size: 1em;
+        font-weight: 300;
+    }
+
+    .recent-p-img-wrap,
+    .project-img-wrap {
+        pointer-events: none;
+    }
