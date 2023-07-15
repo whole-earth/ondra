@@ -96,6 +96,350 @@ function youAre__toggleScroll() {
 
   });
 
+    window.addEventListener("DOMContentLoaded", (event) => {
+  const peaceGrid = document.querySelector(".peace-grid");
+  const peaceNumCells = 24;
+  const peaceCells = [];
+
+  // Create the grid
+  for (let i = 0; i < peaceNumCells; i++) {
+    const row = document.createElement("div");
+    row.classList.add("peace-row");
+    peaceGrid.appendChild(row);
+    peaceCells[i] = [];
+    for (let j = 0; j < peaceNumCells; j++) {
+      const cell = document.createElement("div");
+      cell.classList.add("peace-cell");
+      row.appendChild(cell);
+      peaceCells[i][j] = false; // Set initial state as false (white)
+    }
+  }
+
+  // Render the grid
+  function renderGrid() {
+    for (let i = 0; i < peaceNumCells; i++) {
+      for (let j = 0; j < peaceNumCells; j++) {
+        const cellState = peaceCells[i][j];
+        const cell = peaceGrid.children[i].children[j];
+
+        cell.style.backgroundColor = cellState ? "#fafafa" : "inherit";
+
+        cell.style.borderColor = cellState ? "#fafafa" : "#333";
+      }
+    }
+  }
+
+  // Toggle cell state and update grid
+  function toggleCellState(event) {
+    const cell = event.target;
+    const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(cell.parentNode);
+    const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
+
+    peaceCells[rowIndex][colIndex] = !peaceCells[rowIndex][colIndex];
+    renderGrid();
+  }
+
+  // Add click event listener to cells
+  const cellsList = document.getElementsByClassName("peace-cell");
+  for (const cell of cellsList) {
+    cell.addEventListener("click", toggleCellState);
+  }
+
+  // Function to set the initial configuration based on the coordinate system
+  function setInitialConfiguration(coordinates) {
+    // Reset the grid to the initial state
+    peaceCells.forEach((row, rowIndex) => {
+      row.fill(false);
+    });
+
+    // Update the cells based on the provided coordinates
+    coordinates.forEach((coord) => {
+      const [row, col] = coord;
+      if (row >= 0 && row < peaceNumCells && col >= 0 && col < peaceNumCells) {
+        peaceCells[row][col] = true;
+      }
+    });
+
+    renderGrid();
+  }
+
+  // Example initial configuration
+  const initialCoordinates = [
+    [2, 9],
+    [2, 10],
+    [3, 8],
+    [3, 11],
+    [3, 15],
+    [3, 16],
+    [3, 17],
+    [4, 8],
+    [4, 11],
+    [4, 14],
+    [4, 15],
+    [4, 18],
+    [5, 9],
+    [5, 12],
+    [5, 14],
+    [5, 17],
+    [6, 9],
+    [6, 12],
+    [6, 14],
+    [6, 17],
+    [7, 9],
+    [7, 12],
+    [7, 14],
+    [7, 17],
+    [8, 8],
+    [8, 9],
+    [8, 12],
+    [8, 14],
+    [8, 17],
+    [9, 7],
+    [9, 10],
+    [9, 12],
+    [9, 14],
+    [9, 17],
+    [10, 5],
+    [10, 6],
+    [10, 7],
+    [10, 10],
+    [10, 13],
+    [10, 16],
+    [11, 4],
+    [11, 7],
+    [11, 10],
+    [11, 13],
+    [11, 14],
+    [12, 4],
+    [12, 9],
+    [12, 10],
+    [12, 15],
+    [13, 4],
+    [13, 6],
+    [13, 10],
+    [13, 13],
+    [13, 14],
+    [13, 15],
+    [13, 16],
+    [13, 17],
+    [14, 4],
+    [14, 7],
+    [14, 10],
+    [14, 12],
+    [14, 18],
+    [15, 5],
+    [15, 7],
+    [15, 8],
+    [15, 9],
+    [15, 12],
+    [15, 19],
+    [16, 6],
+    [16, 13],
+    [16, 14],
+    [16, 15],
+    [16, 16],
+    [16, 19],
+    [17, 5],
+    [17, 14],
+    [17, 19],
+    [18, 5],
+    [18, 13],
+    [18, 19],
+    [19, 5],
+    [19, 18],
+    [20, 6],
+    [20, 16],
+    [20, 17],
+    [21, 7],
+    [21, 16],
+    [22, 7],
+    [22, 16]
+  ];
+
+  setInitialConfiguration(initialCoordinates);
+  
+   peaceGrid.addEventListener("mouseenter", function () {
+    document.querySelector(".peace-reset").style.opacity = "1";
+  },{ once: true });
+
+  document.querySelector(".peace-reset").addEventListener("click", function () {
+    setInitialConfiguration(initialCoordinates);
+  });
+  
+});
+
+window.addEventListener("DOMContentLoaded", (event) => {
+  const peaceGrid = document.querySelector(".peace-grid");
+  const peaceNumCells = 24;
+  const peaceCells = [];
+
+  // Create the grid
+  for (let i = 0; i < peaceNumCells; i++) {
+    const row = document.createElement("div");
+    row.classList.add("peace-row");
+    peaceGrid.appendChild(row);
+    peaceCells[i] = [];
+    for (let j = 0; j < peaceNumCells; j++) {
+      const cell = document.createElement("div");
+      cell.classList.add("peace-cell");
+      row.appendChild(cell);
+      peaceCells[i][j] = false; // Set initial state as false (white)
+    }
+  }
+
+  // Render the grid
+  function renderGrid() {
+    for (let i = 0; i < peaceNumCells; i++) {
+      for (let j = 0; j < peaceNumCells; j++) {
+        const cellState = peaceCells[i][j];
+        const cell = peaceGrid.children[i].children[j];
+
+        cell.style.backgroundColor = cellState ? "#fafafa" : "inherit";
+
+        cell.style.borderColor = cellState ? "#fafafa" : "#333";
+      }
+    }
+  }
+
+  // Toggle cell state and update grid
+  function toggleCellState(event) {
+    const cell = event.target;
+    const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(cell.parentNode);
+    const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
+
+    peaceCells[rowIndex][colIndex] = !peaceCells[rowIndex][colIndex];
+    renderGrid();
+  }
+
+  // Add click event listener to cells
+  const cellsList = document.getElementsByClassName("peace-cell");
+  for (const cell of cellsList) {
+    cell.addEventListener("click", toggleCellState);
+  }
+
+  // Function to set the initial configuration based on the coordinate system
+  function setInitialConfiguration(coordinates) {
+    // Reset the grid to the initial state
+    peaceCells.forEach((row, rowIndex) => {
+      row.fill(false);
+    });
+
+    // Update the cells based on the provided coordinates
+    coordinates.forEach((coord) => {
+      const [row, col] = coord;
+      if (row >= 0 && row < peaceNumCells && col >= 0 && col < peaceNumCells) {
+        peaceCells[row][col] = true;
+      }
+    });
+
+    renderGrid();
+  }
+
+  // Example initial configuration
+  const initialCoordinates = [
+    [2, 9],
+    [2, 10],
+    [3, 8],
+    [3, 11],
+    [3, 15],
+    [3, 16],
+    [3, 17],
+    [4, 8],
+    [4, 11],
+    [4, 14],
+    [4, 15],
+    [4, 18],
+    [5, 9],
+    [5, 12],
+    [5, 14],
+    [5, 17],
+    [6, 9],
+    [6, 12],
+    [6, 14],
+    [6, 17],
+    [7, 9],
+    [7, 12],
+    [7, 14],
+    [7, 17],
+    [8, 8],
+    [8, 9],
+    [8, 12],
+    [8, 14],
+    [8, 17],
+    [9, 7],
+    [9, 10],
+    [9, 12],
+    [9, 14],
+    [9, 17],
+    [10, 5],
+    [10, 6],
+    [10, 7],
+    [10, 10],
+    [10, 13],
+    [10, 16],
+    [11, 4],
+    [11, 7],
+    [11, 10],
+    [11, 13],
+    [11, 14],
+    [12, 4],
+    [12, 9],
+    [12, 10],
+    [12, 15],
+    [13, 4],
+    [13, 6],
+    [13, 10],
+    [13, 13],
+    [13, 14],
+    [13, 15],
+    [13, 16],
+    [13, 17],
+    [14, 4],
+    [14, 7],
+    [14, 10],
+    [14, 12],
+    [14, 18],
+    [15, 5],
+    [15, 7],
+    [15, 8],
+    [15, 9],
+    [15, 12],
+    [15, 19],
+    [16, 6],
+    [16, 13],
+    [16, 14],
+    [16, 15],
+    [16, 16],
+    [16, 19],
+    [17, 5],
+    [17, 14],
+    [17, 19],
+    [18, 5],
+    [18, 13],
+    [18, 19],
+    [19, 5],
+    [19, 18],
+    [20, 6],
+    [20, 16],
+    [20, 17],
+    [21, 7],
+    [21, 16],
+    [22, 7],
+    [22, 16]
+  ];
+
+  setInitialConfiguration(initialCoordinates);
+  
+   peaceGrid.addEventListener("mouseenter", function () {
+    document.querySelector(".peace-reset").style.opacity = "1";
+  },{ once: true });
+
+  document.querySelector(".peace-reset").addEventListener("click", function () {
+    setInitialConfiguration(initialCoordinates);
+  });
+  
+});
+
 
 
 /*
