@@ -52,6 +52,52 @@ function youAre__toggleScroll() {
     }
 }
 
+// 07.15 'Beginner's Mind' Animation
+  const beginner = document.querySelector("#beginner");
+  const circle = document.querySelector(".beginner");
+  const line = document.querySelector(".stem");
+  const leaves = document.querySelectorAll(".leaf-0, .leaf-1");
+
+  let timeouts = []; // Store references to the setTimeout calls
+
+  beginner.addEventListener("mouseenter", function () {
+
+    timeouts.forEach((timeout) => clearTimeout(timeout));
+    timeouts = [];
+
+      circle.style.transform = "rotateX(60deg)";
+      timeouts.push(
+        setTimeout(function () {
+          line.style.opacity = 1;
+          line.style.height = "12em";
+          timeouts.push(
+            setTimeout(function () {
+              leaves[1].style.opacity = 1;
+              timeouts.push(
+                setTimeout(function () {
+                  leaves[0].style.opacity = 1;
+                }, 200) // delay: leaf opacity
+              );
+            }, 300) // delay: stem grow
+          );
+        }, 300) // delay: circle translate
+      );
+  });
+
+  beginner.addEventListener("mouseleave", function () {
+
+    line.style.opacity = 0;
+    line.style.height = 0;
+    leaves.forEach((leaf) => { leaf.style.opacity = 0; });
+    circle.style.transform = "";
+
+    timeouts.forEach((timeout) => clearTimeout(timeout));
+    timeouts = [];
+
+  });
+
+
+
 /*
 // Dark popout div: radial-gradient cursor
 const darkDivs = document.querySelectorAll('.bits');
