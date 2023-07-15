@@ -39,7 +39,7 @@
 #beginner:hover .pillar-slug:after {
   opacity: 0.8;
   transition: opacity 0.2s linear;
-  transition-delay: 0.45s;
+  transition-delay: 0.3s;
 }
 
 /* everything below is bitmap animation styling */
