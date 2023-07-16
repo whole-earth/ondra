@@ -26,6 +26,10 @@
   transform: translateX(-45.5%);
 }
 
+#beginner > .pillar-slug {
+  text-indent: -6px;
+}
+
 /* shoshin on:hover :after reveal citation */
 #beginner .pillar-slug:after {
   content: "–Shunryu Suzuki";
@@ -40,20 +44,6 @@
   opacity: 0.8;
   transition: opacity 0.2s linear;
   transition-delay: 0.3s;
-}
-
-/* everything below is bitmap animation styling */
-
-.bits .radial-gradient {
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle closest-side, #505050, transparent);
-  pointer-events: none;
-  opacity: 0;
-  transition: 400ms opacity linear;
-  z-index: 0;
 }
 
 .cdj-row {
@@ -111,4 +101,16 @@
     /* hack */
   }
 
+}
+
+.bits .radial-gradient {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, #505050, transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: 400ms opacity linear;
+  z-index: 0;
 }
