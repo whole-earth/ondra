@@ -114,3 +114,5 @@
   transition: 400ms opacity linear;
   z-index: 0;
 }
+
+.collapsed { height: 0; }
