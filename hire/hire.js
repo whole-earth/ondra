@@ -684,6 +684,62 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  const processDropdowns = document.querySelectorAll('.process-dropdown');
+  const pHeights = [];
+
+  processDropdowns.forEach((dropdown) => {
+    const processPWrap = dropdown.querySelector('.process-p-wrap');
+    pHeights.push(processPWrap.clientHeight);
+    
+    // REMOVE BEFORE GITHUB PUSH
+    processPWrap.classList.add('collapsed');
+
+    dropdown.addEventListener('click', function (event) {
+      const isAlreadyOpen = processPWrap.clientHeight !== 0;
+
+      // If the clicked dropdown is already open, just collapse it and return
+      if (isAlreadyOpen) {
+        processPWrap.removeAttribute('style');
+        const carat = dropdown.querySelector('.process-carat');
+        if (carat) {
+          carat.classList.remove('carat-expanded');
+        }
+        return;
+      }
+      
+      processDropdowns.forEach((dropdown) => {
+        dropdown.removeAttribute('style');
+      });
+
+      // Collapse all text descriptions
+      document.querySelectorAll('.process-p-wrap').forEach((p) => {
+        p.removeAttribute('style');
+      });
+
+      // Revert all carats
+      document.querySelectorAll('.process-carat').forEach((carat) => {
+        carat.classList.remove('carat-expanded');
+      });
+
+      // Get the index of the clicked dropdown
+      const index = Array.from(processDropdowns).indexOf(dropdown);
+
+      // Expand corresponding text description by setting its height
+      const p = dropdown.querySelector('.process-p-wrap');
+      if (p) {
+        p.style.height = pHeights[index] + 'px';
+      }
+
+      const carat = dropdown.querySelector('.process-carat');
+      if (carat) {
+        carat.classList.add('carat-expanded');
+      }
+      
+      dropdown.style.borderRadius = '2.6rem';
+    });
+  });
+});
 
 /*
 // Dark popout div: radial-gradient cursor
