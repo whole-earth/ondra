@@ -118,9 +118,5 @@
 .collapsed { height: 0; }
 
 .jam-link:hover {
-  cursor: url('https://whole-earth.github.io/ondra.systems/hire/jam.png') 12 12, pointer;
-    /* '8 8' sets the position of the cursor's click point (hotspot) within the image */
-    /* 'pointer' is the fallback cursor style if the custom cursor fails to load */
-    width: 24px;
-    height: 24px;
+  cursor: url('https://whole-earth.github.io/ondra.systems/hire/jam.png') 24 24, pointer;
 }
