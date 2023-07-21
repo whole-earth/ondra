@@ -55,7 +55,7 @@ function youAre__toggleScroll() {
 // 07.15 'Beginner's Mind' Animation
   const beginner = document.querySelector("#beginner");
   const circle = document.querySelector(".beginner");
-  const line = document.querySelector(".stem");
+  const stem = document.querySelector(".stem");
   const leaves = document.querySelectorAll(".leaf-0, .leaf-1");
 
   let timeouts = []; // Store references to the setTimeout calls
@@ -68,8 +68,8 @@ function youAre__toggleScroll() {
       circle.style.transform = "rotateX(60deg)";
       timeouts.push(
         setTimeout(function () {
-          line.style.opacity = 1;
-          line.style.height = "12em";
+          stem.style.opacity = 1;
+          stem.style.height = "12em";
           timeouts.push(
             setTimeout(function () {
               leaves[1].style.opacity = 1;
@@ -86,8 +86,8 @@ function youAre__toggleScroll() {
 
   beginner.addEventListener("mouseleave", function () {
 
-    line.style.opacity = 0;
-    line.style.height = 0;
+    stem.style.opacity = 0;
+    stem.style.height = 0;
     leaves.forEach((leaf) => { leaf.style.opacity = 0; });
     circle.style.transform = "";
 
