@@ -741,6 +741,48 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+  document.addEventListener("DOMContentLoaded", function () {
+    const jamLink = document.querySelector('.jam-link');
+    let intervalId;
+    let currentMCount = 0;
+    const maxMCount = 8;
+    const removeInterval = 10; // ms
+    const addInterval = 40; // ms
+
+    function addM() {
+      if (currentMCount < maxMCount) {
+        jamLink.textContent += 'm';
+        currentMCount++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }
+
+    function removeM() {
+      if (currentMCount > 0) {
+        jamLink.textContent = jamLink.textContent.slice(0, -1);
+        currentMCount--;
+      } else {
+        clearInterval(intervalId);
+      }
+    }
+
+    jamLink.addEventListener('mouseenter', function() {
+      intervalId = setInterval(addM, addInterval);
+    });
+
+    jamLink.addEventListener('mouseleave', function() {
+      clearInterval(intervalId);
+      intervalId = setInterval(function() {
+        if (jamLink.textContent === "Jam") {
+          clearInterval(intervalId);
+        } else {
+          removeM();
+        }
+      }, removeInterval);
+    });
+  });
+
 /*
 // Dark popout div: radial-gradient cursor
 const darkDivs = document.querySelectorAll('.bits');
