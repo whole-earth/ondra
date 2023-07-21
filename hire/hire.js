@@ -746,7 +746,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const jamWord = document.querySelector('.jam-word');
     let intervalId;
     let currentMCount = 0;
-    const maxMCount = 8;
+    const maxMCount = 6;
     const removeInterval = 10; // ms
     const addInterval = 40; // ms
 
