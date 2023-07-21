@@ -743,6 +743,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.addEventListener("DOMContentLoaded", function () {
     const jamLink = document.querySelector('.jam-link');
+    const jamWord = document.querySelector('.jam-word');
     let intervalId;
     let currentMCount = 0;
     const maxMCount = 8;
@@ -751,7 +752,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function addM() {
       if (currentMCount < maxMCount) {
-        jamLink.textContent += 'm';
+        jamWord.textContent += 'm';
         currentMCount++;
       } else {
         clearInterval(intervalId);
@@ -760,7 +761,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function removeM() {
       if (currentMCount > 0) {
-        jamLink.textContent = jamLink.textContent.slice(0, -1);
+        jamWord.textContent = jamWord.textContent.slice(0, -1);
         currentMCount--;
       } else {
         clearInterval(intervalId);
@@ -774,7 +775,7 @@ document.addEventListener('DOMContentLoaded', function () {
     jamLink.addEventListener('mouseleave', function() {
       clearInterval(intervalId);
       intervalId = setInterval(function() {
-        if (jamLink.textContent === "Jam") {
+        if (jamWord.textContent === "Jam") {
           clearInterval(intervalId);
         } else {
           removeM();
