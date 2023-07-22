@@ -27,8 +27,7 @@ if (isMobile()) {
     strokeWeight(4); // Adjust the thickness of the line
 
     // Add event listeners for double-click
-    canvas = document.querySelector('canvas');
-    canvas.addEventListener('dblclick', toggleDrawing);
+    document.doubleClicked(toggleDrawing);
   }
 
   function draw() {
