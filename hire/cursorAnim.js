@@ -17,7 +17,7 @@ if (isMobile()) {
   var trail = [];
   var h = 0;
   var drawingEnabled = true; // Flag to control drawing
-  var clearTrail = false;
+  var clearTrail = true;
 
   function setup() {
     // createCanvas(1440, 900);
