@@ -26,7 +26,7 @@ if (isMobile()) {
     colorMode(HSB);
     noFill();
     strokeWeight(4); // Adjust the thickness of the line
-    
+
   }
 
   function doubleClicked() {
@@ -86,17 +86,17 @@ if (isMobile()) {
   }
 
   function toggleDrawing() {
-  // Function to toggle drawing on double-click
-  if (drawingEnabled) {
-    // If drawing is enabled and clearTrail is true, clear the trail
-    if (clearTrail) {
-      trail = [];
-      clearTrail = false; // Reset the flag
+    // Function to toggle drawing on double-click
+    if (drawingEnabled) {
+      // If drawing is enabled and clearTrail is true, clear the trail
+      if (clearTrail) {
+        trail = [];
+        clearTrail = false; // Reset the flag
+      }
+    } else {
+      // If drawing is disabled, set clearTrail to true to clear the trail next time drawing is enabled
+      clearTrail = true;
     }
-  } else {
-    // If drawing is disabled, set clearTrail to true to clear the trail next time drawing is enabled
-    clearTrail = true;
+    drawingEnabled = !drawingEnabled;
   }
-  drawingEnabled = !drawingEnabled;
-}
 }
