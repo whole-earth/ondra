@@ -17,6 +17,7 @@ if (isMobile()) {
   var trail = [];
   var h = 0;
   var drawingEnabled = true; // Flag to control drawing
+  var clearTrail = false;
 
   function setup() {
     // createCanvas(1440, 900);
@@ -85,7 +86,17 @@ if (isMobile()) {
   }
 
   function toggleDrawing() {
-    // Function to toggle drawing on double-click
-    drawingEnabled = !drawingEnabled;
+  // Function to toggle drawing on double-click
+  if (drawingEnabled) {
+    // If drawing is enabled and clearTrail is true, clear the trail
+    if (clearTrail) {
+      trail = [];
+      clearTrail = false; // Reset the flag
+    }
+  } else {
+    // If drawing is disabled, set clearTrail to true to clear the trail next time drawing is enabled
+    clearTrail = true;
   }
+  drawingEnabled = !drawingEnabled;
+}
 }
