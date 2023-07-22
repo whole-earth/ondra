@@ -25,9 +25,12 @@ if (isMobile()) {
     colorMode(HSB);
     noFill();
     strokeWeight(4); // Adjust the thickness of the line
+    
+  }
 
-    // Add event listeners for double-click
-    canvas.doubleClicked(toggleDrawing);
+  function doubleClicked() {
+    toggleDrawing();
+    console.log("Cursor animation = " + drawingEnabled);
   }
 
   function draw() {
