@@ -7,7 +7,7 @@ if (isMobile()) {
   // If the user is on a touchscreen, do nothing (optional)
   console.log("Cursor animation disabled on touchscreen.");
 } else {
-  // User settings
+
   var trailLength = 60;
   var segmentSize = 10;
   var colorSpeed = 1;
@@ -16,7 +16,8 @@ if (isMobile()) {
   // Global variables
   var trail = [];
   var h = 0;
-  var drawingEnabled = true; // Flag to control drawing
+  var userEnabled = true; // Flag to control drawing
+  var eventDisabled = false;
   var clearTrail = true;
 
   function setup() {
@@ -25,18 +26,16 @@ if (isMobile()) {
     canvas.parent('cursor-anim');
     colorMode(HSB);
     noFill();
-    strokeWeight(4); // Adjust the thickness of the line
+    strokeWeight(5); // Adjust the thickness of the line
   }
 
-  function doubleClicked() {
+  function doubleClicked() { // built-in p5 event
     toggleDrawing();
-    console.log("Cursor animation = " + drawingEnabled);
   }
 
   function draw() {
     background(255);
-    // Check if drawing is enabled
-    if (drawingEnabled) {
+    if (userEnabled  & eventDisabled) {
       trail.push({
         'x': mouseX,
         'y': mouseY
@@ -86,28 +85,26 @@ if (isMobile()) {
 
   function toggleDrawing() {
     // Function to toggle drawing on double-click
-    if (drawingEnabled) {
-      // If drawing is enabled and clearTrail is true, clear the trail
+    if (userEnabled) {
       if (clearTrail) {
         trail = [];
         clearTrail = false; // Reset the flag
       }
     } else {
-      // If drawing is disabled, set clearTrail to true to clear the trail next time drawing is enabled
       clearTrail = true;
     }
-    drawingEnabled = !drawingEnabled;
+    userEnabled = !userEnabled;
   }
 
   window.addEventListener('scroll', () => {
-    if (drawingEnabled) {
-      drawingEnabled = false;
+    if (eventDisabled) {
+      eventDisabled = false;
     }
   });
   
   window.addEventListener('mousemove', () => {
-    if (!drawingEnabled) {
-      drawingEnabled = true;
+    if (!eventDisabled) {
+      eventDisabled = true;
     }
   });
 }
