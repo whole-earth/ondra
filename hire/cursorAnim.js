@@ -32,12 +32,13 @@ if (isMobile()) {
 
   function draw() {
     background(255);
-    if (userEnabled  && !eventDisabled) {
+    if (userEnabled) {
       trail.push({
         'x': mouseX,
         'y': mouseY
       });
 
+      if (!eventEnabled) {
       var thisColor = h;
       for (var i = 1; i < trail.length - 2; i++) {
         var seg0 = trail[i - 1];
