@@ -33,7 +33,6 @@ if (isMobile()) {
   function draw() {
     background(255);
     if (userEnabled) {
-      console.log("draw");
       trail.push({
         'x': mouseX,
         'y': mouseY
@@ -94,12 +93,14 @@ if (isMobile()) {
   window.addEventListener('scroll', () => {
     if (!eventDisabled) {
       eventDisabled = true;
+      console.log('disable');
     }
   });
   
   window.addEventListener('mousemove', () => {
     if (eventDisabled) {
       eventDisabled = false;
+      console.log('enabled');
     }
   });
 }
