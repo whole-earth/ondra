@@ -46,7 +46,10 @@ if (isMobile()) {
         var seg2 = trail[i + 1];
         var seg3 = trail[i + 2];
         stroke(thisColor, 100, 100);
-        drawCatmullRom(seg0, seg1, seg2, seg3);
+        
+        if (!eventDisabled) {
+          drawCatmullRom(seg0, seg1, seg2, seg3);
+        }
         thisColor = (thisColor + innerColorSpeed) % 360;
       }
 
