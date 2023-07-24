@@ -21,7 +21,7 @@ if (isMobile()) {
 
   function setup() {
     // createCanvas(1440, 900);
-    var canvas = createCanvas(windowWidth, document.body.offsetHeight);
+    var canvas = createCanvas(windowWidth, document.body.offsetHeight, WEBGL); // render with WebGL
     canvas.parent('cursor-anim');
     colorMode(HSB);
     noFill();
