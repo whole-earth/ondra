@@ -32,7 +32,7 @@ if (isMobile()) {
 
   function draw() {
     background(255);
-    if (userEnabled  && !eventDisabled) {
+    if (userEnabled) {
       console.log("draw");
       trail.push({
         'x': mouseX,
