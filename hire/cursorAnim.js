@@ -8,7 +8,7 @@ if (isMobile()) {
   console.log("Cursor animation disabled on touchscreen.");
 } else {
   // User settings
-  var trailLength = 100;
+  var trailLength = 60;
   var segmentSize = 10;
   var colorSpeed = 1;
   var innerColorSpeed = 4;
@@ -99,4 +99,30 @@ if (isMobile()) {
     }
     drawingEnabled = !drawingEnabled;
   }
+
+  const handleEvent = (event) => {
+    if (event.type === 'scroll') {
+      drawingEnabled = false;
+      cancelAnimationFrame(timeoutId);
+      timeoutId = requestAnimationFrame(() => {
+        drawingEnabled = true;
+      });
+      setTimeout(() => {
+        drawingEnabled = true;
+      }, 20);
+    } else if (event.type === 'mousemove' && !drawingEnabled) {
+      drawingEnabled = false;
+      cancelAnimationFrame(timeoutId);
+      timeoutId = requestAnimationFrame(() => {
+        drawingEnabled = true;
+      });
+      setTimeout(() => {
+        drawingEnabled = true;
+      }, 20);
+    }
+  };
+  
+  document.addEventListener('scroll', handleEvent);
+  document.addEventListener('mousemove', handleEvent);
+  
 }
