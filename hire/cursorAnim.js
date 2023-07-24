@@ -100,10 +100,14 @@ if (isMobile()) {
   }
 
   window.addEventListener('scroll', () => {
-    drawingEnabled = false;
+    if (drawingEnabled) {
+      drawingEnabled = true;
+    }
   });
   
   window.addEventListener('mousemove', () => {
-    drawingEnabled = true;
+    if (!drawingEnabled) {
+      drawingEnabled = true;
+    }
   });
 }
