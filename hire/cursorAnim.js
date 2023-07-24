@@ -8,20 +8,19 @@ if (isMobile()) {
   console.log("Cursor animation disabled on touchscreen.");
 } else {
 
-  var trailLength = 60;
-  var segmentSize = 10;
-  var colorSpeed = 1;
-  var innerColorSpeed = 4;
-
-  // Global variables
+  // Initialize vars
   var trail = [];
   var h = 0;
   var userEnabled = true;
   var eventDisabled = false;
   var clearTrail = true;
 
+  // Styling
+  var trailLength = 60;
+  var colorSpeed = 1;
+  var innerColorSpeed = 4;
+
   function setup() {
-    // createCanvas(1440, 900);
     var canvas = createCanvas(windowWidth, document.body.offsetHeight);
     canvas.parent('cursor-anim');
     colorMode(HSB);
@@ -87,8 +86,8 @@ if (isMobile()) {
     // Function to toggle drawing on double-click
     if (userEnabled) {
       if (clearTrail) {
-        // trail = [];
-        clearTrail = false; // Reset the flag
+        trail = [];
+        // clearTrail = false; // Reset the flag
       }
     } else {
       clearTrail = true;
