@@ -87,7 +87,7 @@ if (isMobile()) {
     // Function to toggle drawing on double-click
     if (userEnabled) {
       if (clearTrail) {
-        trail = [];
+        // trail = [];
         clearTrail = false; // Reset the flag
       }
     } else {
