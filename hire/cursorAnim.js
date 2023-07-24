@@ -62,7 +62,7 @@ if (isMobile()) {
     }
 
     function drawCatmullRom(p0, p1, p2, p3) {
-      var amount = 0.05; // Adjust this value for the smoothness
+      var amount = 0.1; // Adjust this value for the smoothness
       for (var t = 0; t < 1; t += amount) {
         var x = 0.5 * ((2 * p1.x) +
           (-p0.x + p2.x) * t +
