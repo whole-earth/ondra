@@ -99,30 +99,5 @@ if (isMobile()) {
     }
     drawingEnabled = !drawingEnabled;
   }
-
-  const handleEvent = (event) => {
-    if (event.type === 'scroll') {
-      drawingEnabled = false;
-      cancelAnimationFrame(timeoutId);
-      timeoutId = requestAnimationFrame(() => {
-        drawingEnabled = true;
-      });
-      setTimeout(() => {
-        drawingEnabled = true;
-      }, 20);
-    } else if (event.type === 'mousemove' && !drawingEnabled) {
-      drawingEnabled = false;
-      cancelAnimationFrame(timeoutId);
-      timeoutId = requestAnimationFrame(() => {
-        drawingEnabled = true;
-      });
-      setTimeout(() => {
-        drawingEnabled = true;
-      }, 20);
-    }
-  };
-  
-  document.addEventListener('scroll', handleEvent);
-  document.addEventListener('mousemove', handleEvent);
   
 }
