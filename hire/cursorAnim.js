@@ -7,13 +7,11 @@ if (isMobile()) {
   // If the user is on a touchscreen, do nothing (optional)
   console.log("Cursor animation disabled on touchscreen.");
 } else {
-
   // Initialize vars
   var trail = [];
   var h = 0;
   var userEnabled = true;
   var eventDisabled = false;
-  var clearTrail = true;
 
   // Styling
   var trailLength = 60;
@@ -25,7 +23,7 @@ if (isMobile()) {
     canvas.parent('cursor-anim');
     colorMode(HSB);
     noFill();
-    strokeWeight(5); // Adjust the thickness of the line
+    strokeWeight(5);
   }
 
   function doubleClicked() { // built-in p5 event
@@ -34,7 +32,7 @@ if (isMobile()) {
 
   function draw() {
     background(255);
-    if (userEnabled  & !eventDisabled) {
+    if (userEnabled  && !eventDisabled) {
       trail.push({
         'x': mouseX,
         'y': mouseY
@@ -85,14 +83,11 @@ if (isMobile()) {
   function toggleDrawing() {
     // Function to toggle drawing on double-click
     if (userEnabled) {
-      if (clearTrail) {
+        userEnabled = false;
         trail = [];
-        // clearTrail = false; // Reset the flag
-      }
     } else {
-      clearTrail = true;
+        userEnabled = true;
     }
-    userEnabled = !userEnabled;
   }
 
   window.addEventListener('scroll', () => {
