@@ -26,10 +26,6 @@ if (isMobile()) {
     strokeWeight(5);
   }
 
-  function doubleClicked() { // built-in p5 event
-    toggleDrawing();
-  }
-
   function draw() {
     background(255);
     if (userEnabled) {
@@ -78,6 +74,10 @@ if (isMobile()) {
         line(x, y, px, py);
       }
     }
+  }
+
+  function doubleClicked() { // built-in p5 event
+    toggleDrawing();
   }
 
   function toggleDrawing() {
