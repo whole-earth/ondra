@@ -16,7 +16,7 @@ if (isMobile()) {
   // Global variables
   var trail = [];
   var h = 0;
-  var userEnabled = true; // Flag to control drawing
+  var userEnabled = true;
   var eventDisabled = false;
   var clearTrail = true;
 
@@ -97,14 +97,14 @@ if (isMobile()) {
   }
 
   window.addEventListener('scroll', () => {
-    if (eventDisabled) {
-      eventDisabled = false;
+    if (!eventDisabled) {
+      eventDisabled = true;
     }
   });
   
   window.addEventListener('mousemove', () => {
-    if (!eventDisabled) {
-      eventDisabled = true;
+    if (eventDisabled) {
+      eventDisabled = false;
     }
   });
 }
