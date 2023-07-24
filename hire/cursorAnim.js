@@ -26,7 +26,6 @@ if (isMobile()) {
     colorMode(HSB);
     noFill();
     strokeWeight(4); // Adjust the thickness of the line
-
   }
 
   function doubleClicked() {
@@ -99,4 +98,12 @@ if (isMobile()) {
     }
     drawingEnabled = !drawingEnabled;
   }
+
+  window.addEventListener('scroll', () => {
+    drawingEnabled = false;
+  });
+  
+  window.addEventListener('mousemove', () => {
+    drawingEnabled = true;
+  });
 }
