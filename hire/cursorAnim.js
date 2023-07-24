@@ -101,7 +101,8 @@ if (isMobile()) {
 
   window.addEventListener('scroll', () => {
     if (drawingEnabled) {
-      drawingEnabled = true;
+      drawingEnabled = false;
+      trail = [];
     }
   });
   
