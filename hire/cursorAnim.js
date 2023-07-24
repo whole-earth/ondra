@@ -31,8 +31,8 @@ if (isMobile()) {
   }
 
   function draw() {
-    // background(255);
     if (userEnabled  && !eventDisabled) {
+      background(255);
       trail.push({
         'x': mouseX,
         'y': mouseY
@@ -83,8 +83,8 @@ if (isMobile()) {
   function toggleDrawing() {
     // Function to toggle drawing on double-click
     if (userEnabled) {
-        userEnabled = false;
         trail = [];
+        userEnabled = false;
     } else {
         userEnabled = true;
     }
