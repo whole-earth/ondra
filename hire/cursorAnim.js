@@ -31,7 +31,7 @@ if (isMobile()) {
   }
 
   function draw() {
-    background(255);
+    // background(255);
     if (userEnabled  && !eventDisabled) {
       trail.push({
         'x': mouseX,
