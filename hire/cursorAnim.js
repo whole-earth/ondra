@@ -35,7 +35,7 @@ if (isMobile()) {
         const seg2 = trail[i + 1];
         const seg3 = trail[i + 2];
         stroke(thisColor, 100, 100);
-        drawCatmullRom(seg0, seg1, seg2, seg3);
+        smoothen(seg0, seg1, seg2, seg3);
         thisColor = (thisColor + innerColorSpeed) % 360;
       }
 
@@ -62,13 +62,13 @@ if (isMobile()) {
   }
 }
 
-function drawCatmullRom(p0, p1, p2, p3) {
-  var amount = 0.01; // Adjust this value for the smoothness
+function smoothen(p0, p1, p2, p3) {
+  var amount = 0.05;
   for (var t = 0; t < 1; t += amount) {
-    var x = 0.5 * ((2 * p1.x) + (-p0.x + p2.x) * t + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t * t + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t * t * t);
-    var y = 0.5 * ((2 * p1.y) + (-p0.y + p2.y) * t + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t * t + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t * t * t);
-    var px = 0.5 * ((2 * p1.x) + (-p0.x + p2.x) * (t + amount) + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * (t + amount) * (t + amount) + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * (t + amount) * (t + amount) * (t + amount));
-    var py = 0.5 * ((2 * p1.y) + (-p0.y + p2.y) * (t + amount) + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * (t + amount) * (t + amount) + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * (t + amount) * (t + amount) * (t + amount));
+    var x = curvePoint(p0.x, p1.x, p2.x, p3.x, t);
+    var y = curvePoint(p0.y, p1.y, p2.y, p3.y, t);
+    var px = curvePoint(p0.x, p1.x, p2.x, p3.x, t + amount);
+    var py = curvePoint(p0.y, p1.y, p2.y, p3.y, t + amount);
     line(x, y, px, py);
   }
 }
