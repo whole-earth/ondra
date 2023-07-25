@@ -21,7 +21,7 @@ if (isMobile()) {
   }
 
   function draw() {
-    background(255);
+    background(#f7f5f7);
     // if (userEnabled && !eventDisabled) {
     if (userEnabled) {
       trail.push({
