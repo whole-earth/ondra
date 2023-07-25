@@ -28,7 +28,7 @@ if (isMobile()) {
         'y': mouseY
       });
 
-      const thisColor = h;
+      let thisColor = h;
       for (let i = 1; i < trail.length - 2; i++) {
         const seg0 = trail[i - 1];
         const seg1 = trail[i];
