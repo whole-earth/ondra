@@ -3,7 +3,7 @@ window.addEventListener('resize', youAre__setFolderPosition);
 
 window.addEventListener("scroll", youAre__toggleScroll);
 
-window.addEventListener('load', () => {
+window.addEventListener('load', function () {
   const element = document.querySelector('.cursor-anim_notif');
   let timeoutID;
 
