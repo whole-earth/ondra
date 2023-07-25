@@ -7,7 +7,7 @@ if (isMobile()) {
   let h = 0;
   let userEnabled = true;
   // Styling
-  const trailLength = 65;
+  const trailLength = 80;
   const colorSpeed = 1;
   const innerColorSpeed = 3;
 
