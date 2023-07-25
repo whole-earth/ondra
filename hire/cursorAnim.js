@@ -7,7 +7,7 @@ if (isMobile()) {
   let h = 0;
   let userEnabled = true;
   // Styling
-  const trailLength = 60;
+  const trailLength = 80;
   const colorSpeed = 1;
   const innerColorSpeed = 4;
 
@@ -17,7 +17,7 @@ if (isMobile()) {
     canvas.parent('cursor-anim');
     colorMode(HSB);
     noFill();
-    strokeWeight(5);
+    strokeWeight(8);
   }
 
   function draw() {
