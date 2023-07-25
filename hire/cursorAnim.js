@@ -4,15 +4,13 @@ function isMobile() {
 
 // Check if the user is on a touchscreen
 if (isMobile()) {
-  // If the user is on a touchscreen, do nothing (optional)
-  console.log("Cursor animation disabled on touchscreen.");
+  console.log("There's a cursor animation, but it's disabled on touchscreens.");
 } else {
-  // Initialize vars
+  // Init
   var trail = [];
   var h = 0;
   var userEnabled = true;
   var eventDisabled = false;
-
   // Styling
   var trailLength = 60;
   var colorSpeed = 1;
@@ -28,20 +26,28 @@ if (isMobile()) {
 
   function draw() {
     background(255);
-    if (userEnabled) {
+    if (userEnabled && !eventDisabled) {
       trail.push({
         'x': mouseX,
         'y': mouseY
       });
 
-      var thisColor = frameCount * colorSpeed % 360;
-      for (var i = 1; i < trail.length; i++) {
-        var prevPoint = trail[i - 1];
-        var currentPoint = trail[i];
+      var thisColor = h;
+      for (var i = 1; i < trail.length - 2; i++) {
+        var seg0 = trail[i - 1];
+        var seg1 = trail[i];
+        var seg2 = trail[i + 1];
+        var seg3 = trail[i + 2];
         stroke(thisColor, 100, 100);
-        line(prevPoint.x, prevPoint.y, currentPoint.x, currentPoint.y);
-        thisColor = (thisColor + 1) % 360;
+        drawCatmullRom(seg0, seg1, seg2, seg3);
+        thisColor = (thisColor + innerColorSpeed) % 360;
       }
+
+      if (trail.length > trailLength) {
+        trail.splice(0, max(trail.length - trailLength, 0));
+      }
+
+      h = (h + colorSpeed) % 360;
     }
   }
 
@@ -72,4 +78,27 @@ if (isMobile()) {
       console.log('enabled');
     }
   });
+}
+
+function drawCatmullRom(p0, p1, p2, p3) {
+  var amount = 0.01; // Adjust this value for the smoothness
+  for (var t = 0; t < 1; t += amount) {
+    var x = 0.5 * ((2 * p1.x) +
+      (-p0.x + p2.x) * t +
+      (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t * t +
+      (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t * t * t);
+    var y = 0.5 * ((2 * p1.y) +
+      (-p0.y + p2.y) * t +
+      (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t * t +
+      (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t * t * t);
+    var px = 0.5 * ((2 * p1.x) +
+      (-p0.x + p2.x) * (t + amount) +
+      (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * (t + amount) * (t + amount) +
+      (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * (t + amount) * (t + amount) * (t + amount));
+    var py = 0.5 * ((2 * p1.y) +
+      (-p0.y + p2.y) * (t + amount) +
+      (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * (t + amount) * (t + amount) +
+      (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * (t + amount) * (t + amount) * (t + amount));
+    line(x, y, px, py);
+  }
 }
