@@ -3,17 +3,17 @@ if (isMobile()) {
   console.log("There's a cursor animation, but it's disabled on touchscreens.");
 } else {
   // Init
-  var trail = [];
-  var h = 0;
-  var userEnabled = true;
-  var eventDisabled = false;
+  let trail = [];
+  let h = 0;
+  let userEnabled = true;
+  let eventDisabled = false;
   // Styling
-  var trailLength = 60;
-  var colorSpeed = 1;
-  var innerColorSpeed = 4;
+  const trailLength = 60;
+  const colorSpeed = 1;
+  const innerColorSpeed = 4;
 
   function setup() {
-    var canvas = createCanvas(windowWidth, document.body.offsetHeight);
+    const canvas = createCanvas(windowWidth, document.body.offsetHeight);
     canvas.parent('cursor-anim');
     colorMode(HSB);
     noFill();
@@ -28,12 +28,12 @@ if (isMobile()) {
         'y': mouseY
       });
 
-      var thisColor = h;
-      for (var i = 1; i < trail.length - 2; i++) {
-        var seg0 = trail[i - 1];
-        var seg1 = trail[i];
-        var seg2 = trail[i + 1];
-        var seg3 = trail[i + 2];
+      const thisColor = h;
+      for (let i = 1; i < trail.length - 2; i++) {
+        const seg0 = trail[i - 1];
+        const seg1 = trail[i];
+        const seg2 = trail[i + 1];
+        const seg3 = trail[i + 2];
         stroke(thisColor, 100, 100);
         drawCatmullRom(seg0, seg1, seg2, seg3);
         thisColor = (thisColor + innerColorSpeed) % 360;
