@@ -12,8 +12,8 @@ if (isMobile()) {
   const innerColorSpeed = 3;
 
   function setup() {
-    // const canvas = createCanvas(windowWidth, document.body.offsetHeight);
-    const canvas = createCanvas(windowWidth, windowHeight);
+    const canvas = createCanvas(windowWidth, document.body.offsetHeight);
+    // const canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('cursor-anim');
     colorMode(HSB);
     noFill();
