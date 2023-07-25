@@ -122,9 +122,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const cellState = peaceCells[i][j];
         const cell = peaceGrid.children[i].children[j];
 
-        cell.style.backgroundColor = cellState ? "#fafafa" : "inherit";
-
-        cell.style.borderColor = cellState ? "#fafafa" : "#333";
+        cell.style.backgroundColor = cellState ? "black" : "inherit";
+        cell.style.borderColor = cellState ? "black" : "#e3e3e3";
+          
       }
     }
   }
@@ -295,9 +295,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const cellState = cdjCells[i][j];
         const cell = cdjGrid.children[i].children[j];
 
-        cell.style.backgroundColor = cellState ? "#fafafa" : "inherit";
-
-        cell.style.borderColor = cellState ? "#fafafa" : "#333";
+        cell.style.backgroundColor = cellState ? "black" : "inherit";
+        cell.style.borderColor = cellState ? "black" : "#e3e3e3";
+          
       }
     }
   }
