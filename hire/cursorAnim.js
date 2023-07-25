@@ -69,14 +69,26 @@ function drawCatmullRom(p0, p1, p2, p3) {
   const d1 = 0.5 * (2 * p1.x + (-p0.x + p2.x) * amount + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * amountSq + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * amountCu);
   const d2 = 0.5 * (2 * p1.y + (-p0.y + p2.y) * amount + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * amountSq + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * amountCu);
 
+  beginShape();
   for (let t = 0; t < 1; t += amount) {
     const x = d1;
     const y = d2;
     const px = 0.5 * (2 * p1.x + (-p0.x + p2.x) * (t + amount) + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * (t + amount) * (t + amount) + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * (t + amount) * (t + amount) * (t + amount));
     const py = 0.5 * (2 * p1.y + (-p0.y + p2.y) * (t + amount) + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * (t + amount) * (t + amount) + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * (t + amount) * (t + amount) * (t + amount));
-    line(x, y, px, py);
+
+    const angle = atan2(py - y, px - x);
+    const normalX = cos(angle + HALF_PI); // Calculate the normal vector perpendicular to the curve
+    const normalY = sin(angle + HALF_PI);
+
+    const distance = dist(x, y, px, py);
+    const strokeWidth = map(distance, 0, 20, 5, 1); // Adjust the mapping to control the width range
+    strokeWeight(strokeWidth);
+
+    vertex(x, y);
   }
+  endShape();
 }
+
 
 function isMobile() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
