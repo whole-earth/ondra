@@ -122,5 +122,5 @@
 }
 
 .carat-expanded {
-  translate: rotateX(180deg);
+  transform: rotateX(180deg);
 }
