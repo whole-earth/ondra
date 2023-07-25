@@ -120,3 +120,7 @@
 .jam-link:hover {
   cursor: url('https://whole-earth.github.io/ondra.systems/hire/jam.png') 21 21, pointer;
 }
+
+.carat-expanded {
+  translate: rotateX(180deg);
+}
