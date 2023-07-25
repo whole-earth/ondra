@@ -3,98 +3,119 @@ window.addEventListener('resize', youAre__setFolderPosition);
 
 window.addEventListener("scroll", youAre__toggleScroll);
 
+window.addEventListener('load', () => {
+  const element = document.querySelector('.cursor-anim_notif');
+  let timeoutID;
+
+  const hideElement = () => {
+    element.style.top = '-4rem';
+    setTimeout(() => {
+      element.remove();
+    }, 800);
+  };
+
+  // Click event listener for the element and setTimeout combined
+  element.addEventListener('click', () => {
+    hideElement();
+    clearTimeout(timeoutID);
+  });
+
+  // setTimeout to hide the element after 3 seconds
+  timeoutID = setTimeout(hideElement, 3000);
+});
+
 const youAreContainer = document.querySelector(".folder-container");
 const youAreFolder = document.querySelectorAll(".folder");
 const youAreP = document.querySelectorAll('.folder-p');
 
 function youAre__setFolderPosition() {
 
-    if (window.innerWidth >= 768) {
-        let folderRowHeight = document.querySelector('.folder-row').offsetHeight;
-        let paddingValue = (window.innerHeight - folderRowHeight) + 'px';
-        // youAreContainer.style.paddingTop = paddingValue;
+  if (window.innerWidth >= 768) {
+    let folderRowHeight = document.querySelector('.folder-row').offsetHeight;
+    let paddingValue = (window.innerHeight - folderRowHeight) + 'px';
+    // youAreContainer.style.paddingTop = paddingValue;
 
-        youAreP.forEach(p => {
-            p.style.opacity = '0';
-        });
+    youAreP.forEach(p => {
+      p.style.opacity = '0';
+    });
 
-    } else {
-        youAreContainer.removeAttribute('style');
-        youAreP.forEach(p => {
-            p.removeAttribute('style');
-        });
-    }
+  } else {
+    youAreContainer.removeAttribute('style');
+    youAreP.forEach(p => {
+      p.removeAttribute('style');
+    });
+  }
 }
 
 function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-    );
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+  );
 }
 
 function youAre__handleScroll() {
-    youAreFolder.forEach((folder) => {
+  youAreFolder.forEach((folder) => {
 
-        if (isInViewport(folder)) {
-            folder.querySelector('.folder-p').style.opacity = 1;
-        } else {
-            folder.querySelector('.folder-p').style.opacity = 0;
-        }
-    });
+    if (isInViewport(folder)) {
+      folder.querySelector('.folder-p').style.opacity = 1;
+    } else {
+      folder.querySelector('.folder-p').style.opacity = 0;
+    }
+  });
 }
 
 function youAre__toggleScroll() {
-    if (!isInViewport(youAreContainer)) {
-        window.addEventListener("scroll", youAre__handleScroll);
-    } else {
-        window.removeEventListener("scroll", youAre__handleScroll);
-    }
+  if (!isInViewport(youAreContainer)) {
+    window.addEventListener("scroll", youAre__handleScroll);
+  } else {
+    window.removeEventListener("scroll", youAre__handleScroll);
+  }
 }
 
 // 07.15 'Beginner's Mind' Animation
-  const beginner = document.querySelector("#beginner");
-  const circle = document.querySelector(".beginner");
-  const stem = document.querySelector(".stem");
-  const leaves = document.querySelectorAll(".leaf-0, .leaf-1");
+const beginner = document.querySelector("#beginner");
+const circle = document.querySelector(".beginner");
+const stem = document.querySelector(".stem");
+const leaves = document.querySelectorAll(".leaf-0, .leaf-1");
 
-  let timeouts = []; // Store references to the setTimeout calls
+let timeouts = []; // Store references to the setTimeout calls
 
-  beginner.addEventListener("mouseenter", function () {
+beginner.addEventListener("mouseenter", function () {
 
-    timeouts.forEach((timeout) => clearTimeout(timeout));
-    timeouts = [];
+  timeouts.forEach((timeout) => clearTimeout(timeout));
+  timeouts = [];
 
-      circle.style.transform = "rotateX(60deg)";
+  circle.style.transform = "rotateX(60deg)";
+  timeouts.push(
+    setTimeout(function () {
+      stem.style.opacity = 1;
+      stem.style.height = "12em";
       timeouts.push(
         setTimeout(function () {
-          stem.style.opacity = 1;
-          stem.style.height = "12em";
+          leaves[1].style.opacity = 1;
           timeouts.push(
             setTimeout(function () {
-              leaves[1].style.opacity = 1;
-              timeouts.push(
-                setTimeout(function () {
-                  leaves[0].style.opacity = 1;
-                }, 200) // delay: leaf opacity
-              );
-            }, 300) // delay: stem grow
+              leaves[0].style.opacity = 1;
+            }, 200) // delay: leaf opacity
           );
-        }, 300) // delay: circle translate
+        }, 300) // delay: stem grow
       );
-  });
+    }, 300) // delay: circle translate
+  );
+});
 
-  beginner.addEventListener("mouseleave", function () {
+beginner.addEventListener("mouseleave", function () {
 
-    stem.style.opacity = 0;
-    stem.style.height = 0;
-    leaves.forEach((leaf) => { leaf.style.opacity = 0; });
-    circle.style.transform = "";
+  stem.style.opacity = 0;
+  stem.style.height = 0;
+  leaves.forEach((leaf) => { leaf.style.opacity = 0; });
+  circle.style.transform = "";
 
-    timeouts.forEach((timeout) => clearTimeout(timeout));
-    timeouts = [];
+  timeouts.forEach((timeout) => clearTimeout(timeout));
+  timeouts = [];
 
-  });
+});
 
 window.addEventListener("DOMContentLoaded", (event) => {
   const peaceGrid = document.querySelector(".peace-grid");
@@ -124,7 +145,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         cell.style.backgroundColor = cellState ? "black" : "inherit";
         cell.style.borderColor = cellState ? "black" : "#e3e3e3";
-          
+
       }
     }
   }
@@ -257,15 +278,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
   ];
 
   setInitialConfiguration(initialCoordinates);
-  
-   peaceGrid.addEventListener("mouseenter", function () {
+
+  peaceGrid.addEventListener("mouseenter", function () {
     document.querySelector(".peace-reset").style.opacity = "1";
-  },{ once: true });
+  }, { once: true });
 
   document.querySelector(".peace-reset").addEventListener("click", function () {
     setInitialConfiguration(initialCoordinates);
   });
-  
+
 });
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -297,7 +318,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         cell.style.backgroundColor = cellState ? "black" : "inherit";
         cell.style.borderColor = cellState ? "black" : "#e3e3e3";
-          
+
       }
     }
   }
@@ -677,7 +698,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   cdjGrid.addEventListener("mouseenter", function () {
     document.querySelector(".cdj-reset").style.opacity = "0.8";
-  },{ once: true });
+  }, { once: true });
 
   document.querySelector(".cdj-reset").addEventListener("click", function () {
     setInitialConfiguration(initialCoordinates);
@@ -691,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
   processDropdowns.forEach((dropdown) => {
     const processPWrap = dropdown.querySelector('.process-p-wrap');
     pHeights.push(processPWrap.clientHeight);
-    
+
     // REMOVE BEFORE GITHUB PUSH
     processPWrap.classList.add('collapsed');
 
@@ -707,7 +728,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return;
       }
-      
+
       processDropdowns.forEach((dropdown) => {
         dropdown.removeAttribute('style');
       });
@@ -735,79 +756,51 @@ document.addEventListener('DOMContentLoaded', function () {
       if (carat) {
         carat.classList.add('carat-expanded');
       }
-      
+
       dropdown.style.borderRadius = '2.6rem';
     });
   });
 });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const jamLink = document.querySelector('.jam-link');
-    const jamWord = document.querySelector('.jam-word');
-    let intervalId;
-    let currentMCount = 0;
-    const maxMCount = 6;
-    const removeInterval = 10; // ms
-    const addInterval = 40; // ms
+document.addEventListener("DOMContentLoaded", function () {
+  const jamLink = document.querySelector('.jam-link');
+  const jamWord = document.querySelector('.jam-word');
+  let intervalId;
+  let currentMCount = 0;
+  const maxMCount = 6;
+  const removeInterval = 10; // ms
+  const addInterval = 40; // ms
 
-    function addM() {
-      if (currentMCount < maxMCount) {
-        jamWord.textContent += 'm';
-        currentMCount++;
-      } else {
-        clearInterval(intervalId);
-      }
-    }
-
-    function removeM() {
-      if (currentMCount > 0) {
-        jamWord.textContent = jamWord.textContent.slice(0, -1);
-        currentMCount--;
-      } else {
-        clearInterval(intervalId);
-      }
-    }
-
-    jamLink.addEventListener('mouseenter', function() {
-      intervalId = setInterval(addM, addInterval);
-    });
-
-    jamLink.addEventListener('mouseleave', function() {
+  function addM() {
+    if (currentMCount < maxMCount) {
+      jamWord.textContent += 'm';
+      currentMCount++;
+    } else {
       clearInterval(intervalId);
-      intervalId = setInterval(function() {
-        if (jamWord.textContent === "Jam") {
-          clearInterval(intervalId);
-        } else {
-          removeM();
-        }
-      }, removeInterval);
-    });
+    }
+  }
+
+  function removeM() {
+    if (currentMCount > 0) {
+      jamWord.textContent = jamWord.textContent.slice(0, -1);
+      currentMCount--;
+    } else {
+      clearInterval(intervalId);
+    }
+  }
+
+  jamLink.addEventListener('mouseenter', function () {
+    intervalId = setInterval(addM, addInterval);
   });
 
-/*
-// Dark popout div: radial-gradient cursor
-const darkDivs = document.querySelectorAll('.bits');
-darkDivs.forEach(div => {
-  const radialGradient = document.createElement('div');
-  radialGradient.className = 'radial-gradient';
-  div.appendChild(radialGradient);
-
-  div.addEventListener('mousemove', e => {
-    const parentRect = div.getBoundingClientRect();
-    const x = e.clientX - parentRect.left;
-    const y = e.clientY - parentRect.top;
-
-    const gradient = div.querySelector('.radial-gradient');
-    gradient.style.left = `${x - 160}px`;
-    gradient.style.top = `${y - 160}px`;
-
-    gradient.style.opacity = 1;
-  });
-
-  div.addEventListener('mouseout', () => {
-    const gradient = div.querySelector('.radial-gradient');
-    gradient.style.opacity = 0;
+  jamLink.addEventListener('mouseleave', function () {
+    clearInterval(intervalId);
+    intervalId = setInterval(function () {
+      if (jamWord.textContent === "Jam") {
+        clearInterval(intervalId);
+      } else {
+        removeM();
+      }
+    }, removeInterval);
   });
 });
-
-*/
