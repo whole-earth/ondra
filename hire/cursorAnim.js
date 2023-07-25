@@ -6,7 +6,6 @@ if (isMobile()) {
   let trail = [];
   let h = 0;
   let userEnabled = true;
-  let eventDisabled = false;
   // Styling
   const trailLength = 60;
   const colorSpeed = 1;
@@ -23,7 +22,6 @@ if (isMobile()) {
 
   function draw() {
     background('#f7f5f7');
-    // if (userEnabled && !eventDisabled) {
     if (userEnabled) {
       trail.push({
         'x': mouseX,
@@ -62,41 +60,15 @@ if (isMobile()) {
       userEnabled = true;
     }
   }
-
-  window.addEventListener('scroll', () => {
-    if (!eventDisabled) {
-      eventDisabled = true;
-      console.log('disable');
-    }
-  });
-
-  window.addEventListener('mousemove', () => {
-    if (eventDisabled) {
-      eventDisabled = false;
-      console.log('enabled');
-    }
-  });
 }
 
 function drawCatmullRom(p0, p1, p2, p3) {
   var amount = 0.01; // Adjust this value for the smoothness
   for (var t = 0; t < 1; t += amount) {
-    var x = 0.5 * ((2 * p1.x) +
-      (-p0.x + p2.x) * t +
-      (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t * t +
-      (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t * t * t);
-    var y = 0.5 * ((2 * p1.y) +
-      (-p0.y + p2.y) * t +
-      (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t * t +
-      (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t * t * t);
-    var px = 0.5 * ((2 * p1.x) +
-      (-p0.x + p2.x) * (t + amount) +
-      (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * (t + amount) * (t + amount) +
-      (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * (t + amount) * (t + amount) * (t + amount));
-    var py = 0.5 * ((2 * p1.y) +
-      (-p0.y + p2.y) * (t + amount) +
-      (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * (t + amount) * (t + amount) +
-      (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * (t + amount) * (t + amount) * (t + amount));
+    var x = 0.5 * ((2 * p1.x) + (-p0.x + p2.x) * t + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t * t + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t * t * t);
+    var y = 0.5 * ((2 * p1.y) + (-p0.y + p2.y) * t + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t * t + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t * t * t);
+    var px = 0.5 * ((2 * p1.x) + (-p0.x + p2.x) * (t + amount) + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * (t + amount) * (t + amount) + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * (t + amount) * (t + amount) * (t + amount));
+    var py = 0.5 * ((2 * p1.y) + (-p0.y + p2.y) * (t + amount) + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * (t + amount) * (t + amount) + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * (t + amount) * (t + amount) * (t + amount));
     line(x, y, px, py);
   }
 }
