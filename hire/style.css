@@ -53,7 +53,7 @@
 .cdj-cell {
   width: 8px;
   height: 8px;
-  border: 0.5px solid #333;
+  border: 0.5px solid #e3e3e3;
   cursor: crosshair;
 }
 
@@ -64,7 +64,7 @@
 .peace-cell {
   width: 14px;
   height: 14px;
-  border: 0.5px solid #333;
+  border: 0.5px solid #e3e3e3;
   cursor: crosshair;
 }
 
@@ -101,18 +101,6 @@
     /* hack */
   }
 
-}
-
-.bits .radial-gradient {
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle closest-side, #505050, transparent);
-  pointer-events: none;
-  opacity: 0;
-  transition: 400ms opacity linear;
-  z-index: 0;
 }
 
 .collapsed { height: 0; }
