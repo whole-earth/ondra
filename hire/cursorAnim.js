@@ -1,7 +1,3 @@
-function isMobile() {
-  return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
-}
-
 // Check if the user is on a touchscreen
 if (isMobile()) {
   console.log("There's a cursor animation, but it's disabled on touchscreens.");
@@ -101,4 +97,8 @@ function drawCatmullRom(p0, p1, p2, p3) {
       (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * (t + amount) * (t + amount) * (t + amount));
     line(x, y, px, py);
   }
+}
+
+function isMobile() {
+  return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 }
