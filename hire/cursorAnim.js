@@ -2,21 +2,25 @@ function isMobile() {
   return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 }
 
+// Check if the user is on a touchscreen
 if (isMobile()) {
+  // If the user is on a touchscreen, do nothing (optional)
   console.log("Cursor animation disabled on touchscreen.");
 } else {
+  // Initialize vars
   var trail = [];
   var h = 0;
   var userEnabled = true;
   var eventDisabled = false;
-  var mouseMoveThrottled = false;
 
+  // Styling
   var trailLength = 60;
   var colorSpeed = 1;
   var innerColorSpeed = 4;
 
   function setup() {
-    createCanvas(windowWidth, windowHeight); // Use a fixed-size canvas
+    var canvas = createCanvas(windowWidth, document.body.offsetHeight);
+    canvas.parent('cursor-anim');
     colorMode(HSB);
     noFill();
     strokeWeight(5);
@@ -36,8 +40,8 @@ if (isMobile()) {
         var seg1 = trail[i];
         var seg2 = trail[i + 1];
         var seg3 = trail[i + 2];
-        stroke(thisColor % 360, 100, 100); // Use direct HSB values
-        drawLine(seg0, seg1, seg2, seg3); // Simplified drawing function
+        stroke(thisColor, 100, 100);
+        drawCatmullRom(seg0, seg1, seg2, seg3);
         thisColor = (thisColor + innerColorSpeed) % 360;
       }
 
@@ -47,30 +51,29 @@ if (isMobile()) {
 
       h = (h + colorSpeed) % 360;
     }
-    // Use window.requestAnimationFrame for smoother animation
-    requestAnimationFrame(draw);
-  }
+    
 
-  function drawLine(p0, p1, p2, p3) {
-    var amount = 0.01; // Adjust this value for the smoothness
-    for (var t = 0; t < 1; t += amount) {
-      var x = 0.5 * ((2 * p1.x) +
-        (-p0.x + p2.x) * t +
-        (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t * t +
-        (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t * t * t);
-      var y = 0.5 * ((2 * p1.y) +
-        (-p0.y + p2.y) * t +
-        (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t * t +
-        (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t * t * t);
-      var px = 0.5 * ((2 * p1.x) +
-        (-p0.x + p2.x) * (t + amount) +
-        (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * (t + amount) * (t + amount) +
-        (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * (t + amount) * (t + amount) * (t + amount));
-      var py = 0.5 * ((2 * p1.y) +
-        (-p0.y + p2.y) * (t + amount) +
-        (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * (t + amount) * (t + amount) +
-        (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * (t + amount) * (t + amount) * (t + amount));
-      line(x, y, px, py);
+    function drawCatmullRom(p0, p1, p2, p3) {
+      var amount = 0.01; // Adjust this value for the smoothness
+      for (var t = 0; t < 1; t += amount) {
+        var x = 0.5 * ((2 * p1.x) +
+          (-p0.x + p2.x) * t +
+          (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t * t +
+          (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t * t * t);
+        var y = 0.5 * ((2 * p1.y) +
+          (-p0.y + p2.y) * t +
+          (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t * t +
+          (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t * t * t);
+        var px = 0.5 * ((2 * p1.x) +
+          (-p0.x + p2.x) * (t + amount) +
+          (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * (t + amount) * (t + amount) +
+          (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * (t + amount) * (t + amount) * (t + amount));
+        var py = 0.5 * ((2 * p1.y) +
+          (-p0.y + p2.y) * (t + amount) +
+          (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * (t + amount) * (t + amount) +
+          (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * (t + amount) * (t + amount) * (t + amount));
+        line(x, y, px, py);
+      }
     }
   }
 
@@ -88,19 +91,6 @@ if (isMobile()) {
     }
   }
 
-  function throttleMouseMove() {
-    if (!mouseMoveThrottled) {
-      mouseMoveThrottled = true;
-      if (eventDisabled) {
-        eventDisabled = false;
-        console.log('enabled');
-      }
-      setTimeout(() => {
-        mouseMoveThrottled = false;
-      }, 100); // Adjust the throttle delay as needed
-    }
-  }
-
   window.addEventListener('scroll', () => {
     if (!eventDisabled) {
       eventDisabled = true;
@@ -108,5 +98,10 @@ if (isMobile()) {
     }
   });
 
-  window.addEventListener('mousemove', throttleMouseMove);
+  window.addEventListener('mousemove', () => {
+    if (eventDisabled) {
+      eventDisabled = false;
+      console.log('enabled');
+    }
+  });
 }
