@@ -7,9 +7,9 @@ if (isMobile()) {
   let h = 0;
   let userEnabled = true;
   // Styling
-  const trailLength = 100;
+  const trailLength = 80;
   const colorSpeed = 1;
-  const innerColorSpeed = 4;
+  const innerColorSpeed = 3;
 
   function setup() {
     // const canvas = createCanvas(windowWidth, document.body.offsetHeight);
