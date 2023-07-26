@@ -109,6 +109,10 @@
   cursor: url('https://whole-earth.github.io/ondra.systems/hire/jam.png') 21 21, pointer;
 }
 
+.process-dropdown:hover .process-carat {
+  filter: invert(1);
+}
+
 .carat-expanded {
   transform: rotateX(180deg);
 }
