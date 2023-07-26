@@ -16,9 +16,6 @@ window.addEventListener("scroll", youAre__toggleScroll);
 
 
 
-
-
-
 const youAreContainer = document.querySelector(".folder-container");
 const youAreFolder = document.querySelectorAll(".folder");
 const youAreP = document.querySelectorAll(".folder-p");
