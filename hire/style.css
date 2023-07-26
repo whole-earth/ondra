@@ -116,3 +116,35 @@
 .carat-expanded {
   transform: rotateX(180deg);
 }
+
+/* START RIPPLE */
+
+.bits-p-wrap { pointer-events: none; }
+
+.jam-link { pointer-events: auto; }
+
+#color-grid_cdj,
+#color-grid_peace {
+  min-width: calc(100% + 14px);
+  min-height: calc(100% + 14px);
+  display: grid;
+	grid-template-columns: repeat(auto-fit, 14px);
+	grid-template-rows: repeat(auto-fit, 14px);
+  align-items: end; /* align right */
+}
+
+#color-grid_cdj .color-coord,
+#color-grid_peace .color-coord {
+  min-width: 100%;
+  min-height: 100%;
+  cursor: pointer;
+  position: relative;
+  outline: 0.5px solid #cccccc;
+}
+
+#color-grid_cdj .color-coord:hover,
+#color-grid_peace .color-coord:hover{
+  opacity: 0.85;
+}
+
+/* END RIPPLE */
