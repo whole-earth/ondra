@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.addEventListener("resize", function () {
-  console.log("resized");
   youAre__setFolderPosition;
   renderGrid("color-grid_cdj");
   renderGrid("color-grid_peace");
