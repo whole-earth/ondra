@@ -47,9 +47,14 @@ if (isMobile()) {
     }
   }
 
-  function doubleClicked() { // built-in p5 event
-    toggleDrawing();
+  function doubleClicked(event) {
+    if (event.target.classList.contains("bits")) {
+      console.log("doubleClick inside .bits");
+      return;
+    } else {
+      toggleDrawing();
   }
+}
 
   function toggleDrawing() {
     // Function to toggle drawing on double-click
