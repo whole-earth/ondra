@@ -316,7 +316,7 @@ function initCDJ() {
   return new Promise((resolve, reject) => {
   const cdjGrid = document.querySelector(".cdj-grid");
   const cdjNumCells = 29;
-  const cdjNumRows = 25;
+  const cdjNumRows = 27;
   const cdjCells = [];
 
   // Create the grid
