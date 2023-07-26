@@ -31,7 +31,7 @@
 }
 
 /* shoshin on:hover :after reveal citation */
-#beginner .pillar-slug:after {
+#beginner .pillar-slug:before {
   content: "–Shunryu Suzuki";
   color: inherit;
   margin-left: 0.4rem;
@@ -51,8 +51,8 @@
 }
 
 .cdj-cell {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   border: 0.5px solid #e3e3e3;
   cursor: crosshair;
 }
