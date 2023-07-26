@@ -48,7 +48,7 @@ if (isMobile()) {
   }
 
   function doubleClicked(event) {
-    if (event.target.classList.contains("bits")) {
+    if (event.target.classList.contains("ripplecanvas")) {
       console.log("doubleClick inside .bits");
       return;
     } else {
