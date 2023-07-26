@@ -201,13 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
-
-
-
+// helper
 function domContentLoadedPromise() {
   return new Promise(function (resolve) {
     document.addEventListener("DOMContentLoaded", function () {
@@ -216,13 +210,9 @@ function domContentLoadedPromise() {
   });
 }
 
-// Wrap the PEACE and CDJ event listeners in Promises
-const peaceDOMContentLoadedPromise = domContentLoadedPromise();
-const cdjDOMContentLoadedPromise = domContentLoadedPromise();
-
-// Event listener for PEACE
-peaceDOMContentLoadedPromise.then(function () {
-  // PEACE
+// load peace -> before ripple()
+async function peaceBitmapLoad() {
+  await domContentLoadedPromise();
   document.addEventListener("DOMContentLoaded", (event) => {
     const peaceGrid = document.querySelector(".peace-grid");
     const peaceNumCells = 24;
@@ -394,11 +384,11 @@ peaceDOMContentLoadedPromise.then(function () {
     });
 
   });
-});
+}
 
-// Event listener for CDJ
-cdjDOMContentLoadedPromise.then(function () {
-  // CDJ
+// load cdj -> before ripple()
+async function cdjBitmapLoad() {
+  await domContentLoadedPromise();
   document.addEventListener("DOMContentLoaded", (event) => {
     const cdjGrid = document.querySelector(".cdj-grid");
     const cdjNumCells = 29;
@@ -481,15 +471,15 @@ cdjDOMContentLoadedPromise.then(function () {
       setInitialConfiguration(initialCoordinates);
     });
   });
-});
+}
 
-// Use Promise.all to wait for both PEACE and CDJ event listeners to complete
-Promise.all([peaceDOMContentLoadedPromise, cdjDOMContentLoadedPromise]).then(function () {
-  // Both PEACE and CDJ event listeners have completed here
-  // Now you can execute initializeGrid() for the third event listener
-  initializeGrid("color-grid_cdj");
-  initializeGrid("color-grid_peace");
-});
+// ripple() -> after peace + cdj placed
+Promise.all([peaceBitmapLoad(), cdjBitmapLoad()])
+  .then(function () {
+    initializeGrid("color-grid_cdj");
+    initializeGrid("color-grid_peace");
+  });
+
 
 // RIPPLE ANIMATION
 
