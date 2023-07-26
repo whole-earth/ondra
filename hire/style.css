@@ -106,7 +106,7 @@
 .collapsed { height: 0; }
 
 .jam-link:hover {
-  cursor: url('https://whole-earth.github.io/ondra.systems/hire/jam.png') 21 21, pointer;
+  cursor: url('https://whole-earth.github.io/ondra.systems/hire/jam.png') 16 16, pointer;
 }
 
 .process-dropdown:hover .process-carat {
