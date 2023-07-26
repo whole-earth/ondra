@@ -95,6 +95,289 @@ beginner.addEventListener("mouseleave", function () {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PEACE
+document.addEventListener("DOMContentLoaded", (event) => {
+  const peaceGrid = document.querySelector(".peace-grid");
+  const peaceNumCells = 24;
+  const peaceCells = [];
+
+  // Create the grid
+  for (let i = 0; i < peaceNumCells; i++) {
+    const row = document.createElement("div");
+    row.classList.add("peace-row");
+    peaceGrid.appendChild(row);
+    peaceCells[i] = [];
+    for (let j = 0; j < peaceNumCells; j++) {
+      const cell = document.createElement("div");
+      cell.classList.add("peace-cell");
+      row.appendChild(cell);
+      peaceCells[i][j] = false; // Set initial state as false (white)
+    }
+  }
+
+  // Render the grid
+  function renderGrid() {
+    for (let i = 0; i < peaceNumCells; i++) {
+      for (let j = 0; j < peaceNumCells; j++) {
+        const cellState = peaceCells[i][j];
+        const cell = peaceGrid.children[i].children[j];
+
+        cell.style.backgroundColor = cellState ? "black" : "inherit";
+        cell.style.borderColor = cellState ? "black" : "#cccccc";
+
+      }
+    }
+  }
+
+  // Toggle cell state and update grid
+  function toggleCellState(event) {
+    const cell = event.target;
+    const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(cell.parentNode);
+    const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
+
+    peaceCells[rowIndex][colIndex] = !peaceCells[rowIndex][colIndex];
+    renderGrid();
+  }
+
+  // Add click event listener to cells
+  const cellsList = document.getElementsByClassName("peace-cell");
+  for (const cell of cellsList) {
+    cell.addEventListener("click", toggleCellState);
+  }
+
+  // Function to set the initial configuration based on the coordinate system
+  function setInitialConfiguration(coordinates) {
+    // Reset the grid to the initial state
+    peaceCells.forEach((row, rowIndex) => {
+      row.fill(false);
+    });
+
+    // Update the cells based on the provided coordinates
+    coordinates.forEach((coord) => {
+      const [row, col] = coord;
+      if (row >= 0 && row < peaceNumCells && col >= 0 && col < peaceNumCells) {
+        peaceCells[row][col] = true;
+      }
+    });
+
+    renderGrid();
+  }
+
+  // Example initial configuration
+  const initialCoordinates = [
+    [2, 9],
+    [2, 10],
+    [3, 8],
+    [3, 11],
+    [3, 15],
+    [3, 16],
+    [3, 17],
+    [4, 8],
+    [4, 11],
+    [4, 14],
+    [4, 15],
+    [4, 18],
+    [5, 9],
+    [5, 12],
+    [5, 14],
+    [5, 17],
+    [6, 9],
+    [6, 12],
+    [6, 14],
+    [6, 17],
+    [7, 9],
+    [7, 12],
+    [7, 14],
+    [7, 17],
+    [8, 8],
+    [8, 9],
+    [8, 12],
+    [8, 14],
+    [8, 17],
+    [9, 7],
+    [9, 10],
+    [9, 12],
+    [9, 14],
+    [9, 17],
+    [10, 5],
+    [10, 6],
+    [10, 7],
+    [10, 10],
+    [10, 13],
+    [10, 16],
+    [11, 4],
+    [11, 7],
+    [11, 10],
+    [11, 13],
+    [11, 14],
+    [12, 4],
+    [12, 9],
+    [12, 10],
+    [12, 15],
+    [13, 4],
+    [13, 6],
+    [13, 10],
+    [13, 13],
+    [13, 14],
+    [13, 15],
+    [13, 16],
+    [13, 17],
+    [14, 4],
+    [14, 7],
+    [14, 10],
+    [14, 12],
+    [14, 18],
+    [15, 5],
+    [15, 7],
+    [15, 8],
+    [15, 9],
+    [15, 12],
+    [15, 19],
+    [16, 6],
+    [16, 13],
+    [16, 14],
+    [16, 15],
+    [16, 16],
+    [16, 19],
+    [17, 5],
+    [17, 14],
+    [17, 19],
+    [18, 5],
+    [18, 13],
+    [18, 19],
+    [19, 5],
+    [19, 18],
+    [20, 6],
+    [20, 16],
+    [20, 17],
+    [21, 7],
+    [21, 16],
+    [22, 7],
+    [22, 16]
+  ];
+
+  setInitialConfiguration(initialCoordinates);
+
+  peaceGrid.addEventListener("mouseenter", function () {
+    document.querySelector(".peace-reset").style.opacity = "1";
+  }, { once: true });
+
+  document.querySelector(".peace-reset").addEventListener("click", function () {
+    setInitialConfiguration(initialCoordinates);
+  });
+
+});
+
+
+
+
+// CDJ
+document.addEventListener("DOMContentLoaded", (event) => {
+  const cdjGrid = document.querySelector(".cdj-grid");
+  const cdjNumCells = 29;
+  const cdjNumRows = 29;
+  const cdjCells = [];
+
+  // Create the grid
+  for (let i = 0; i < cdjNumRows; i++) {
+    const row = document.createElement("div");
+    row.classList.add("cdj-row");
+    cdjGrid.appendChild(row);
+    cdjCells[i] = []; // Initialize the cells array for each row
+    for (let j = 0; j < cdjNumCells; j++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cdj-cell");
+      row.appendChild(cell);
+      cdjCells[i][j] = false; // Set initial state as false (white)
+    }
+  }
+
+  function renderGrid() {
+    for (let i = 0; i < cdjNumRows; i++) {
+      for (let j = 0; j < cdjNumCells; j++) {
+        const cellState = cdjCells[i][j];
+        const cell = cdjGrid.children[i].children[j];
+
+        cell.style.backgroundColor = cellState ? "black" : "inherit";
+        cell.style.borderColor = cellState ? "black" : "#cccccc";
+
+      }
+    }
+  }
+
+  // Toggle cell state and update grid
+  function toggleCellState(event) {
+    const cell = event.target;
+    const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(
+      cell.parentNode
+    );
+    const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
+
+    cdjCells[rowIndex][colIndex] = !cdjCells[rowIndex][colIndex];
+    renderGrid();
+  }
+
+  // Add click event listener to cells
+  const cellsList = document.getElementsByClassName("cdj-cell");
+  for (const cell of cellsList) {
+    cell.addEventListener("click", toggleCellState);
+  }
+
+  // Function to set the initial configuration based on the coordinate system
+  function setInitialConfiguration(coordinates) {
+    // Reset the grid to the initial state
+    cdjCells.forEach((row, rowIndex) => {
+      row.fill(false);
+    });
+
+    // Update the cells based on the provided coordinates
+    coordinates.forEach((coord) => {
+      const [row, col] = coord;
+      if (row >= 0 && row < cdjNumCells && col >= 0 && col < cdjNumCells) {
+        cdjCells[row][col] = true;
+      }
+    });
+
+    renderGrid();
+  }
+
+  // Example initial configuration
+  const initialCoordinates = [[3, 5], [3, 12], [3, 19], [4, 5], [4, 12], [4, 18], [4, 19], [5, 5], [5, 12], [5, 17], [5, 18], [5, 19], [5, 20], [5, 21], [5, 22], [5, 23], [5, 24], [5, 26], [6, 5], [6, 12], [6, 18], [6, 19], [7, 4], [7, 13], [7, 19], [7, 25], [8, 4], [8, 14], [8, 25], [8, 26], [9, 4], [9, 14], [9, 18], [9, 20], [9, 21], [9, 22], [9, 23], [9, 24], [9, 25], [9, 26], [9, 27], [10, 3], [10, 15], [10, 25], [10, 26], [11, 3], [11, 16], [11, 25], [12, 2], [12, 5], [12, 17], [13, 1], [13, 4], [13, 14], [13, 17], [14, 2], [14, 3], [14, 5], [14, 9], [14, 12], [14, 15], [14, 18], [15, 6], [15, 10], [15, 13], [15, 16], [15, 19], [16, 7], [16, 11], [16, 14], [16, 17], [16, 20], [17, 8], [17, 12], [17, 15], [17, 18], [17, 19], [18, 5], [18, 6], [18, 7], [18, 9], [18, 10], [18, 13], [18, 16], [18, 18], [18, 20], [18, 21], [18, 22], [19, 2], [19, 3], [19, 4], [19, 11], [19, 14], [19, 17], [19, 23], [19, 24], [20, 1], [20, 12], [20, 13], [20, 15], [20, 16], [20, 25], [20, 26], [21, 1], [21, 26], [22, 1], [22, 2], [22, 3], [22, 26], [23, 4], [23, 24], [23, 25], [24, 5], [24, 6], [24, 7], [24, 21], [24, 22], [24, 23], [25, 8], [25, 9], [25, 10], [25, 11], [25, 12], [25, 13], [25, 14], [25, 15], [25, 16], [25, 17], [25, 18], [25, 19], [25, 20]];
+
+  setInitialConfiguration(initialCoordinates);
+
+  cdjGrid.addEventListener("mouseenter", function () {
+    document.querySelector(".cdj-reset").style.opacity = "0.8";
+  }, { once: true });
+
+  document.querySelector(".cdj-reset").addEventListener("click", function () {
+    setInitialConfiguration(initialCoordinates);
+  });
+});
+
+
+
+
+
+
+
+
+
 // "My Process" Section
 document.addEventListener("DOMContentLoaded", function () {
   const processDropdowns = document.querySelectorAll('.process-dropdown');
@@ -200,7 +483,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
 // RIPPLE ANIMATION
 
 function getGridSize(gridId) {
@@ -228,7 +510,6 @@ const colors = [
   "#a2eaba",
   "#a2ead9"
 ];
-
 function randomColor() {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
@@ -262,205 +543,8 @@ function initializeGrid(gridId) {
   window.addEventListener("resize", () => renderGrid(gridId));
 }
 
-
-
-
-
-
-
-// Function to wrap an event listener in a Promise
-function domContentLoadedPromise() {
-  return new Promise(function (resolve) {
-    document.addEventListener("DOMContentLoaded", function () {
-      resolve();
-    });
-  });
-}
-
-async function initialize() {
-  // Wrap the event listeners for PEACE and CDJ in async functions
-  async function peaceDOMContentLoadedListener() {
-    await domContentLoadedPromise();
-
-    const peaceGrid = document.querySelector(".peace-grid");
-    const peaceNumCells = 24;
-    const peaceCells = [];
-
-    // Create the grid
-    for (let i = 0; i < peaceNumCells; i++) {
-      const row = document.createElement("div");
-      row.classList.add("peace-row");
-      peaceGrid.appendChild(row);
-      peaceCells[i] = [];
-      for (let j = 0; j < peaceNumCells; j++) {
-        const cell = document.createElement("div");
-        cell.classList.add("peace-cell");
-        row.appendChild(cell);
-        peaceCells[i][j] = false; // Set initial state as false (white)
-      }
-    }
-
-    // Render the grid
-    function renderGrid() {
-      for (let i = 0; i < peaceNumCells; i++) {
-        for (let j = 0; j < peaceNumCells; j++) {
-          const cellState = peaceCells[i][j];
-          const cell = peaceGrid.children[i].children[j];
-
-          cell.style.backgroundColor = cellState ? "black" : "inherit";
-          cell.style.borderColor = cellState ? "black" : "#cccccc";
-
-        }
-      }
-    }
-
-    // Toggle cell state and update grid
-    function toggleCellState(event) {
-      const cell = event.target;
-      const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(cell.parentNode);
-      const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
-
-      peaceCells[rowIndex][colIndex] = !peaceCells[rowIndex][colIndex];
-      renderGrid();
-    }
-
-    // Add click event listener to cells
-    const cellsList = document.getElementsByClassName("peace-cell");
-    for (const cell of cellsList) {
-      cell.addEventListener("click", toggleCellState);
-    }
-
-    // Function to set the initial configuration based on the coordinate system
-    function setInitialConfiguration(coordinates) {
-      // Reset the grid to the initial state
-      peaceCells.forEach((row, rowIndex) => {
-        row.fill(false);
-      });
-
-      // Update the cells based on the provided coordinates
-      coordinates.forEach((coord) => {
-        const [row, col] = coord;
-        if (row >= 0 && row < peaceNumCells && col >= 0 && col < peaceNumCells) {
-          peaceCells[row][col] = true;
-        }
-      });
-
-      renderGrid();
-    }
-
-    // Example initial configuration
-    const initialCoordinates = [[2, 9], [2, 10], [3, 8], [3, 11], [3, 15], [3, 16], [3, 17], [4, 8], [4, 11], [4, 14], [4, 15], [4, 18], [5, 9], [5, 12], [5, 14], [5, 17], [6, 9], [6, 12], [6, 14], [6, 17], [7, 9], [7, 12], [7, 14], [7, 17], [8, 8], [8, 9], [8, 12], [8, 14], [8, 17], [9, 7], [9, 10], [9, 12], [9, 14], [9, 17], [10, 5], [10, 6], [10, 7], [10, 10], [10, 13], [10, 16], [11, 4], [11, 7], [11, 10], [11, 13], [11, 14], [12, 4], [12, 9], [12, 10], [12, 15], [13, 4], [13, 6], [13, 10], [13, 13], [13, 14], [13, 15], [13, 16], [13, 17], [14, 4], [14, 7], [14, 10], [14, 12], [14, 18], [15, 5], [15, 7], [15, 8], [15, 9], [15, 12], [15, 19], [16, 6], [16, 13], [16, 14], [16, 15], [16, 16], [16, 19], [17, 5], [17, 14], [17, 19], [18, 5], [18, 13], [18, 19], [19, 5], [19, 18], [20, 6], [20, 16], [20, 17], [21, 7], [21, 16], [22, 7], [22, 16]];
-
-    setInitialConfiguration(initialCoordinates);
-
-    peaceGrid.addEventListener("mouseenter", function () {
-      document.querySelector(".peace-reset").style.opacity = "1";
-    }, { once: true });
-
-    document.querySelector(".peace-reset").addEventListener("click", function () {
-      setInitialConfiguration(initialCoordinates);
-    });
-
-    return true;
-  }
-
-  async function cdjDOMContentLoadedListener() {
-    await domContentLoadedPromise();
-
-    const cdjGrid = document.querySelector(".cdj-grid");
-    const cdjNumCells = 29;
-    const cdjNumRows = 29;
-    const cdjCells = [];
-
-    // Create the grid
-    for (let i = 0; i < cdjNumRows; i++) {
-      const row = document.createElement("div");
-      row.classList.add("cdj-row");
-      cdjGrid.appendChild(row);
-      cdjCells[i] = []; // Initialize the cells array for each row
-      for (let j = 0; j < cdjNumCells; j++) {
-        const cell = document.createElement("div");
-        cell.classList.add("cdj-cell");
-        row.appendChild(cell);
-        cdjCells[i][j] = false; // Set initial state as false (white)
-      }
-    }
-
-    function renderGrid() {
-      for (let i = 0; i < cdjNumRows; i++) {
-        for (let j = 0; j < cdjNumCells; j++) {
-          const cellState = cdjCells[i][j];
-          const cell = cdjGrid.children[i].children[j];
-
-          cell.style.backgroundColor = cellState ? "black" : "inherit";
-          cell.style.borderColor = cellState ? "black" : "#cccccc";
-
-        }
-      }
-    }
-
-    // Toggle cell state and update grid
-    function toggleCellState(event) {
-      const cell = event.target;
-      const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(
-        cell.parentNode
-      );
-      const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
-
-      cdjCells[rowIndex][colIndex] = !cdjCells[rowIndex][colIndex];
-      renderGrid();
-    }
-
-    // Add click event listener to cells
-    const cellsList = document.getElementsByClassName("cdj-cell");
-    for (const cell of cellsList) {
-      cell.addEventListener("click", toggleCellState);
-    }
-
-    // Function to set the initial configuration based on the coordinate system
-    function setInitialConfiguration(coordinates) {
-      // Reset the grid to the initial state
-      cdjCells.forEach((row, rowIndex) => {
-        row.fill(false);
-      });
-
-      // Update the cells based on the provided coordinates
-      coordinates.forEach((coord) => {
-        const [row, col] = coord;
-        if (row >= 0 && row < cdjNumCells && col >= 0 && col < cdjNumCells) {
-          cdjCells[row][col] = true;
-        }
-      });
-
-      renderGrid();
-    }
-
-    // Example initial configuration
-    const initialCoordinates = [[3, 5], [3, 12], [3, 19], [4, 5], [4, 12], [4, 18], [4, 19], [5, 5], [5, 12], [5, 17], [5, 18], [5, 19], [5, 20], [5, 21], [5, 22], [5, 23], [5, 24], [5, 26], [6, 5], [6, 12], [6, 18], [6, 19], [7, 4], [7, 13], [7, 19], [7, 25], [8, 4], [8, 14], [8, 25], [8, 26], [9, 4], [9, 14], [9, 18], [9, 20], [9, 21], [9, 22], [9, 23], [9, 24], [9, 25], [9, 26], [9, 27], [10, 3], [10, 15], [10, 25], [10, 26], [11, 3], [11, 16], [11, 25], [12, 2], [12, 5], [12, 17], [13, 1], [13, 4], [13, 14], [13, 17], [14, 2], [14, 3], [14, 5], [14, 9], [14, 12], [14, 15], [14, 18], [15, 6], [15, 10], [15, 13], [15, 16], [15, 19], [16, 7], [16, 11], [16, 14], [16, 17], [16, 20], [17, 8], [17, 12], [17, 15], [17, 18], [17, 19], [18, 5], [18, 6], [18, 7], [18, 9], [18, 10], [18, 13], [18, 16], [18, 18], [18, 20], [18, 21], [18, 22], [19, 2], [19, 3], [19, 4], [19, 11], [19, 14], [19, 17], [19, 23], [19, 24], [20, 1], [20, 12], [20, 13], [20, 15], [20, 16], [20, 25], [20, 26], [21, 1], [21, 26], [22, 1], [22, 2], [22, 3], [22, 26], [23, 4], [23, 24], [23, 25], [24, 5], [24, 6], [24, 7], [24, 21], [24, 22], [24, 23], [25, 8], [25, 9], [25, 10], [25, 11], [25, 12], [25, 13], [25, 14], [25, 15], [25, 16], [25, 17], [25, 18], [25, 19], [25, 20]];
-
-    setInitialConfiguration(initialCoordinates);
-
-    cdjGrid.addEventListener("mouseenter", function () {
-      document.querySelector(".cdj-reset").style.opacity = "0.8";
-    }, { once: true });
-
-    document.querySelector(".cdj-reset").addEventListener("click", function () {
-      setInitialConfiguration(initialCoordinates);
-    });
-
-    return true;
-  }
-
-  const peaceCompleted = await peaceDOMContentLoadedListener();
-  const cdjCompleted = await cdjDOMContentLoadedListener();
-
-  // Both PEACE and CDJ event listeners have completed here
-  // Now you can execute initializeGrid() for the third event listener
-  if (peaceCompleted && cdjCompleted) {
-    initializeGrid("color-grid_cdj");
-    initializeGrid("color-grid_peace");
-  }
-}
-
-// Call the main async function to start the process
-initialize();
+// Initialize both grids after CDJ and Peace animations are rendered
+document.addEventListener("DOMContentLoaded", () => {
+  initializeGrid("color-grid_cdj");
+  initializeGrid("color-grid_peace");
+});
