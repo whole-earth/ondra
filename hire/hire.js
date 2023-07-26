@@ -225,85 +225,84 @@ function JamBtnAnim() {
 // PEACE
 function initPeace() {
   return new Promise((resolve, reject) => {
-  const peaceGrid = document.querySelector(".peace-grid");
-  const peaceNumCells = 24;
-  const peaceCells = [];
+    const peaceGrid = document.querySelector(".peace-grid");
+    const peaceNumCells = 23;
+    const peaceCells = [];
 
-  // Create the grid
-  for (let i = 0; i < peaceNumCells; i++) {
-    const row = document.createElement("div");
-    row.classList.add("peace-row");
-    peaceGrid.appendChild(row);
-    peaceCells[i] = [];
-    for (let j = 0; j < peaceNumCells; j++) {
-      const cell = document.createElement("div");
-      cell.classList.add("peace-cell");
-      row.appendChild(cell);
-      peaceCells[i][j] = false; // Set initial state as false (white)
-    }
-  }
-
-  // Render the grid
-  function renderGrid() {
+    // Create the grid
     for (let i = 0; i < peaceNumCells; i++) {
+      const row = document.createElement("div");
+      row.classList.add("peace-row");
+      peaceGrid.appendChild(row);
+      peaceCells[i] = [];
       for (let j = 0; j < peaceNumCells; j++) {
-        const cellState = peaceCells[i][j];
-        const cell = peaceGrid.children[i].children[j];
-
-        cell.style.backgroundColor = cellState ? "black" : "inherit";
-        cell.style.borderColor = cellState ? "black" : "#cccccc";
-
+        const cell = document.createElement("div");
+        cell.classList.add("peace-cell");
+        row.appendChild(cell);
+        peaceCells[i][j] = false; // Set initial state as false (white)
       }
     }
-  }
 
-  // Toggle cell state and update grid
-  function toggleCellState(event) {
-    const cell = event.target;
-    const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(cell.parentNode);
-    const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
+    // Render the grid
+    function renderGrid() {
+      for (let i = 0; i < peaceNumCells; i++) {
+        for (let j = 0; j < peaceNumCells; j++) {
+          const cellState = peaceCells[i][j];
+          const cell = peaceGrid.children[i].children[j];
 
-    peaceCells[rowIndex][colIndex] = !peaceCells[rowIndex][colIndex];
-    renderGrid();
-  }
+          cell.style.backgroundColor = cellState ? "black" : "inherit";
+          cell.style.borderColor = cellState ? "black" : "#cccccc";
 
-  // Add click event listener to cells
-  const cellsList = document.getElementsByClassName("peace-cell");
-  for (const cell of cellsList) {
-    cell.addEventListener("click", toggleCellState);
-  }
-
-  // Function to set the initial configuration based on the coordinate system
-  function setInitialConfiguration(coordinates) {
-    // Reset the grid to the initial state
-    peaceCells.forEach((row, rowIndex) => {
-      row.fill(false);
-    });
-
-    // Update the cells based on the provided coordinates
-    coordinates.forEach((coord) => {
-      const [row, col] = coord;
-      if (row >= 0 && row < peaceNumCells && col >= 0 && col < peaceNumCells) {
-        peaceCells[row][col] = true;
+        }
       }
+    }
+
+    // Toggle cell state and update grid
+    function toggleCellState(event) {
+      const cell = event.target;
+      const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(cell.parentNode);
+      const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
+
+      peaceCells[rowIndex][colIndex] = !peaceCells[rowIndex][colIndex];
+      renderGrid();
+    }
+
+    // Add click event listener to cells
+    const cellsList = document.getElementsByClassName("peace-cell");
+    for (const cell of cellsList) {
+      cell.addEventListener("click", toggleCellState);
+    }
+
+    // Function to set the initial configuration based on the coordinate system
+    function setInitialConfiguration(coordinates) {
+      // Reset the grid to the initial state
+      peaceCells.forEach((row, rowIndex) => {
+        row.fill(false);
+      });
+
+      // Update the cells based on the provided coordinates
+      coordinates.forEach((coord) => {
+        const [row, col] = coord;
+        if (row >= 0 && row < peaceNumCells && col >= 0 && col < peaceNumCells) {
+          peaceCells[row][col] = true;
+        }
+      });
+
+      renderGrid();
+    }
+
+    const initialCoordinates = [[1, 8], [1, 9], [2, 7], [2, 10], [2, 14], [2, 15], [2, 16], [3, 7], [3, 10], [3, 13], [3, 14], [3, 17], [4, 8], [4, 11], [4, 13], [4, 16], [5, 8], [5, 11], [5, 13], [5, 16], [6, 8], [6, 11], [6, 13], [6, 16], [7, 8], [7, 8], [7, 11], [7, 13], [7, 16], [8, 6], [8, 9], [8, 11], [8, 13], [8, 16], [9, 4], [9, 5], [9, 6], [9, 9], [9, 12], [9, 15], [10, 3], [10, 6], [10, 9], [10, 12], [10, 15], [11, 3], [11, 8], [11, 9], [11, 14], [12, 3], [12, 5], [12, 9], [12, 12], [12, 13], [12, 14], [12, 15], [12, 16], [13, 3], [13, 6], [13, 9], [13, 11], [13, 17], [14, 4], [14, 6], [14, 7], [14, 8], [14, 11], [14, 18], [15, 5], [15, 12], [15, 13], [15, 14], [15, 15], [15, 18], [16, 4], [16, 13], [16, 18], [17, 3], [17, 11], [17, 18], [18, 3], [18, 16], [19, 4], [19, 15], [19, 16], [20, 5], [20, 15], [21, 5], [21, 15]];
+    setInitialConfiguration(initialCoordinates);
+
+    peaceGrid.addEventListener("mouseenter", function () {
+      document.querySelector(".peace-reset").style.opacity = "1";
+    }, { once: true });
+
+    document.querySelector(".peace-reset").addEventListener("click", function () {
+      setInitialConfiguration(initialCoordinates);
     });
 
-    renderGrid();
-  }
-
-  const initialCoordinates = [[2, 9], [2, 10], [3, 8], [3, 11], [3, 15], [3, 16], [3, 17], [4, 8], [4, 11], [4, 14], [4, 15], [4, 18], [5, 9], [5, 12], [5, 14], [5, 17], [6, 9], [6, 12], [6, 14], [6, 17], [7, 9], [7, 12], [7, 14], [7, 17], [8, 8], [8, 9], [8, 12], [8, 14], [8, 17], [9, 7], [9, 10], [9, 12], [9, 14], [9, 17], [10, 5], [10, 6], [10, 7], [10, 10], [10, 13], [10, 16], [11, 4], [11, 7], [11, 10], [11, 13], [11, 14], [12, 4], [12, 9], [12, 10], [12, 15], [13, 4], [13, 6], [13, 10], [13, 13], [13, 14], [13, 15], [13, 16], [13, 17], [14, 4], [14, 7], [14, 10], [14, 12], [14, 18], [15, 5], [15, 7], [15, 8], [15, 9], [15, 12], [15, 19], [16, 6], [16, 13], [16, 14], [16, 15], [16, 16], [16, 19], [17, 5], [17, 14], [17, 19], [18, 5], [18, 13], [18, 19], [19, 5], [19, 18], [20, 6], [20, 16], [20, 17], [21, 7], [21, 16], [22, 7], [22, 16]];
-
-  setInitialConfiguration(initialCoordinates);
-
-  peaceGrid.addEventListener("mouseenter", function () {
-    document.querySelector(".peace-reset").style.opacity = "1";
-  }, { once: true });
-
-  document.querySelector(".peace-reset").addEventListener("click", function () {
-    setInitialConfiguration(initialCoordinates);
-  });
-
-  resolve();
+    resolve();
   });
 
 }
@@ -311,88 +310,88 @@ function initPeace() {
 // CDJ
 function initCDJ() {
   return new Promise((resolve, reject) => {
-  const cdjGrid = document.querySelector(".cdj-grid");
-  const cdjNumCells = 29;
-  const cdjNumRows = 25;
-  const cdjCells = [];
+    const cdjGrid = document.querySelector(".cdj-grid");
+    const cdjNumCells = 29;
+    const cdjNumRows = 25;
+    const cdjCells = [];
 
-  // Create the grid
-  for (let i = 0; i < cdjNumRows; i++) {
-    const row = document.createElement("div");
-    row.classList.add("cdj-row");
-    cdjGrid.appendChild(row);
-    cdjCells[i] = []; // Initialize the cells array for each row
-    for (let j = 0; j < cdjNumCells; j++) {
-      const cell = document.createElement("div");
-      cell.classList.add("cdj-cell");
-      row.appendChild(cell);
-      cdjCells[i][j] = false; // Set initial state as false (white)
-    }
-  }
-
-  function renderGrid() {
+    // Create the grid
     for (let i = 0; i < cdjNumRows; i++) {
+      const row = document.createElement("div");
+      row.classList.add("cdj-row");
+      cdjGrid.appendChild(row);
+      cdjCells[i] = []; // Initialize the cells array for each row
       for (let j = 0; j < cdjNumCells; j++) {
-        const cellState = cdjCells[i][j];
-        const cell = cdjGrid.children[i].children[j];
-
-        cell.style.backgroundColor = cellState ? "black" : "inherit";
-        cell.style.borderColor = cellState ? "black" : "#cccccc";
-
+        const cell = document.createElement("div");
+        cell.classList.add("cdj-cell");
+        row.appendChild(cell);
+        cdjCells[i][j] = false; // Set initial state as false (white)
       }
     }
-  }
 
-  // Toggle cell state and update grid
-  function toggleCellState(event) {
-    const cell = event.target;
-    const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(
-      cell.parentNode
-    );
-    const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
+    function renderGrid() {
+      for (let i = 0; i < cdjNumRows; i++) {
+        for (let j = 0; j < cdjNumCells; j++) {
+          const cellState = cdjCells[i][j];
+          const cell = cdjGrid.children[i].children[j];
 
-    cdjCells[rowIndex][colIndex] = !cdjCells[rowIndex][colIndex];
-    renderGrid();
-  }
+          cell.style.backgroundColor = cellState ? "black" : "inherit";
+          cell.style.borderColor = cellState ? "black" : "#cccccc";
 
-  // Add click event listener to cells
-  const cellsList = document.getElementsByClassName("cdj-cell");
-  for (const cell of cellsList) {
-    cell.addEventListener("click", toggleCellState);
-  }
-
-  // Function to set the initial configuration based on the coordinate system
-  function setInitialConfiguration(coordinates) {
-    // Reset the grid to the initial state
-    cdjCells.forEach((row, rowIndex) => {
-      row.fill(false);
-    });
-
-    // Update the cells based on the provided coordinates
-    coordinates.forEach((coord) => {
-      const [row, col] = coord;
-      if (row >= 0 && row < cdjNumCells && col >= 0 && col < cdjNumCells) {
-        cdjCells[row][col] = true;
+        }
       }
+    }
+
+    // Toggle cell state and update grid
+    function toggleCellState(event) {
+      const cell = event.target;
+      const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(
+        cell.parentNode
+      );
+      const colIndex = Array.from(cell.parentNode.children).indexOf(cell);
+
+      cdjCells[rowIndex][colIndex] = !cdjCells[rowIndex][colIndex];
+      renderGrid();
+    }
+
+    // Add click event listener to cells
+    const cellsList = document.getElementsByClassName("cdj-cell");
+    for (const cell of cellsList) {
+      cell.addEventListener("click", toggleCellState);
+    }
+
+    // Function to set the initial configuration based on the coordinate system
+    function setInitialConfiguration(coordinates) {
+      // Reset the grid to the initial state
+      cdjCells.forEach((row, rowIndex) => {
+        row.fill(false);
+      });
+
+      // Update the cells based on the provided coordinates
+      coordinates.forEach((coord) => {
+        const [row, col] = coord;
+        if (row >= 0 && row < cdjNumCells && col >= 0 && col < cdjNumCells) {
+          cdjCells[row][col] = true;
+        }
+      });
+
+      renderGrid();
+    }
+
+    // Example initial configuration
+    const initialCoordinates = [[1, 5], [1, 12], [1, 19], [2, 5], [2, 12], [2, 18], [2, 19], [3, 5], [3, 12], [3, 17], [3, 18], [3, 19], [3, 20], [3, 21], [3, 22], [3, 23], [3, 24], [3, 26], [4, 5], [4, 12], [4, 18], [4, 19], [5, 4], [5, 13], [5, 19], [5, 25], [6, 4], [6, 14], [6, 25], [6, 26], [7, 4], [7, 14], [7, 18], [7, 20], [7, 21], [7, 22], [7, 23], [7, 24], [7, 25], [7, 26], [7, 27], [8, 3], [8, 15], [8, 25], [8, 26], [9, 3], [9, 16], [9, 25], [10, 2], [10, 5], [10, 17], [11, 1], [11, 4], [11, 14], [11, 17], [12, 2], [12, 3], [12, 5], [12, 9], [12, 12], [12, 15], [12, 18], [13, 6], [13, 10], [13, 13], [13, 16], [13, 19], [14, 7], [14, 11], [14, 14], [14, 17], [14, 20], [15, 8], [15, 12], [15, 15], [15, 18], [15, 19], [16, 5], [16, 6], [16, 7], [16, 9], [16, 10], [16, 13], [16, 16], [16, 18], [16, 20], [16, 21], [16, 22], [17, 2], [17, 3], [17, 4], [17, 11], [17, 14], [17, 17], [17, 23], [17, 24], [18, 1], [18, 12], [18, 13], [18, 15], [18, 16], [18, 25], [18, 26], [19, 1], [19, 26], [20, 1], [20, 2], [20, 3], [20, 26], [21, 4], [21, 24], [21, 25], [22, 5], [22, 6], [22, 7], [22, 21], [22, 22], [22, 23], [23, 6], [23, 7], [23, 8], [23, 9], [23, 10], [23, 11], [23, 12], [23, 13], [23, 14], [23, 15], [23, 16], [23, 17], [23, 18], [23, 19], [23, 20]];
+
+    setInitialConfiguration(initialCoordinates);
+
+    cdjGrid.addEventListener("mouseenter", function () {
+      document.querySelector(".cdj-reset").style.opacity = "0.8";
+    }, { once: true });
+
+    document.querySelector(".cdj-reset").addEventListener("click", function () {
+      setInitialConfiguration(initialCoordinates);
     });
 
-    renderGrid();
-  }
-
-  // Example initial configuration
-  const initialCoordinates = [[1, 5], [1, 12], [1, 19], [2, 5], [2, 12], [2, 18], [2, 19], [3, 5], [3, 12], [3, 17], [3, 18], [3, 19], [3, 20], [3, 21], [3, 22], [3, 23], [3, 24], [3, 26], [4, 5], [4, 12], [4, 18], [4, 19], [5, 4], [5, 13], [5, 19], [5, 25], [6, 4], [6, 14], [6, 25], [6, 26], [7, 4], [7, 14], [7, 18], [7, 20], [7, 21], [7, 22], [7, 23], [7, 24], [7, 25], [7, 26], [7, 27], [8, 3], [8, 15], [8, 25], [8, 26], [9, 3], [9, 16], [9, 25], [10, 2], [10, 5], [10, 17], [11, 1], [11, 4], [11, 14], [11, 17], [12, 2], [12, 3], [12, 5], [12, 9], [12, 12], [12, 15], [12, 18], [13, 6], [13, 10], [13, 13], [13, 16], [13, 19], [14, 7], [14, 11], [14, 14], [14, 17], [14, 20], [15, 8], [15, 12], [15, 15], [15, 18], [15, 19], [16, 5], [16, 6], [16, 7], [16, 9], [16, 10], [16, 13], [16, 16], [16, 18], [16, 20], [16, 21], [16, 22], [17, 2], [17, 3], [17, 4], [17, 11], [17, 14], [17, 17], [17, 23], [17, 24], [18, 1], [18, 12], [18, 13], [18, 15], [18, 16], [18, 25], [18, 26], [19, 1], [19, 26], [20, 1], [20, 2], [20, 3], [20, 26], [21, 4], [21, 24], [21, 25], [22, 5], [22, 6], [22, 7], [22, 21], [22, 22], [22, 23], [23, 6], [23, 7], [23, 8], [23, 9], [23, 10], [23, 11], [23, 12], [23, 13], [23, 14], [23, 15], [23, 16], [23, 17], [23, 18], [23, 19], [23, 20]];
-
-  setInitialConfiguration(initialCoordinates);
-
-  cdjGrid.addEventListener("mouseenter", function () {
-    document.querySelector(".cdj-reset").style.opacity = "0.8";
-  }, { once: true });
-
-  document.querySelector(".cdj-reset").addEventListener("click", function () {
-    setInitialConfiguration(initialCoordinates);
-  });
-
-  resolve();
+    resolve();
   });
 }
 
