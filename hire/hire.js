@@ -144,7 +144,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const cell = peaceGrid.children[i].children[j];
 
         cell.style.backgroundColor = cellState ? "black" : "inherit";
-        cell.style.borderColor = cellState ? "black" : "#e3e3e3";
+        cell.style.borderColor = cellState ? "black" : "#a7a7a7";
 
       }
     }
@@ -317,7 +317,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const cell = cdjGrid.children[i].children[j];
 
         cell.style.backgroundColor = cellState ? "black" : "inherit";
-        cell.style.borderColor = cellState ? "black" : "#e3e3e3";
+        cell.style.borderColor = cellState ? "black" : "#a7a7a7";
 
       }
     }
