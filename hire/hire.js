@@ -225,10 +225,6 @@ function JamBtnAnim() {
 }
 
 
-
-
-
-
 // PEACE
 function initPeace() {
   return new Promise((resolve, reject) => {
