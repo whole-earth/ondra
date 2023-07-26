@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   youAre__setFolderPosition();
   processTabsAnim();
+  JamBtnAnim();
 });
 
 window.addEventListener("resize", function () {
