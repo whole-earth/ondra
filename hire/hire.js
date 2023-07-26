@@ -1,6 +1,23 @@
-document.addEventListener("DOMContentLoaded", youAre__setFolderPosition);
-window.addEventListener("resize", youAre__setFolderPosition);
+document.addEventListener("DOMContentLoaded", function () {
+  youAre__setFolderPosition();
+  processTabsAnim();
+});
+
+window.addEventListener("resize", function () {
+  console.log("resized");
+  youAre__setFolderPosition;
+  renderGrid("color-grid_cdj");
+  renderGrid("color-grid_peace");
+});
+
 window.addEventListener("scroll", youAre__toggleScroll);
+
+
+
+
+
+
+
 
 const youAreContainer = document.querySelector(".folder-container");
 const youAreFolder = document.querySelectorAll(".folder");
@@ -51,6 +68,12 @@ function youAre__toggleScroll() {
   }
 }
 
+
+
+
+
+
+
 // 07.15 'Beginner's Mind' Animation
 const beginner = document.querySelector("#beginner");
 const circle = document.querySelector(".beginner");
@@ -98,12 +121,108 @@ beginner.addEventListener("mouseleave", function () {
 
 
 
+// "My Process" Section
+function processTabsAnim() {
+  const processDropdowns = document.querySelectorAll('.process-dropdown');
+  const pHeights = [];
 
+  processDropdowns.forEach((dropdown) => {
+    const processPWrap = dropdown.querySelector('.process-p-wrap');
+    pHeights.push(processPWrap.clientHeight);
 
+    // REMOVE BEFORE GITHUB PUSH
+    processPWrap.classList.add('collapsed');
 
+    dropdown.addEventListener('click', function (event) {
+      const isAlreadyOpen = processPWrap.clientHeight !== 0;
 
+      // If the clicked dropdown is already open, just collapse it and return
+      if (isAlreadyOpen) {
+        processPWrap.removeAttribute('style');
+        const carat = dropdown.querySelector('.process-carat');
+        if (carat) {
+          carat.classList.remove('carat-expanded');
+        }
+        return;
+      }
 
+      processDropdowns.forEach((dropdown) => {
+        dropdown.removeAttribute('style');
+      });
 
+      // Collapse all text descriptions
+      document.querySelectorAll('.process-p-wrap').forEach((p) => {
+        p.removeAttribute('style');
+      });
+
+      // Revert all carats
+      document.querySelectorAll('.process-carat').forEach((carat) => {
+        carat.classList.remove('carat-expanded');
+      });
+
+      // Get the index of the clicked dropdown
+      const index = Array.from(processDropdowns).indexOf(dropdown);
+
+      // Expand corresponding text description by setting its height
+      const p = dropdown.querySelector('.process-p-wrap');
+      if (p) {
+        p.style.height = pHeights[index] + 'px';
+      }
+
+      const carat = dropdown.querySelector('.process-carat');
+      if (carat) {
+        carat.classList.add('carat-expanded');
+      }
+
+      dropdown.style.borderRadius = '2.6rem';
+    });
+  });
+
+}
+
+// Jam Button Lettering
+function JamBtnAnim() {
+  const jamLink = document.querySelector('.jam-link');
+  const jamWord = document.querySelector('.jam-word');
+  let intervalId;
+  let currentMCount = 0;
+  const maxMCount = 6;
+  const removeInterval = 10; // ms
+  const addInterval = 40; // ms
+
+  function addM() {
+    if (currentMCount < maxMCount) {
+      jamWord.textContent += 'm';
+      currentMCount++;
+    } else {
+      clearInterval(intervalId);
+    }
+  }
+
+  function removeM() {
+    if (currentMCount > 0) {
+      jamWord.textContent = jamWord.textContent.slice(0, -1);
+      currentMCount--;
+    } else {
+      clearInterval(intervalId);
+    }
+  }
+
+  jamLink.addEventListener('mouseenter', function () {
+    intervalId = setInterval(addM, addInterval);
+  });
+
+  jamLink.addEventListener('mouseleave', function () {
+    clearInterval(intervalId);
+    intervalId = setInterval(function () {
+      if (jamWord.textContent === "Jam") {
+        clearInterval(intervalId);
+      } else {
+        removeM();
+      }
+    }, removeInterval);
+  });
+}
 
 
 
@@ -111,7 +230,8 @@ beginner.addEventListener("mouseleave", function () {
 
 
 // PEACE
-document.addEventListener("DOMContentLoaded", (event) => {
+function initPeace() {
+  return new Promise((resolve, reject) => {
   const peaceGrid = document.querySelector(".peace-grid");
   const peaceNumCells = 24;
   const peaceCells = [];
@@ -178,98 +298,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     renderGrid();
   }
 
-  // Example initial configuration
-  const initialCoordinates = [
-    [2, 9],
-    [2, 10],
-    [3, 8],
-    [3, 11],
-    [3, 15],
-    [3, 16],
-    [3, 17],
-    [4, 8],
-    [4, 11],
-    [4, 14],
-    [4, 15],
-    [4, 18],
-    [5, 9],
-    [5, 12],
-    [5, 14],
-    [5, 17],
-    [6, 9],
-    [6, 12],
-    [6, 14],
-    [6, 17],
-    [7, 9],
-    [7, 12],
-    [7, 14],
-    [7, 17],
-    [8, 8],
-    [8, 9],
-    [8, 12],
-    [8, 14],
-    [8, 17],
-    [9, 7],
-    [9, 10],
-    [9, 12],
-    [9, 14],
-    [9, 17],
-    [10, 5],
-    [10, 6],
-    [10, 7],
-    [10, 10],
-    [10, 13],
-    [10, 16],
-    [11, 4],
-    [11, 7],
-    [11, 10],
-    [11, 13],
-    [11, 14],
-    [12, 4],
-    [12, 9],
-    [12, 10],
-    [12, 15],
-    [13, 4],
-    [13, 6],
-    [13, 10],
-    [13, 13],
-    [13, 14],
-    [13, 15],
-    [13, 16],
-    [13, 17],
-    [14, 4],
-    [14, 7],
-    [14, 10],
-    [14, 12],
-    [14, 18],
-    [15, 5],
-    [15, 7],
-    [15, 8],
-    [15, 9],
-    [15, 12],
-    [15, 19],
-    [16, 6],
-    [16, 13],
-    [16, 14],
-    [16, 15],
-    [16, 16],
-    [16, 19],
-    [17, 5],
-    [17, 14],
-    [17, 19],
-    [18, 5],
-    [18, 13],
-    [18, 19],
-    [19, 5],
-    [19, 18],
-    [20, 6],
-    [20, 16],
-    [20, 17],
-    [21, 7],
-    [21, 16],
-    [22, 7],
-    [22, 16]
-  ];
+  const initialCoordinates = [[2, 9], [2, 10], [3, 8], [3, 11], [3, 15], [3, 16], [3, 17], [4, 8], [4, 11], [4, 14], [4, 15], [4, 18], [5, 9], [5, 12], [5, 14], [5, 17], [6, 9], [6, 12], [6, 14], [6, 17], [7, 9], [7, 12], [7, 14], [7, 17], [8, 8], [8, 9], [8, 12], [8, 14], [8, 17], [9, 7], [9, 10], [9, 12], [9, 14], [9, 17], [10, 5], [10, 6], [10, 7], [10, 10], [10, 13], [10, 16], [11, 4], [11, 7], [11, 10], [11, 13], [11, 14], [12, 4], [12, 9], [12, 10], [12, 15], [13, 4], [13, 6], [13, 10], [13, 13], [13, 14], [13, 15], [13, 16], [13, 17], [14, 4], [14, 7], [14, 10], [14, 12], [14, 18], [15, 5], [15, 7], [15, 8], [15, 9], [15, 12], [15, 19], [16, 6], [16, 13], [16, 14], [16, 15], [16, 16], [16, 19], [17, 5], [17, 14], [17, 19], [18, 5], [18, 13], [18, 19], [19, 5], [19, 18], [20, 6], [20, 16], [20, 17], [21, 7], [21, 16], [22, 7], [22, 16]];
 
   setInitialConfiguration(initialCoordinates);
 
@@ -281,13 +310,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
     setInitialConfiguration(initialCoordinates);
   });
 
-});
+  resolve();
+  });
 
-
-
+}
 
 // CDJ
-document.addEventListener("DOMContentLoaded", (event) => {
+function initCDJ() {
+  return new Promise((resolve, reject) => {
   const cdjGrid = document.querySelector(".cdj-grid");
   const cdjNumCells = 29;
   const cdjNumRows = 29;
@@ -368,122 +398,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
   document.querySelector(".cdj-reset").addEventListener("click", function () {
     setInitialConfiguration(initialCoordinates);
   });
-});
 
+  resolve();
+  });
+}
 
-
-
-
-
-
-
-
-// "My Process" Section
-document.addEventListener("DOMContentLoaded", function () {
-  const processDropdowns = document.querySelectorAll('.process-dropdown');
-  const pHeights = [];
-
-  processDropdowns.forEach((dropdown) => {
-    const processPWrap = dropdown.querySelector('.process-p-wrap');
-    pHeights.push(processPWrap.clientHeight);
-
-    // REMOVE BEFORE GITHUB PUSH
-    processPWrap.classList.add('collapsed');
-
-    dropdown.addEventListener('click', function (event) {
-      const isAlreadyOpen = processPWrap.clientHeight !== 0;
-
-      // If the clicked dropdown is already open, just collapse it and return
-      if (isAlreadyOpen) {
-        processPWrap.removeAttribute('style');
-        const carat = dropdown.querySelector('.process-carat');
-        if (carat) {
-          carat.classList.remove('carat-expanded');
-        }
-        return;
-      }
-
-      processDropdowns.forEach((dropdown) => {
-        dropdown.removeAttribute('style');
-      });
-
-      // Collapse all text descriptions
-      document.querySelectorAll('.process-p-wrap').forEach((p) => {
-        p.removeAttribute('style');
-      });
-
-      // Revert all carats
-      document.querySelectorAll('.process-carat').forEach((carat) => {
-        carat.classList.remove('carat-expanded');
-      });
-
-      // Get the index of the clicked dropdown
-      const index = Array.from(processDropdowns).indexOf(dropdown);
-
-      // Expand corresponding text description by setting its height
-      const p = dropdown.querySelector('.process-p-wrap');
-      if (p) {
-        p.style.height = pHeights[index] + 'px';
-      }
-
-      const carat = dropdown.querySelector('.process-carat');
-      if (carat) {
-        carat.classList.add('carat-expanded');
-      }
-
-      dropdown.style.borderRadius = '2.6rem';
+document.addEventListener('DOMContentLoaded', () => {
+  Promise.all([initPeace(), initCDJ()])
+    .then(() => {
+      renderGrid("color-grid_cdj");
+      renderGrid("color-grid_peace");
+    })
+    .catch((error) => {
+      // Handle errors that might occur in any of the functions
+      console.error(error);
     });
-  });
 });
 
-// "JAM" button
-document.addEventListener("DOMContentLoaded", function () {
-  const jamLink = document.querySelector('.jam-link');
-  const jamWord = document.querySelector('.jam-word');
-  let intervalId;
-  let currentMCount = 0;
-  const maxMCount = 6;
-  const removeInterval = 10; // ms
-  const addInterval = 40; // ms
-
-  function addM() {
-    if (currentMCount < maxMCount) {
-      jamWord.textContent += 'm';
-      currentMCount++;
-    } else {
-      clearInterval(intervalId);
-    }
-  }
-
-  function removeM() {
-    if (currentMCount > 0) {
-      jamWord.textContent = jamWord.textContent.slice(0, -1);
-      currentMCount--;
-    } else {
-      clearInterval(intervalId);
-    }
-  }
-
-  jamLink.addEventListener('mouseenter', function () {
-    intervalId = setInterval(addM, addInterval);
-  });
-
-  jamLink.addEventListener('mouseleave', function () {
-    clearInterval(intervalId);
-    intervalId = setInterval(function () {
-      if (jamWord.textContent === "Jam") {
-        clearInterval(intervalId);
-      } else {
-        removeM();
-      }
-    }, removeInterval);
-  });
-});
-
-
-
-
-// RIPPLE ANIMATION
+// RIPPLE ANIMATION helpers
 
 function getGridSize(gridId) {
   const columns = Math.floor(document.getElementById(gridId).offsetWidth / 14);
@@ -510,6 +442,7 @@ const colors = [
   "#a2eaba",
   "#a2ead9"
 ];
+
 function randomColor() {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
@@ -537,14 +470,3 @@ function renderGrid(gridId) {
 
   gridContainer.innerHTML = gridHTML;
 }
-
-function initializeGrid(gridId) {
-  renderGrid(gridId);
-  window.addEventListener("resize", () => renderGrid(gridId));
-}
-
-// Initialize both grids after CDJ and Peace animations are rendered
-document.addEventListener("DOMContentLoaded", () => {
-  initializeGrid("color-grid_cdj");
-  initializeGrid("color-grid_peace");
-});
