@@ -76,3 +76,24 @@ function smoothen(p0, p1, p2, p3) {
 function isMobile() {
   return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 }
+
+window.addEventListener('load', function () {
+  const element = document.querySelector('.cursor-anim_notif');
+  let timeoutID;
+
+  const hideElement = () => {
+    element.style.top = '-4rem';
+    setTimeout(() => {
+      element.remove();
+    }, 800);
+  };
+
+  // Click event listener for the element and setTimeout combined
+  element.addEventListener('click', () => {
+    hideElement();
+    clearTimeout(timeoutID);
+  });
+
+  // setTimeout to hide the element after 3 seconds
+  timeoutID = setTimeout(hideElement, 3000);
+});

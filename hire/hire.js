@@ -1,32 +1,10 @@
-document.addEventListener('DOMContentLoaded', youAre__setFolderPosition);
-window.addEventListener('resize', youAre__setFolderPosition);
-
+document.addEventListener("DOMContentLoaded", youAre__setFolderPosition);
+window.addEventListener("resize", youAre__setFolderPosition);
 window.addEventListener("scroll", youAre__toggleScroll);
-
-window.addEventListener('load', function () {
-  const element = document.querySelector('.cursor-anim_notif');
-  let timeoutID;
-
-  const hideElement = () => {
-    element.style.top = '-4rem';
-    setTimeout(() => {
-      element.remove();
-    }, 800);
-  };
-
-  // Click event listener for the element and setTimeout combined
-  element.addEventListener('click', () => {
-    hideElement();
-    clearTimeout(timeoutID);
-  });
-
-  // setTimeout to hide the element after 3 seconds
-  timeoutID = setTimeout(hideElement, 3000);
-});
 
 const youAreContainer = document.querySelector(".folder-container");
 const youAreFolder = document.querySelectorAll(".folder");
-const youAreP = document.querySelectorAll('.folder-p');
+const youAreP = document.querySelectorAll(".folder-p");
 
 function youAre__setFolderPosition() {
 
@@ -117,7 +95,23 @@ beginner.addEventListener("mouseleave", function () {
 
 });
 
-window.addEventListener("DOMContentLoaded", (event) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PEACE
+document.addEventListener("DOMContentLoaded", (event) => {
   const peaceGrid = document.querySelector(".peace-grid");
   const peaceNumCells = 24;
   const peaceCells = [];
@@ -289,7 +283,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 });
 
-window.addEventListener("DOMContentLoaded", (event) => {
+
+
+
+// CDJ
+document.addEventListener("DOMContentLoaded", (event) => {
   const cdjGrid = document.querySelector(".cdj-grid");
   const cdjNumCells = 29;
   const cdjNumRows = 29;
@@ -309,7 +307,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
-  // Render the grid
   function renderGrid() {
     for (let i = 0; i < cdjNumRows; i++) {
       for (let j = 0; j < cdjNumCells; j++) {
@@ -373,7 +370,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+
+
+
+
+
+
+
+
+// "My Process" Section
+document.addEventListener("DOMContentLoaded", function () {
   const processDropdowns = document.querySelectorAll('.process-dropdown');
   const pHeights = [];
 
@@ -430,6 +436,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// "JAM" button
 document.addEventListener("DOMContentLoaded", function () {
   const jamLink = document.querySelector('.jam-link');
   const jamWord = document.querySelector('.jam-word');
@@ -471,4 +478,73 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, removeInterval);
   });
+});
+
+
+
+
+// RIPPLE ANIMATION
+
+function getGridSize(gridId) {
+  const columns = Math.floor(document.getElementById(gridId).offsetWidth / 14);
+  const rows = Math.floor(document.getElementById(gridId).offsetHeight / 14);
+
+  return { columns, rows };
+}
+
+// Replace random colors to match scheme
+const colors = [
+  "#b2f2ac",
+  "#fea3a4",
+  "#a3b9fe",
+  "#a8f19f",
+  "#beb3f5",
+  "#f2dc81",
+  "#caa9e8",
+  "#97eceb",
+  "#ecae97",
+  "#f3c57b",
+  "#878787",
+  "#87b8dd",
+  "#87dd92",
+  "#a2eaba",
+  "#a2ead9"
+];
+function randomColor() {
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
+
+function handleStagger(event, gridId) {
+  const { columns, rows } = getGridSize(gridId);
+  const el = event.target.id;
+  anime({
+    targets: `#${gridId} .color-coord`,
+    backgroundColor: randomColor(),
+    delay: anime.stagger(30, { grid: [columns, rows], from: el })
+  });
+}
+
+function renderGrid(gridId) {
+  const { columns, rows } = getGridSize(gridId);
+  const total = rows * columns;
+  const gridContainer = document.getElementById(gridId);
+
+  let gridHTML = "";
+  for (let i = 0; i < total; i++) {
+    gridHTML += `<div class="color-coord" id="${i}" onclick="handleStagger(event, '${gridId}')"></div>`;
+  }
+
+  gridContainer.innerHTML = gridHTML;
+}
+
+function initializeGrid(gridId) {
+  renderGrid(gridId);
+  window.addEventListener("resize", () => renderGrid(gridId));
+}
+
+// Initialize both grids after CDJ and Peace animations are rendered
+document.addEventListener("DOMContentLoaded", () => {
+  initializeGrid("color-grid_cdj");
+  initializeGrid("color-grid_peace");
 });

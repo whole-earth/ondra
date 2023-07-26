@@ -1,11 +1,11 @@
- function getGridSize(gridId) {
-    const columns = Math.floor(document.getElementById(gridId).offsetWidth / 14);
-    const rows = Math.floor(document.getElementById(gridId).offsetHeight / 14);
+function getGridSize(gridId) {
+  const columns = Math.floor(document.getElementById(gridId).offsetWidth / 14);
+  const rows = Math.floor(document.getElementById(gridId).offsetHeight / 14);
 
-    return { columns, rows };
-  }
-  
-  // Generate a random color
+  return { columns, rows };
+}
+
+// Replace random colors to match scheme
 const colors = [
   "#b2f2ac",
   "#fea3a4",
@@ -28,36 +28,36 @@ function randomColor() {
   return colors[randomIndex];
 }
 
-  function handleStagger(event, gridId) {
-    const { columns, rows } = getGridSize(gridId);
-    const el = event.target.id;
-    anime({
-      targets: `#${gridId} .color-coord`,
-      backgroundColor: randomColor(),
-      delay: anime.stagger(30, { grid: [columns, rows], from: el })
-    });
-  }
-
-  function renderGrid(gridId) {
-    const { columns, rows } = getGridSize(gridId);
-    const total = rows * columns;
-    const gridContainer = document.getElementById(gridId);
-
-    let gridHTML = "";
-    for (let i = 0; i < total; i++) {
-      gridHTML += `<div class="color-coord" id="${i}" onclick="handleStagger(event, '${gridId}')"></div>`;
-    }
-
-    gridContainer.innerHTML = gridHTML;
-  }
-
-  function initializeGrid(gridId) {
-    renderGrid(gridId);
-    window.addEventListener("resize", () => renderGrid(gridId));
-  }
-
-  // Initialize both grids when the DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", () => {
-    initializeGrid("color-grid_cdj");
-    initializeGrid("color-grid_peace");
+function handleStagger(event, gridId) {
+  const { columns, rows } = getGridSize(gridId);
+  const el = event.target.id;
+  anime({
+    targets: `#${gridId} .color-coord`,
+    backgroundColor: randomColor(),
+    delay: anime.stagger(30, { grid: [columns, rows], from: el })
   });
+}
+
+function renderGrid(gridId) {
+  const { columns, rows } = getGridSize(gridId);
+  const total = rows * columns;
+  const gridContainer = document.getElementById(gridId);
+
+  let gridHTML = "";
+  for (let i = 0; i < total; i++) {
+    gridHTML += `<div class="color-coord" id="${i}" onclick="handleStagger(event, '${gridId}')"></div>`;
+  }
+
+  gridContainer.innerHTML = gridHTML;
+}
+
+function initializeGrid(gridId) {
+  renderGrid(gridId);
+  window.addEventListener("resize", () => renderGrid(gridId));
+}
+
+// Initialize both grids when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+  initializeGrid("color-grid_cdj");
+  initializeGrid("color-grid_peace");
+});
