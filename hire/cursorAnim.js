@@ -47,14 +47,9 @@ if (isMobile()) {
     }
   }
 
-  function doubleClicked(event) {
-    if (event.target.classList.contains("ripplecanvas")) {
-      console.log("doubleClick inside .bits");
-      return;
-    } else {
-      toggleDrawing();
+  function doubleClicked() {
+    toggleDrawing();
   }
-}
 
   function toggleDrawing() {
     // Function to toggle drawing on double-click
