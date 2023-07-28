@@ -19,29 +19,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-let resizeTimer;
+let debounceTimerId = null;
+function debounceRenderGrid(gridType) {
+  clearTimeout(debounceTimerId);
+
+  debounceTimerId = setTimeout(() => {
+    renderGrid(gridType);
+    console.log('grids rendered');
+  }, 100);
+}
+
 window.addEventListener("resize", function () {
-  clearTimeout(resizeTimer);
   youAre__setFolderPosition();
 
   const ripples = document.querySelectorAll('.ripplecanvas');
-  resizeTimer = setTimeout(function () {
-    if (window.innerWidth >= 768) {
-      renderGrid("color-grid_cdj");
-      renderGrid("color-grid_peace");
-      console.log('rendered');
+  if (window.innerWidth >= 768) {
+    debounceRenderGrid("color-grid_cdj");
+    debounceRenderGrid("color-grid_peace");
 
-      ripples.forEach((canvas) => {
-        canvas.removeAttribute('style');
-      });
-
-    } else {
-      ripples.forEach((canvas) => {
-        canvas.style.display = "none";
-      });
-    }
-  }, 200);
+    ripples.forEach((canvas) => {
+      canvas.removeAttribute('style');
+    });
+  } else {
+    ripples.forEach((canvas) => {
+      canvas.style.display = "none";
+    });
+  }
 });
+
 
 window.addEventListener("scroll", youAre__toggleScroll);
 
