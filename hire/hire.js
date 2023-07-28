@@ -6,8 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.addEventListener("resize", function () {
   youAre__setFolderPosition;
-  renderGrid("color-grid_cdj");
-  renderGrid("color-grid_peace");
+
+  if (window.innerWidth >= 768) {
+    renderGrid("color-grid_cdj");
+    renderGrid("color-grid_peace");
+  }
+
 });
 
 window.addEventListener("scroll", youAre__toggleScroll);
@@ -25,7 +29,6 @@ function youAre__setFolderPosition() {
   if (window.innerWidth >= 768) {
     let folderRowHeight = document.querySelector('.folder-row').offsetHeight;
     let paddingValue = (window.innerHeight - folderRowHeight) + 'px';
-    // youAreContainer.style.paddingTop = paddingValue;
 
     youAreP.forEach(p => {
       p.style.opacity = '0';
@@ -398,8 +401,10 @@ function initCDJ() {
 document.addEventListener('DOMContentLoaded', () => {
   Promise.all([initPeace(), initCDJ()])
     .then(() => {
-      renderGrid("color-grid_cdj");
-      renderGrid("color-grid_peace");
+      if (window.innerWidth >= 768) {
+        renderGrid("color-grid_cdj");
+        renderGrid("color-grid_peace");
+      }
     })
     .catch((error) => {
       // Handle errors that might occur in any of the functions
