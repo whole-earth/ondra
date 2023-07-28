@@ -2,10 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   youAre__setFolderPosition();
   processTabsAnim();
   JamBtnAnim();
-});
 
-// BITS grid animations
-document.addEventListener('DOMContentLoaded', () => {
   Promise.all([initPeace(), initCDJ()])
     .then(() => {
       if (window.innerWidth >= 768) {
@@ -14,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
     .catch((error) => {
-      // Handle errors that might occur in any of the functions
       console.error(error);
     });
 });
@@ -98,13 +94,13 @@ function youAre__toggleScroll() {
   }
 }
 
-// 07.15 'Beginner's Mind' Animation
+// 'Beginner's Mind' anim (07.15.23)
 const beginner = document.querySelector("#beginner");
 const circle = document.querySelector(".beginner");
 const stem = document.querySelector(".stem");
 const leaves = document.querySelectorAll(".leaf-0, .leaf-1");
 
-let timeouts = []; // Store references to the setTimeout calls
+let timeouts = [];
 
 beginner.addEventListener("mouseenter", function () {
 
@@ -142,7 +138,7 @@ beginner.addEventListener("mouseleave", function () {
 
 });
 
-// "My Process" Section
+// "My Process" dropdown anims
 function processTabsAnim() {
   const processDropdowns = document.querySelectorAll('.process-dropdown');
   const pHeights = [];
@@ -151,13 +147,12 @@ function processTabsAnim() {
     const processPWrap = dropdown.querySelector('.process-p-wrap');
     pHeights.push(processPWrap.clientHeight);
 
-    // REMOVE BEFORE GITHUB PUSH
+    // Overwrites webflow
     processPWrap.classList.add('collapsed');
 
     dropdown.addEventListener('click', function (event) {
       const isAlreadyOpen = processPWrap.clientHeight !== 0;
 
-      // If the clicked dropdown is already open, just collapse it and return
       if (isAlreadyOpen) {
         processPWrap.removeAttribute('style');
         const carat = dropdown.querySelector('.process-carat');
@@ -171,12 +166,10 @@ function processTabsAnim() {
         dropdown.removeAttribute('style');
       });
 
-      // Collapse all text descriptions
       document.querySelectorAll('.process-p-wrap').forEach((p) => {
         p.removeAttribute('style');
       });
 
-      // Revert all carats
       document.querySelectorAll('.process-carat').forEach((carat) => {
         carat.classList.remove('carat-expanded');
       });
@@ -184,7 +177,6 @@ function processTabsAnim() {
       // Get the index of the clicked dropdown
       const index = Array.from(processDropdowns).indexOf(dropdown);
 
-      // Expand corresponding text description by setting its height
       const p = dropdown.querySelector('.process-p-wrap');
       if (p) {
         p.style.height = pHeights[index] + 'px';
@@ -201,15 +193,14 @@ function processTabsAnim() {
 
 }
 
-// Jam Button Lettering
 function JamBtnAnim() {
   const jamLink = document.querySelector('.jam-link');
   const jamWord = document.querySelector('.jam-word');
   let intervalId;
   let currentMCount = 0;
   const maxMCount = 6;
-  const removeInterval = 10; // ms
-  const addInterval = 40; // ms
+  const removeInterval = 10;
+  const addInterval = 40;
 
   function addM() {
     if (currentMCount < maxMCount) {
@@ -245,14 +236,13 @@ function JamBtnAnim() {
   });
 }
 
-// PEACE
+// Peace bitmap
 function initPeace() {
   return new Promise((resolve, reject) => {
     const peaceGrid = document.querySelector(".peace-grid");
     const peaceNumCells = 23;
     const peaceCells = [];
 
-    // Create the grid
     for (let i = 0; i < peaceNumCells; i++) {
       const row = document.createElement("div");
       row.classList.add("peace-row");
@@ -262,11 +252,10 @@ function initPeace() {
         const cell = document.createElement("div");
         cell.classList.add("peace-cell");
         row.appendChild(cell);
-        peaceCells[i][j] = false; // Set initial state as false (white)
+        peaceCells[i][j] = false;
       }
     }
 
-    // Render the grid
     function renderGrid() {
       for (let i = 0; i < peaceNumCells; i++) {
         for (let j = 0; j < peaceNumCells; j++) {
@@ -280,7 +269,6 @@ function initPeace() {
       }
     }
 
-    // Toggle cell state and update grid
     function toggleCellState(event) {
       const cell = event.target;
       const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(cell.parentNode);
@@ -290,20 +278,16 @@ function initPeace() {
       renderGrid();
     }
 
-    // Add click event listener to cells
     const cellsList = document.getElementsByClassName("peace-cell");
     for (const cell of cellsList) {
       cell.addEventListener("click", toggleCellState);
     }
 
-    // Function to set the initial configuration based on the coordinate system
     function setInitialConfiguration(coordinates) {
-      // Reset the grid to the initial state
       peaceCells.forEach((row, rowIndex) => {
         row.fill(false);
       });
 
-      // Update the cells based on the provided coordinates
       coordinates.forEach((coord) => {
         const [row, col] = coord;
         if (row >= 0 && row < peaceNumCells && col >= 0 && col < peaceNumCells) {
@@ -330,7 +314,7 @@ function initPeace() {
 
 }
 
-// CDJ
+// CDJ bitmap
 function initCDJ() {
   return new Promise((resolve, reject) => {
     const cdjGrid = document.querySelector(".cdj-grid");
@@ -338,17 +322,16 @@ function initCDJ() {
     const cdjNumRows = 25;
     const cdjCells = [];
 
-    // Create the grid
     for (let i = 0; i < cdjNumRows; i++) {
       const row = document.createElement("div");
       row.classList.add("cdj-row");
       cdjGrid.appendChild(row);
-      cdjCells[i] = []; // Initialize the cells array for each row
+      cdjCells[i] = [];
       for (let j = 0; j < cdjNumCells; j++) {
         const cell = document.createElement("div");
         cell.classList.add("cdj-cell");
         row.appendChild(cell);
-        cdjCells[i][j] = false; // Set initial state as false (white)
+        cdjCells[i][j] = false;
       }
     }
 
@@ -365,7 +348,6 @@ function initCDJ() {
       }
     }
 
-    // Toggle cell state and update grid
     function toggleCellState(event) {
       const cell = event.target;
       const rowIndex = Array.from(cell.parentNode.parentNode.children).indexOf(
@@ -377,20 +359,16 @@ function initCDJ() {
       renderGrid();
     }
 
-    // Add click event listener to cells
     const cellsList = document.getElementsByClassName("cdj-cell");
     for (const cell of cellsList) {
       cell.addEventListener("click", toggleCellState);
     }
 
-    // Function to set the initial configuration based on the coordinate system
     function setInitialConfiguration(coordinates) {
-      // Reset the grid to the initial state
       cdjCells.forEach((row, rowIndex) => {
         row.fill(false);
       });
 
-      // Update the cells based on the provided coordinates
       coordinates.forEach((coord) => {
         const [row, col] = coord;
         if (row >= 0 && row < cdjNumCells && col >= 0 && col < cdjNumCells) {
@@ -401,7 +379,6 @@ function initCDJ() {
       renderGrid();
     }
 
-    // Example initial configuration
     const initialCoordinates = [[1, 5], [1, 12], [1, 19], [2, 5], [2, 12], [2, 18], [2, 19], [3, 5], [3, 12], [3, 17], [3, 18], [3, 19], [3, 20], [3, 21], [3, 22], [3, 23], [3, 24], [3, 26], [4, 5], [4, 12], [4, 18], [4, 19], [5, 4], [5, 13], [5, 19], [5, 25], [6, 4], [6, 14], [6, 25], [6, 26], [7, 4], [7, 14], [7, 18], [7, 20], [7, 21], [7, 22], [7, 23], [7, 24], [7, 25], [7, 26], [7, 27], [8, 3], [8, 15], [8, 25], [8, 26], [9, 3], [9, 16], [9, 25], [10, 2], [10, 5], [10, 17], [11, 1], [11, 4], [11, 14], [11, 17], [12, 2], [12, 3], [12, 5], [12, 9], [12, 12], [12, 15], [12, 18], [13, 6], [13, 10], [13, 13], [13, 16], [13, 19], [14, 7], [14, 11], [14, 14], [14, 17], [14, 20], [15, 8], [15, 12], [15, 15], [15, 18], [15, 19], [16, 5], [16, 6], [16, 7], [16, 9], [16, 10], [16, 13], [16, 16], [16, 18], [16, 20], [16, 21], [16, 22], [17, 2], [17, 3], [17, 4], [17, 11], [17, 14], [17, 17], [17, 23], [17, 24], [18, 1], [18, 12], [18, 13], [18, 15], [18, 16], [18, 25], [18, 26], [19, 1], [19, 26], [20, 1], [20, 2], [20, 3], [20, 26], [21, 4], [21, 24], [21, 25], [22, 5], [22, 6], [22, 7], [22, 21], [22, 22], [22, 23], [23, 6], [23, 7], [23, 8], [23, 9], [23, 10], [23, 11], [23, 12], [23, 13], [23, 14], [23, 15], [23, 16], [23, 17], [23, 18], [23, 19], [23, 20]];
 
     setInitialConfiguration(initialCoordinates);
@@ -418,7 +395,7 @@ function initCDJ() {
   });
 }
 
-// RIPPLE ANIMATION helpers
+// rippleCanvas helpers (rest of script)
 function getGridSize(gridId) {
   const columns = Math.floor(document.getElementById(gridId).offsetWidth / 14);
   const rows = Math.floor(document.getElementById(gridId).offsetHeight / 14);
