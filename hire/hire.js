@@ -4,15 +4,33 @@ document.addEventListener("DOMContentLoaded", function () {
   JamBtnAnim();
 });
 
+let resizeTimer;
 window.addEventListener("resize", function () {
-  youAre__setFolderPosition;
 
-  if (window.innerWidth >= 768) {
-    renderGrid("color-grid_cdj");
-    renderGrid("color-grid_peace");
-  }
+  clearTimeout(resizeTimer);
 
+  youAre__setFolderPosition();
+
+  const ripples = document.querySelectorAll('.ripplecanvas');
+
+  resizeTimer = setTimeout(function () {
+    if (window.innerWidth >= 768) {
+      renderGrid("color-grid_cdj");
+      renderGrid("color-grid_peace");
+      console.log('rendered');
+
+      ripples.forEach((canvas) => {
+        canvas.removeAttribute('style');
+      });
+
+    } else {
+      ripples.forEach((canvas) => {
+        canvas.style.display = "none";
+      });
+    }
+  }, 500);
 });
+
 
 window.addEventListener("scroll", youAre__toggleScroll);
 
