@@ -4,15 +4,27 @@ document.addEventListener("DOMContentLoaded", function () {
   JamBtnAnim();
 });
 
+// BITS grid animations
+document.addEventListener('DOMContentLoaded', () => {
+  Promise.all([initPeace(), initCDJ()])
+    .then(() => {
+      if (window.innerWidth >= 768) {
+        renderGrid("color-grid_cdj");
+        renderGrid("color-grid_peace");
+      }
+    })
+    .catch((error) => {
+      // Handle errors that might occur in any of the functions
+      console.error(error);
+    });
+});
+
 let resizeTimer;
 window.addEventListener("resize", function () {
-
   clearTimeout(resizeTimer);
-
   youAre__setFolderPosition();
 
   const ripples = document.querySelectorAll('.ripplecanvas');
-
   resizeTimer = setTimeout(function () {
     if (window.innerWidth >= 768) {
       renderGrid("color-grid_cdj");
@@ -28,15 +40,10 @@ window.addEventListener("resize", function () {
         canvas.style.display = "none";
       });
     }
-  }, 500);
+  }, 200);
 });
 
-
 window.addEventListener("scroll", youAre__toggleScroll);
-
-
-
-
 
 const youAreContainer = document.querySelector(".folder-container");
 const youAreFolder = document.querySelectorAll(".folder");
@@ -86,12 +93,6 @@ function youAre__toggleScroll() {
   }
 }
 
-
-
-
-
-
-
 // 07.15 'Beginner's Mind' Animation
 const beginner = document.querySelector("#beginner");
 const circle = document.querySelector(".beginner");
@@ -135,9 +136,6 @@ beginner.addEventListener("mouseleave", function () {
   timeouts = [];
 
 });
-
-
-
 
 // "My Process" Section
 function processTabsAnim() {
@@ -241,7 +239,6 @@ function JamBtnAnim() {
     }, removeInterval);
   });
 }
-
 
 // PEACE
 function initPeace() {
@@ -416,22 +413,7 @@ function initCDJ() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  Promise.all([initPeace(), initCDJ()])
-    .then(() => {
-      if (window.innerWidth >= 768) {
-        renderGrid("color-grid_cdj");
-        renderGrid("color-grid_peace");
-      }
-    })
-    .catch((error) => {
-      // Handle errors that might occur in any of the functions
-      console.error(error);
-    });
-});
-
 // RIPPLE ANIMATION helpers
-
 function getGridSize(gridId) {
   const columns = Math.floor(document.getElementById(gridId).offsetWidth / 14);
   const rows = Math.floor(document.getElementById(gridId).offsetHeight / 14);
