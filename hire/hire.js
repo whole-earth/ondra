@@ -465,12 +465,12 @@ function renderGrid(gridId) {
 // animate grid on scroll
 function scrollAnimatesGrid() {
   const grid = document.querySelector('.cdj');
+  const cdjCoord = window.innerWidth > 996 ? document.getElementById("1001") : document.getElementById("#1500");
+  const peaceCoord = document.querySelector('.peace > .ripplecanvas:nth-child(1000)'); // arbitrary coordinate: for sake of colorizing
   const rect = grid.getBoundingClientRect();
   const triggerPoint = window.innerHeight || document.documentElement.clientHeight;
 
   if (rect.bottom <= triggerPoint) {
-    const cdjCoord = window.innerWidth > 996 ? grid.querySelector("#1001") : grid.querySelector("#1500");
-    const peaceCoord = peace.querySelector("#1001"); // arbitrary coordinate: for sake of colorizing
     cdjCoord.click();
     peaceCoord.click();
     window.removeEventListener('scroll', scrollAnimatesGrid);
