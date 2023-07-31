@@ -275,7 +275,7 @@ function initPeace() {
           if (window.innerWidth >= 768) {
             cell.style.borderColor = cellState ? "black" : "#c7c7c736";
           } else {
-            cell.style.borderColor = cellState ? "black" : "##ccc";
+            cell.style.borderColor = cellState ? "black" : "#ccc";
           }
 
         }
@@ -360,7 +360,7 @@ function initCDJ() {
             if (window.innerWidth >= 768) {
               cell.style.borderColor = cellState ? "black" : "#c7c7c736";
             } else {
-              cell.style.borderColor = cellState ? "black" : "##ccc";
+              cell.style.borderColor = cellState ? "black" : "#ccc";
             }
           }
         }
