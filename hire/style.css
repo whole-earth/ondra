@@ -137,7 +137,6 @@
 #color-grid_peace .color-coord {
   min-width: 100%;
   min-height: 100%;
-  cursor: pointer;
   position: relative;
   outline: 0.5px solid #cccccc;
 }
