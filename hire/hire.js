@@ -356,11 +356,16 @@ function initCDJ() {
             const cell = cdjGrid.children[i].children[j];
 
             cell.style.backgroundColor = cellState ? "black" : "inherit";
+
+            if (window.innerWidth >= 768) {
               cell.style.borderColor = cellState ? "black" : "#c7c7c736";
+            } else {
+              cell.style.borderColor = cellState ? "black" : "##ccc";
+            }
           }
         }
-          resolve();
-        });
+        resolve();
+      });
     }
 
     function toggleCellState(event) {
@@ -468,7 +473,7 @@ function renderGrid(gridId) {
 // animate grid on scroll
 function scrollAnimatesGrid() {
   const grid = document.querySelector('.cdj');
-  const cdjCoord = window.innerWidth > 996 ? document.getElementById("1001") : document.getElementById("#1500");
+  const cdjCoord = window.innerWidth > 996 ? document.getElementById("1001") : document.getElementById("1500");
   const peaceCoord = document.querySelector('.peace .ripplecanvas')?.childNodes[51] || null;
   const rect = grid.getBoundingClientRect();
   const triggerPoint = window.innerHeight || document.documentElement.clientHeight;
