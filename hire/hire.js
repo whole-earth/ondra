@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
   Promise.all([initPeace(), initCDJ()])
     .then(() => {
       if (window.innerWidth >= 768) {
-        // Wait for both renderGrid calls to complete before adding the scroll event listener
         Promise.all([renderGrid("color-grid_cdj"), renderGrid("color-grid_peace")])
           .then(() => {
             console.log('grids rendered');
@@ -272,7 +271,7 @@ function initPeace() {
           const cell = peaceGrid.children[i].children[j];
 
           cell.style.backgroundColor = cellState ? "black" : "inherit";
-          cell.style.borderColor = cellState ? "black" : "#cccccc";
+          cell.style.outlineColor = cellState ? "black" : "#c7c7c75c";
 
         }
       }
@@ -352,7 +351,7 @@ function initCDJ() {
             const cell = cdjGrid.children[i].children[j];
 
             cell.style.backgroundColor = cellState ? "black" : "inherit";
-            cell.style.borderColor = cellState ? "black" : "#cccccc";
+            cell.style.outlineColor = cellState ? "black" : "#c7c7c75c";
 
           }
         }
