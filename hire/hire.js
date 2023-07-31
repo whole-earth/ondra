@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   youAre__setFolderPosition();
   processTabsAnim();
   JamBtnAnim();
+  getMonthAvail();
 
   Promise.all([initPeace(), initCDJ()])
     .then(() => {
@@ -482,4 +483,22 @@ function scrollAnimatesGrid() {
     peaceCoord.click();
     window.removeEventListener('scroll', scrollAnimatesGrid);
   }
+}
+
+function getMonthAvail() {
+  const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  
+  let nextMonth = currentMonth + 1;
+  let nextYear = currentYear;
+  
+  if (nextMonth === 12) {
+    nextMonth = 0;
+    nextYear += 1;
+  }
+
+  document.getElementById('availDate').innerHTML = `${months[nextMonth]} ${nextYear}`;
 }
