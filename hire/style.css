@@ -50,6 +50,10 @@
   display: flex;
 }
 
+.peace-row {
+  display: flex;
+}
+
 .cdj-cell {
   width: 14px;
   height: 14px;
@@ -57,15 +61,17 @@
   cursor: crosshair;
 }
 
-.peace-row {
-  display: flex;
-}
-
 .peace-cell {
   width: 14px;
   height: 14px;
   outline: 0.5px solid #c7c7c736;
   cursor: crosshair;
+}
+
+@media (max-width: 767px) {
+  .cdj-cell, .peace-cell {
+    outline-color: #ccc;
+  }
 }
 
 .peace-reset {
