@@ -6,24 +6,22 @@ document.addEventListener("DOMContentLoaded", function () {
   Promise.all([initPeace(), initCDJ()])
     .then(() => {
       if (window.innerWidth >= 768) {
-        renderGrid("color-grid_cdj");
-        renderGrid("color-grid_peace");
+        // Wait for both renderGrid calls to complete before adding the scroll event listener
+        Promise.all([renderGrid("color-grid_cdj"), renderGrid("color-grid_peace")])
+          .then(() => {
+            console.log('grids rendered');
+            window.addEventListener('scroll', scrollAnimatesGrid);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       }
     })
     .catch((error) => {
       console.error(error);
     });
+
 });
-
-let debounceTimerId = null;
-function debounceRenderGrid(gridType) {
-  clearTimeout(debounceTimerId);
-
-  debounceTimerId = setTimeout(() => {
-    renderGrid(gridType);
-    console.log('grids rendered');
-  }, 100);
-}
 
 window.addEventListener("resize", function () {
   youAre__setFolderPosition();
@@ -43,8 +41,9 @@ window.addEventListener("resize", function () {
   }
 });
 
-
 window.addEventListener("scroll", youAre__toggleScroll);
+
+// the rest is jamming
 
 const youAreContainer = document.querySelector(".folder-container");
 const youAreFolder = document.querySelectorAll(".folder");
@@ -236,6 +235,16 @@ function JamBtnAnim() {
   });
 }
 
+let debounceTimerId = null;
+function debounceRenderGrid(gridType) {
+  clearTimeout(debounceTimerId);
+
+  debounceTimerId = setTimeout(() => {
+    renderGrid(gridType);
+    console.log('grids rendered');
+  }, 100);
+}
+
 // Peace bitmap
 function initPeace() {
   return new Promise((resolve, reject) => {
@@ -336,16 +345,19 @@ function initCDJ() {
     }
 
     function renderGrid() {
-      for (let i = 0; i < cdjNumRows; i++) {
-        for (let j = 0; j < cdjNumCells; j++) {
-          const cellState = cdjCells[i][j];
-          const cell = cdjGrid.children[i].children[j];
+      return new Promise((resolve) => {
+        for (let i = 0; i < cdjNumRows; i++) {
+          for (let j = 0; j < cdjNumCells; j++) {
+            const cellState = cdjCells[i][j];
+            const cell = cdjGrid.children[i].children[j];
 
-          cell.style.backgroundColor = cellState ? "black" : "inherit";
-          cell.style.borderColor = cellState ? "black" : "#cccccc";
+            cell.style.backgroundColor = cellState ? "black" : "inherit";
+            cell.style.borderColor = cellState ? "black" : "#cccccc";
 
+          }
         }
-      }
+        resolve();
+      });
     }
 
     function toggleCellState(event) {
@@ -448,4 +460,17 @@ function renderGrid(gridId) {
   }
 
   gridContainer.innerHTML = gridHTML;
+}
+
+// animate grid on scroll
+function scrollAnimatesGrid() {
+  const element = document.querySelector('.cdj');
+  const rect = element.getBoundingClientRect();
+  const triggerPoint = window.innerHeight || document.documentElement.clientHeight;
+
+  if (rect.bottom <= triggerPoint) {
+    const childElement = window.innerWidth > 996 ? document.getElementById("1001") : document.getElementById("1500");
+    childElement.click();
+    window.removeEventListener('scroll', scrollAnimatesGrid);
+  }
 }
