@@ -466,7 +466,7 @@ function renderGrid(gridId) {
 function scrollAnimatesGrid() {
   const grid = document.querySelector('.cdj');
   const cdjCoord = window.innerWidth > 996 ? document.getElementById("1001") : document.getElementById("#1500");
-  const peaceCoord = document.querySelector('.peace > .ripplecanvas:nth-child(1000)'); // arbitrary coordinate: for sake of colorizing
+  const peaceCoord = document.querySelector('.peace .ripplecanvas')?.childNodes[51] || null;
   const rect = grid.getBoundingClientRect();
   const triggerPoint = window.innerHeight || document.documentElement.clientHeight;
 
