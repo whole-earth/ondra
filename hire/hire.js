@@ -271,7 +271,7 @@ function initPeace() {
           const cell = peaceGrid.children[i].children[j];
 
           cell.style.backgroundColor = cellState ? "black" : "inherit";
-          cell.style.outlineColor = cellState ? "black" : "#c7c7c75c";
+          cell.style.outlineColor = cellState ? "black" : "#c7c7c736";
 
         }
       }
@@ -351,7 +351,7 @@ function initCDJ() {
             const cell = cdjGrid.children[i].children[j];
 
             cell.style.backgroundColor = cellState ? "black" : "inherit";
-            cell.style.outlineColor = cellState ? "black" : "#c7c7c75c";
+            cell.style.outlineColor = cellState ? "black" : "#c7c7c736";
 
           }
         }
