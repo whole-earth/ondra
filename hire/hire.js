@@ -271,7 +271,11 @@ function initPeace() {
           const cell = peaceGrid.children[i].children[j];
 
           cell.style.backgroundColor = cellState ? "black" : "inherit";
-          cell.style.borderColor = cellState ? "black" : "#c7c7c736";
+          if (window.innerWidth >= 768) {
+            cell.style.borderColor = cellState ? "black" : "#c7c7c736";
+          } else {
+            cell.style.borderColor = cellState ? "black" : "#0000001f";
+          }
 
         }
       }
@@ -352,8 +356,11 @@ function initCDJ() {
 
             cell.style.backgroundColor = cellState ? "black" : "inherit";
 
-            cell.style.borderColor = cellState ? "black" : "#c7c7c736";
-            cell.style.borderColor = cellState ? "black" : "#ccc";
+            if (window.innerWidth >= 768) {
+              cell.style.borderColor = cellState ? "black" : "#c7c7c736";
+            } else {
+              cell.style.borderColor = cellState ? "black" : "#0000001f";
+            }
           }
         }
         resolve();
