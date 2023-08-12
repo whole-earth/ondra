@@ -273,9 +273,9 @@ function initPeace() {
 
           cell.style.backgroundColor = cellState ? "black" : "inherit";
           if (window.innerWidth >= 768) {
-            cell.style.borderColor = cellState ? "black" : "#c7c7c736";
+            cell.style.borderColor = cellState ? "black" : "#cccccc45";
           } else {
-            cell.style.borderColor = cellState ? "black" : "#0000001f";
+            cell.style.borderColor = cellState ? "black" : "#cccccc45";
           }
 
         }
@@ -358,9 +358,9 @@ function initCDJ() {
             cell.style.backgroundColor = cellState ? "black" : "inherit";
 
             if (window.innerWidth >= 768) {
-              cell.style.borderColor = cellState ? "black" : "#c7c7c736";
+              cell.style.borderColor = cellState ? "black" : "#cccccc45";
             } else {
-              cell.style.borderColor = cellState ? "black" : "#0000001f";
+              cell.style.borderColor = cellState ? "black" : "#cccccc45";
             }
           }
         }
