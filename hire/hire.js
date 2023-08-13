@@ -473,7 +473,7 @@ function renderGrid(gridId) {
 // animate grid on scroll
 function scrollAnimatesGrid() {
   const grid = document.querySelector('.cdj');
-  const cdjCoord = window.innerWidth > 996 ? document.getElementById("1001") : document.getElementById("1500");
+  const cdjCoord = window.innerWidth > 996 ? document.getElementById("897") : document.getElementById("1500");
   const peaceCoord = document.querySelector('.peace .ripplecanvas')?.childNodes[51] || null;
   const rect = grid.getBoundingClientRect();
   const triggerPoint = window.innerHeight || document.documentElement.clientHeight;
