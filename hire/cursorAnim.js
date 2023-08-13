@@ -17,7 +17,7 @@ if (isMobile()) {
     canvas.parent('cursor-anim');
     colorMode(HSB);
     noFill();
-    strokeWeight(6);
+    strokeWeight(8);
   }
 
   function draw() {
