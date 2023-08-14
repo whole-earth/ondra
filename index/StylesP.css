@@ -100,8 +100,8 @@ html::-webkit-scrollbar {
   width: 0.1px;
   height: 0.1px;
   border-radius: 50%;
-  background-color: #77C4FF;
-  box-shadow: 0 0 40px 20px #77C4FF, 0 0 100px 50px #77C4FF;
+  background-color: #65b3ee;
+  box-shadow: 0 0 40px 20px #65b3ee, 0 0 100px 50px #65b3ee;
   animation: hire_spin 16s linear infinite;
   -webkit-animation: hire_spin 16s linear infinite;
 }
