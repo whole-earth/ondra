@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   youAre__setFolderPosition();
   processTabsAnim();
-  // JamBtnAnim();
+  imagineAnim();
   getMonthAvail();
 
   Promise.all([initPeace(), initCDJ()])
@@ -137,6 +137,23 @@ beginner.addEventListener("mouseleave", function () {
 
 });
 
+// "Imagine" animation
+function imagineAnim() {
+  const imagineWrap = document.getElementById("imagineWrap");
+  const imagineFlat = document.querySelector(".imagine-flat");
+  const imagineAnim = document.querySelector(".imagine-anim");
+
+  imagineWrap.addEventListener("mouseenter", function () {
+    imagineFlat.style.opacity = 0;
+    imagineAnim.style.opacity = 1;
+  });
+
+  imagineWrap.addEventListener("mouseleave", function () {
+    imagineFlat.style.opacity = "";
+    imagineAnim.style.opacity = "";
+  });
+}
+
 // "My Process" dropdown anims
 function processTabsAnim() {
   const processDropdowns = document.querySelectorAll('.process-dropdown');
@@ -191,53 +208,6 @@ function processTabsAnim() {
   });
 
 }
-
-/*
-
-function JamBtnAnim() {
-  const jamLink = document.querySelector('.jam-link');
-  const jamWord = document.querySelector('.jam-word');
-  let intervalId;
-  let currentMCount = 0;
-  const maxMCount = 6;
-  const removeInterval = 10;
-  const addInterval = 40;
-
-  function addM() {
-    if (currentMCount < maxMCount) {
-      jamWord.textContent += 'm';
-      currentMCount++;
-    } else {
-      clearInterval(intervalId);
-    }
-  }
-
-  function removeM() {
-    if (currentMCount > 0) {
-      jamWord.textContent = jamWord.textContent.slice(0, -1);
-      currentMCount--;
-    } else {
-      clearInterval(intervalId);
-    }
-  }
-
-  jamLink.addEventListener('mouseenter', function () {
-    intervalId = setInterval(addM, addInterval);
-  });
-
-  jamLink.addEventListener('mouseleave', function () {
-    clearInterval(intervalId);
-    intervalId = setInterval(function () {
-      if (jamWord.textContent === "Jam") {
-        clearInterval(intervalId);
-      } else {
-        removeM();
-      }
-    }, removeInterval);
-  });
-}
-
-*/
 
 let debounceTimerId = null;
 function debounceRenderGrid(gridType) {
@@ -490,15 +460,15 @@ function scrollAnimatesGrid() {
 }
 
 function getMonthAvail() {
-  const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
-  
+
   let nextMonth = currentMonth + 1;
   let nextYear = currentYear;
-  
+
   if (nextMonth === 12) {
     nextMonth = 0;
     nextYear += 1;
