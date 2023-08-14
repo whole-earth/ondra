@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   youAre__setFolderPosition();
   processTabsAnim();
-  JamBtnAnim();
+  // JamBtnAnim();
   getMonthAvail();
 
   Promise.all([initPeace(), initCDJ()])
@@ -192,6 +192,8 @@ function processTabsAnim() {
 
 }
 
+/*
+
 function JamBtnAnim() {
   const jamLink = document.querySelector('.jam-link');
   const jamWord = document.querySelector('.jam-word');
@@ -234,6 +236,8 @@ function JamBtnAnim() {
     }, removeInterval);
   });
 }
+
+*/
 
 let debounceTimerId = null;
 function debounceRenderGrid(gridType) {
