@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         Promise.all([renderGrid("color-grid_cdj"), renderGrid("color-grid_peace")])
           .then(() => {
             console.log('grids rendered');
-            window.addEventListener('scroll', scrollAnimatesGrid);
+            // window.addEventListener('scroll', scrollAnimatesGrid);
           })
           .catch((error) => {
             console.error(error);

@@ -113,8 +113,6 @@
   transform: rotateX(180deg);
 }
 
-/* START RIPPLE */
-
 .bits-p-wrap { pointer-events: none; }
 
 .jam-link { pointer-events: auto; }
@@ -141,5 +139,3 @@
 #color-grid_peace .color-coord:hover{
   opacity: 0.85;
 }
-
-/* END RIPPLE */
