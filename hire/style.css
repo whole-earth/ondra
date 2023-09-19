@@ -30,7 +30,7 @@
   text-indent: -6px;
 }
 
-/* shoshin on:hover :after reveal citation */
+/* shoshin on:hover :after reveal citation
 #beginner .pillar-slug:after {
   content: "–Shunryu Suzuki";
   color: inherit;
@@ -39,6 +39,7 @@
   transition-delay: 0s;
   opacity: 0;
 }
+*/
 
 #beginner:hover .pillar-slug:after {
   opacity: 0.8;
