@@ -28,7 +28,7 @@
 }
 
 .swiper-slide {
-    width: unset;
+    width: unset !important;
 }
 
 .swiper {
