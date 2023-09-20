@@ -34,5 +34,5 @@ const swiper1 = new Swiper(".swiper", {
     slidesPerView: 'auto',
     freeMode: true,
     grabCursor: true,
-    scroll: true,
+    scroll: true
 });
